@@ -6,7 +6,7 @@
 */
 
 #include <fixture_utils.h>
-#include <nuPhone.h>
+#include <NuPhone.h>
 #include <TFT_eSPI.h>
 #include <LVGL_utils.h>
 
@@ -20,8 +20,12 @@ TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
 static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[ screenWidth * 10 ];
 
+<<<<<<< HEAD
 // Initialise the unPhone
 nuPhone nuphone = nuPhone();
+=======
+NuPhone np = NuPhone();
+>>>>>>> c3f5d6c3a0ba18f79c2078697169aa230d7ea34b
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS FOR SETTING UP LCD DISPLAY ~~~~~~~~~~~~~~~~~~~~~~
@@ -37,7 +41,7 @@ long myMapper(long x, long in_min, long in_max, long out_min, long out_max) {
 void touchpadRead(lv_indev_drv_t * indev_driver, lv_indev_data_t * data) {
   // Read the touchpad.
   uint16_t touchX, touchY;
-  bool touched = nuphone.tsp->touched();
+  bool touched = np.tsp->touched();
 
   if (!touched) {
     data->state = LV_INDEV_STATE_REL;
@@ -47,7 +51,7 @@ void touchpadRead(lv_indev_drv_t * indev_driver, lv_indev_data_t * data) {
 
     // Set the coordinates
     TS_Point p(-1, -1, -1);
-    p = nuphone.tsp->getPoint();
+    p = np.tsp->getPoint();
 
     if(p.z < 400) { return; }
     if(p.x < 0 || p.y < 0) Serial.println("Less than zero!");

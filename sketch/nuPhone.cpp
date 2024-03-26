@@ -39,6 +39,13 @@ void NuPhone::begin() {
     pinMode(BUTTON1, INPUT_PULLUP);
     pinMode(BUTTON2, INPUT_PULLUP);
     pinMode(BUTTON3, INPUT_PULLUP);
+
+    // Setup touchscreen
+    tsp = new XPT2046_Touchscreen(TOUCH_CS); // no IRQ
+
+    // start power switch checking
+    xTaskCreate(continuousPowerCheck, "power switch task", 4096, NULL, 1, NULL);
+    tsp->begin();
 }
 
 // Check the power switch and turn the device off if necissary
@@ -62,4 +69,8 @@ void NuPhone::setLEDRGB(uint8_t red, uint8_t green, uint8_t blue) {
 void NuPhone::setBacklight(bool shouldBacklight) {
     if(shouldBacklight) digitalWrite(BACKLIGHT, HIGH);
     else digitalWrite(BACKLIGHT, LOW);
+}
+
+void continuousPowerCheck(void *param) {     // check power switch every 10th of sec
+  while(true) { NuPhone::me->checkPowerSwitch(); delay(100); }
 }

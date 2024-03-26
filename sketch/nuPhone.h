@@ -13,6 +13,7 @@
 #include <esp_sleep.h> // sleep on powerswitch
 #include <esp32-hal-gpio.h> // read gpio pins
 #include <WiFi.h> // manage WiFi connections
+#include <XPT2046_Touchscreen.h>
 // #include <Adafruit_HX8357.h> 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,6 +24,7 @@ class NuPhone {
     public:
         NuPhone();
         static NuPhone *me;
+        XPT2046_Touchscreen *tsp;
 
         void begin();
         void checkPowerSwitch();
