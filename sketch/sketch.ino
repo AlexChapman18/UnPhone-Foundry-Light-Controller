@@ -6,7 +6,7 @@
 */
 
 #include <fixture_utils.h>
-#include <NuPhone.h>
+#include <unPhone.h>
 #include <TFT_eSPI.h>
 #include <LVGL_utils.h>
 #include <Adafruit_SPIFlash.h>
@@ -21,7 +21,7 @@ TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
 static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[ screenWidth * 10 ];
 
-NuPhone nuphone = NuPhone();
+unPhone nuphone = unPhone();
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS FOR SETTING UP LCD DISPLAY ~~~~~~~~~~~~~~~~~~~~~~
@@ -87,7 +87,7 @@ void setup() {
   // Begin unPhone with a set orientation
   nuphone.begin();
   nuphone.tsp->setRotation(2);
-  nuphone.setBacklight(true);
+  nuphone.backlight(true);
 
   // Initiate the LCD
   tft.begin();

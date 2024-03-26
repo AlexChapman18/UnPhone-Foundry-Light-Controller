@@ -11,9 +11,9 @@
 #define LED_RED 13
 #define LED_GREEN 9
 #define LED_BLUE 13
-static const uint8_t BUTTON1 = 45;   // left button
-static const uint8_t BUTTON2 = 0;   // middle button
-static const uint8_t BUTTON3 = 21;   // right button
+static const uint8_t BUTTON1 = 45;   // Left button
+static const uint8_t BUTTON2 = 0;    // Middle button
+static const uint8_t BUTTON3 = 21;   // Right button
 
 // LCD Pins
 static const uint8_t BACKLIGHT = 2 | 0x40;
@@ -55,7 +55,7 @@ void NuPhone::begin() {
 // Check the power switch and turn the device off if necissary
 void NuPhone::checkPowerSwitch() {
     // Is the switch in the off position?
-    if (! digitalRead(POWER_SWITCH)) {
+    if (!digitalRead(POWER_SWITCH)) {
         // If so, enable "Wake on power switch" and go to sleep
         esp_sleep_enable_ext0_wakeup((gpio_num_t) POWER_SWITCH, 1);
         esp_deep_sleep_start();
@@ -71,10 +71,11 @@ void NuPhone::setLEDRGB(uint8_t red, uint8_t green, uint8_t blue) {
 }
 
 void NuPhone::setBacklight(bool shouldBacklight) {
-    if(shouldBacklight) digitalWrite(BACKLIGHT, HIGH);
+    if (shouldBacklight) digitalWrite(BACKLIGHT, HIGH);
     else digitalWrite(BACKLIGHT, LOW);
 }
 
-void continuousPowerCheck(void *param) {     // check power switch every 10th of sec
-  while(true) { NuPhone::me->checkPowerSwitch(); delay(100); }
+void continuousPowerCheck(void *param) {
+  // Check power switch every 10th of sec
+  while (true) { NuPhone::me->checkPowerSwitch(); delay(100); }
 }
