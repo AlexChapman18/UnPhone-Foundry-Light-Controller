@@ -1,3 +1,9 @@
+/**
+ * A reduced version of unPhone.h
+ * 
+ * Author: Kush Bharakhada and Alex Chapman
+ * nuPhone.h
+*/
 
 #include <Arduino.h>
 #include <esp_sleep.h> // sleep on powerswitch
