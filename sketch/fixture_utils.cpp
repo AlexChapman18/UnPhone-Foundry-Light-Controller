@@ -1,6 +1,16 @@
-#include <lighting.h>
+/**
+ * Contains all fixture (individual light) classes.
+ * 
+ * Author: Kush Bharakhada and Alex Chapman
+ * fixture_utils.cpp
+*/
 
-// ________________Fixture________________
+#include <fixture_utils.h>
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIXTURE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 // Constructor
 #include <Arduino.h>
 
@@ -16,7 +26,6 @@ Fixture::Fixture(uint8_t _address) {
     blue = 0;
 }
 
-// Setters
 void Fixture::setRed(uint8_t _red){
     red = _red;
 }
@@ -32,7 +41,6 @@ void Fixture::setRGB(uint8_t _red, uint8_t _green, uint8_t _blue) {
     blue = _blue;
 }
 
-// Getters
 uint8_t Fixture::getRed() {
     return red;
 }
@@ -52,12 +60,15 @@ uint8_t Fixture::getRGB(uint8_t *_arr) {
 }
 
 
-// ________________FixtureGroup________________
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIXTURE GROUP CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 // Constructor
 FixtureGroup::FixtureGroup(Fixture *_fixtures, uint8_t _num_fixtures) {
     num_fixtures = _num_fixtures;
     fixtures = _fixtures;
 }
+
 FixtureGroup::FixtureGroup(){}
 
 // Setters

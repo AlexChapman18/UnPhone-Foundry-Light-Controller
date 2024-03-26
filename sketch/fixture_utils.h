@@ -1,5 +1,17 @@
+/**
+ * Contains all fixture (individual light) classes.
+ * 
+ * Author: Kush Bharakhada and Alex Chapman
+ * fixture_utils.h
+*/
+
+#ifndef FIXTURE_UTILS_H
+#define FIXTURE_UTILS_H
+
 #include <stdint.h>
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIXTURE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class Fixture {
     public:
@@ -24,6 +36,8 @@ class Fixture {
         uint8_t getRGB(uint8_t *_arr);
 };
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIXTURE GROUP CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class FixtureGroup {
     public:
@@ -39,5 +53,6 @@ class FixtureGroup {
         uint8_t getNumFixtures();
         
         void print();
-
 };
+
+#endif
