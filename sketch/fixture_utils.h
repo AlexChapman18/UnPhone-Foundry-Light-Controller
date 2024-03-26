@@ -8,6 +8,7 @@
 #ifndef FIXTURE_UTILS_H
 #define FIXTURE_UTILS_H
 
+#include <Arduino.h>
 #include <stdint.h>
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
