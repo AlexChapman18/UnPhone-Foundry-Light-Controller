@@ -9,6 +9,7 @@
 #include <NuPhone.h>
 #include <TFT_eSPI.h>
 #include <LVGL_utils.h>
+#include <Adafruit_SPIFlash.h>
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VARIABLE INITIALISATIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -85,7 +86,6 @@ void setup() {
 
   // Begin unPhone with a set orientation
   nuphone.begin();
-  nuphone.tftp = (void*) &tft;
   nuphone.tsp->setRotation(2);
   nuphone.setBacklight(true);
 

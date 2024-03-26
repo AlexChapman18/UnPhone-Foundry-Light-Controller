@@ -22,11 +22,15 @@ static const uint8_t LCD_DC = 47;
 static const uint8_t TOUCH_CS = 38;
 static const uint8_t LCD_RESET = 46;
 
+void continuousPowerCheck(void *param) ;
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUPHONE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-NuPhone::NuPhone(){}
+NuPhone::NuPhone() { me = this; }
+
+// static ref to singleton; only use after constr!
+NuPhone *NuPhone::me = NULL;
 
 void NuPhone::begin() {
     // Setup RGB LED
