@@ -10,12 +10,17 @@
 #include <TFT_eSPI.h>
 #include <LVGL_utils.h>
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VARIABLE INITIALISATIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Variables to setup the LCD and touchscreen
 static const uint16_t screenWidth  = 320;
 static const uint16_t screenHeight = 480;
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
 static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[ screenWidth * 10 ];
 
+// Initialise the unPhone
 nuPhone nuphone = nuPhone();
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,3 +64,59 @@ void touchpadRead(lv_indev_drv_t * indev_driver, lv_indev_data_t * data) {
     data->point.y = touchY;
   }
 }
+
+void displayFlush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p) {
+  uint32_t w = (area->x2 - area->x1 + 1);
+  uint32_t h = (area->y2 - area->y1 + 1);
+  tft.startWrite();
+  tft.setAddrWindow(area->x1, area->y1, w, h);
+  tft.pushColors((uint16_t*)&color_p->full, w * h, true);
+  tft.endWrite();
+  lv_disp_flush_ready(disp);
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+void setup() {
+  Serial.begin(115200);
+  // Wait for Serial line to open
+  while (!Serial) { ; }
+
+  // Begin unPhone with a set orientation
+  nuphone.begin();
+  nuphone.tftp = (void*) &tft;
+  nuphone.tsp->setRotation(2);
+  nuphone.backlight(true);
+
+  // Initiate the LCD
+  tft.begin();
+  tft.setRotation(0);
+
+  // TODO: Calibration needs changing
+  uint16_t calData[5] = { 347, 3549, 419, 3352, 5 };
+  tft.setTouch(calData);
+
+  // Initiate LVGL and initialise the drawing buffer
+  lv_init();
+  lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * 10 );
+
+  // Initialise the display driver
+  static lv_disp_drv_t disp_drv;
+  lv_disp_drv_init(&disp_drv);
+  disp_drv.hor_res = screenWidth;
+  disp_drv.ver_res = screenHeight;
+  disp_drv.flush_cb = displayFlush;
+  disp_drv.draw_buf = &draw_buf;
+  lv_disp_drv_register(&disp_drv);
+
+  // Initialise the input device driver 
+  static lv_indev_drv_t indev_drv;
+  lv_indev_drv_init(&indev_drv);
+  indev_drv.type = LV_INDEV_TYPE_POINTER;
+  indev_drv.read_cb = touchpadRead;
+  lv_indev_drv_register(&indev_drv);
+}
+
+void loop() { lv_timer_handler(); }
