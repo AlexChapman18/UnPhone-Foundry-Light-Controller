@@ -17,6 +17,7 @@ ArchitectureGroup::ArchitectureGroup(uint8_t *_addresses, uint8_t _num_fixtures,
     name = _name;
     num_fixtures = _num_fixtures;
     addresses = _addresses;
+    ArchitectureGroup::setRGB(0, 0, 0);
 }
 
 // Setters

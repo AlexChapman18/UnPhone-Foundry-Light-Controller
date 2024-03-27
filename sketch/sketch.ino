@@ -406,10 +406,6 @@ void setup() {
   // Render and load the initial screen
   renderArchitecturalScreen();
   lv_scr_load(architectural_screen);
-  // renderColorScreen();
-  // lv_scr_load(color_screen);
-  // renderIntensityEffectsScreen();
-  // lv_scr_load(intensity_effects_screen);
 }
 
 void loop() { lv_timer_handler(); }
