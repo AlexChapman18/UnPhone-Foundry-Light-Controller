@@ -75,5 +75,6 @@ void createLabel(int position_x, int position_y, const char *text, lv_obj_t *scr
     // Create and position label
     lv_obj_t *label = lv_label_create(screen);
     lv_label_set_text(label, text);
+    lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
     lv_obj_set_pos(label, position_x, position_y);
 }
