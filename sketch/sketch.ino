@@ -24,8 +24,8 @@ static lv_color_t buf[ screenWidth * 10 ];
 // Define the screens
 static lv_obj_t *architectural_screen;
 
-// Initialise UnPhone
-unPhone nuphone = unPhone();
+// Initialise NuPhone
+NuPhone nuphone = NuPhone();
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS FOR SETTING UP LCD DISPLAY ~~~~~~~~~~~~~~~~~~~~~~
@@ -57,7 +57,7 @@ void touchpadRead(lv_indev_drv_t * indev_driver, lv_indev_data_t * data) {
     if(p.x < 0 || p.y < 0) Serial.println("Less than zero!");
 
     long xMin = 320, xMax = 3945;
-    long yMin = 420, yMax = 3915;
+    long yMin = 220, yMax = 3915;
 
     long xscld = myMapper((long) p.x, xMin, xMax, 0, (long) screenWidth);
     long yscld = ((long) screenHeight) - myMapper((long) p.y, yMin, yMax, 0, (long) screenHeight);
