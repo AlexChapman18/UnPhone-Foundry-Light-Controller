@@ -10,9 +10,9 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATING BUTTONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void createButton(lv_event_cb_t event_handler, int position_x, int position_y,
-                  int size_x, int size_y, char *button_text, lv_color_t bg_color,
-                  lv_color_t text_color, lv_style_t *style_pointer, lv_obj_t *screen) {
+void createButton(lv_event_cb_t event_handler, int position_x, int position_y, int size_x, int size_y,
+                  const char *button_text, lv_color_t bg_color, lv_color_t text_color, lv_coord_t rounded,
+                  lv_style_t *style_pointer, lv_obj_t *screen) {
     
     // Create button
     lv_obj_t *button = lv_btn_create(screen);
@@ -23,6 +23,7 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y,
     lv_style_set_bg_color(style_pointer, bg_color);
     lv_style_set_text_color(style_pointer, text_color);
     lv_style_set_border_width(style_pointer, 2);
+    lv_style_set_radius(style_pointer, rounded);
     lv_style_set_border_color(style_pointer, lv_color_black());
     lv_obj_add_style(button, style_pointer, 0);
 
@@ -70,9 +71,10 @@ void createSlider(lv_event_cb_t event_handler, int position_x, int position_y,
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE LABEL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void createLabel(int position_x, int position_y, char *text, lv_obj_t *screen) {
+void createLabel(int position_x, int position_y, const char *text, lv_obj_t *screen) {
     // Create and position label
     lv_obj_t *label = lv_label_create(screen);
     lv_label_set_text(label, text);
+    lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
     lv_obj_set_pos(label, position_x, position_y);
 }
