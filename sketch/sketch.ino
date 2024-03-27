@@ -99,41 +99,43 @@ void renderArchitecturalScreen() {
 
     // Define width, height and style for all buttons on the page
     static lv_style_t button_style;
-    lv_color_t button_bg_color = LV_COLOR_MAKE(0, 0, 0);
+    lv_color_t button_bg_color = LV_COLOR_MAKE(35, 35, 35);
+    lv_color_t button_text_color = LV_COLOR_MAKE(255, 255, 255);
+    lv_coord_t button_rounded = 15;
     const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 75;
 
     // Design the layout of the architectural screen
     createLabel(70, 20, "Select Architectural Group", architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 20,  50, BUTTON_WIDTH, BUTTON_HEIGHT, "Toilets",        
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 115, 50, BUTTON_WIDTH, BUTTON_HEIGHT, "Main\nExit",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 210, 50, BUTTON_WIDTH, BUTTON_HEIGHT, "Merch\nLights",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 20,  130, BUTTON_WIDTH, BUTTON_HEIGHT, "Pillars",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 115, 130, BUTTON_WIDTH, BUTTON_HEIGHT, "Dancefloor",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 210, 130, BUTTON_WIDTH, BUTTON_HEIGHT, "Main Bar\nLeft",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 20,  210, BUTTON_WIDTH, BUTTON_HEIGHT, "Main Bar\nRight",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 115, 210, BUTTON_WIDTH, BUTTON_HEIGHT, "Bar 1",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 210, 210, BUTTON_WIDTH, BUTTON_HEIGHT, "Bar 2",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 20,  290, BUTTON_WIDTH, BUTTON_HEIGHT, "Bar 3",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 115, 290, BUTTON_WIDTH, BUTTON_HEIGHT, "Raised\nArea Back",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 210, 290, BUTTON_WIDTH, BUTTON_HEIGHT, "Raised\nBar",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 20,  370, BUTTON_WIDTH, BUTTON_HEIGHT, "Raised\nFOH",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 115, 370, BUTTON_WIDTH, BUTTON_HEIGHT, "All\nArcs",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
     createButton(evtHandlerArchitecturalGroup, 210, 370, BUTTON_WIDTH, BUTTON_HEIGHT, "All\nBars",
-                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+                 button_bg_color, button_text_color, button_rounded, &button_style, architectural_screen);
 }
 
 void switchToArchitecturalScreen() {
