@@ -50,7 +50,7 @@ uint8_t Fixture::getBlue() {
 uint8_t Fixture::getAddress() {
     return address;
 }
-uint8_t Fixture::getRGB(uint8_t *_arr) {
+void Fixture::getRGB(uint8_t *_arr) {
     _arr[0] = red;
     _arr[1] = green;
     _arr[2] = blue;

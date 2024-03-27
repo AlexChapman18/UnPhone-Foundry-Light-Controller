@@ -34,7 +34,7 @@ class Fixture {
         uint8_t getBlue();
         uint8_t getAddress();
 
-        uint8_t getRGB(uint8_t *_arr);
+        void getRGB(uint8_t *_arr);
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

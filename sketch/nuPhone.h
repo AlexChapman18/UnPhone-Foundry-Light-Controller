@@ -14,6 +14,8 @@
 #include <esp32-hal-gpio.h> // read gpio pins
 #include <WiFi.h> // manage WiFi connections
 #include <XPT2046_Touchscreen.h>
+#include <Wire.h>
+#include <TCA9555.h>
 // #include <Adafruit_HX8357.h> 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,6 +32,9 @@ class NuPhone {
         void checkPowerSwitch();
         void setLEDRGB(uint8_t red, uint8_t green, uint8_t blue);
         void setBacklight(bool shouldBacklight);
+    
+    private:
+        void initializeTCAChip();
 };
 
 #endif
