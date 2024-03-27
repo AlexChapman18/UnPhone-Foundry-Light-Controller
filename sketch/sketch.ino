@@ -29,6 +29,18 @@ static lv_obj_t *intensity_effects_screen;
 // Initialise UnPhone
 NuPhone nuphone = NuPhone();
 
+// Colors list
+const char* colors_list[] = {"orange", "red", "rose", "magenta", "violet", "blue", "azure", "cyan", "aquamarine",
+                             "green", "chartreuse", "yellow"};
+
+// Architectures list
+const char* architectures_list[] = {"Toilets", "Main\nExit", "Merch\nLights", "Pillars", "Dancefloor", "Main Bar\nLeft",
+                                    "Main Bar\nRight", "Bar 1", "Bar 2", "Bar 3", "Raised\nArea Back", "Raised\nBar",
+                                    "Raised\nFOH", "All\nArcs", "All\nBars"};
+
+// Effect list          
+const char* effects_list[] = {"Solid", "Pulse\nEffect", "Odd-Even\nEffect", "Swiping\nEffect", "Temp1", "Temp2"};
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS FOR SETTING UP LCD DISPLAY ~~~~~~~~~~~~~~~~~~~~~~
 

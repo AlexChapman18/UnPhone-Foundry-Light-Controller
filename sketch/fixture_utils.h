@@ -40,6 +40,11 @@ class Fixture {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIXTURE GROUP CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+// FixtureGroup(i, "Toilets")
+// Get the name
+// Set individual RGB
+// Get individual RGB
+
 class FixtureGroup {
     public:
         FixtureGroup();
@@ -49,9 +54,16 @@ class FixtureGroup {
         Fixture* fixtures;
 
         void setGlobalRGB(uint8_t _red, uint8_t _green, uint8_t _blue);
+        void setGlobalRed(uint8_t _red);
+        void setGlobalGreen(uint8_t _green);
+        void setGlobalBlue(uint8_t _blue);
 
         Fixture* getFixtures();
         uint8_t getNumFixtures();
+        uint8_t getGlobalRed();
+        uint8_t getGlobalGreen();
+        uint8_t getGlobalBlue();
+
         
         void print();
 };
