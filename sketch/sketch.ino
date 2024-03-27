@@ -26,7 +26,7 @@ static lv_obj_t *architectural_screen;
 static lv_obj_t *color_screen;
 
 // Initialise UnPhone
-unPhone nuphone = unPhone();
+NuPhone nuphone = NuPhone();
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS FOR SETTING UP LCD DISPLAY ~~~~~~~~~~~~~~~~~~~~~~
