@@ -98,11 +98,13 @@ void renderArchitecturalScreen() {
     // Initialise the architectural screen
     architectural_screen = lv_obj_create(NULL);
 
-    // Define width, height and style for all btns on the page
+    // Style object(s)
     static lv_style_t btn_style;
+
+    // Define width, height and style for all btns on the page
+    const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 75;
     lv_color_t btn_bg_color = LV_COLOR_MAKE(35, 35, 35);
     lv_coord_t btn_rounded = 15;
-    const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 75;
 
     // Design the layout of the architectural screen
     createLabel(70, 20, "Select Architectural Group", architectural_screen);
@@ -146,71 +148,68 @@ void switchToArchitecturalScreen() {
 void renderColorScreen() {
     color_screen = lv_obj_create(NULL);
 
-    const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 30;
-    
-    lv_coord_t color_btn_rounded = 50;
-    lv_coord_t btn_rounded = 15;
-
-    
+    // Style object(s)
     static lv_style_t back_btn_style, orange_btn_style, red_btn_style, rose_btn_style, magenta_btn_style, 
                       violet_btn_style, blue_btn_style, azure_btn_style, cyan_btn_style, aquamarine_btn_style,
                       green_btn_style, chartreuse_btn_style, yellow_btn_style, black_btn_style, white_btn_style,
                       red_slider_style, green_slider_style, blue_slider_style;
 
+    // Define width, height and styles for components on the page
+    const int BACK_BUTTON_WIDTH = 90, BACK_BUTTON_HEIGHT = 30;
+    const int COLOR_BUTTON_WIDTH = 90, COLOR_BUTTON_HEIGHT = 30;
+    const int WHITE_AND_OFF_BUTTON_WIDTH = 70, WHITE_AND_OFF_BUTTON_HEIGHT = 80;
+    const int SLIDER_WIDTH = 20, SLIDER_HEIGHT = 210;
+    lv_coord_t color_btn_rounded = 15;
+    lv_coord_t btn_rounded = 5;
+
+    // Design the layout of the color screen
     createLabel(200, 13, "Lighting Color", color_screen);
-    createButton(evtHandlerTemp, 20, 10, 80, 30, "Back", lv_color_black(), lv_color_white(),
-                 btn_rounded, &back_btn_style, color_screen);
+    createButton(evtHandlerTemp, 20, 10, BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "Back",
+                 lv_color_black(), lv_color_white(), btn_rounded, &back_btn_style, color_screen);
+    createButton(evtHandlerTemp, 20, 55, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "orange",
+                 LV_COLOR_MAKE(255,  127, 0), LV_COLOR_MAKE(255, 127, 0), color_btn_rounded, &orange_btn_style, color_screen);
+    createButton(evtHandlerTemp, 115, 55, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "red",
+                 LV_COLOR_MAKE(255, 0, 0), LV_COLOR_MAKE(255, 0, 0), color_btn_rounded, &red_btn_style, color_screen);
+    createButton(evtHandlerTemp, 210, 55, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "rose",
+                 LV_COLOR_MAKE(255, 0, 127), LV_COLOR_MAKE(255, 0, 127), color_btn_rounded, &rose_btn_style, color_screen);
+    createButton(evtHandlerTemp, 20, 90, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "magenta",
+                 LV_COLOR_MAKE(255, 0, 255), LV_COLOR_MAKE(255, 0, 255), color_btn_rounded, &magenta_btn_style, color_screen);
+    createButton(evtHandlerTemp, 115, 90, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "violet",
+                 LV_COLOR_MAKE(127, 0, 255), LV_COLOR_MAKE(127, 0, 255), color_btn_rounded, &violet_btn_style, color_screen);
+    createButton(evtHandlerTemp, 210, 90, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "blue",
+                 LV_COLOR_MAKE(0, 0, 255), LV_COLOR_MAKE(0, 0, 255), color_btn_rounded, &blue_btn_style, color_screen);
+    createButton(evtHandlerTemp, 20, 125, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "azure",
+                 LV_COLOR_MAKE(0, 127, 255), LV_COLOR_MAKE(0, 127, 255), color_btn_rounded, &azure_btn_style, color_screen);
+    createButton(evtHandlerTemp, 115, 125, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "cyan", 
+                 LV_COLOR_MAKE(0, 255, 255), LV_COLOR_MAKE(0, 255, 255), color_btn_rounded, &cyan_btn_style, color_screen);
+    createButton(evtHandlerTemp, 210, 125, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "aquamarine",
+                 LV_COLOR_MAKE(0, 255, 127), LV_COLOR_MAKE(0, 255, 127), color_btn_rounded, &aquamarine_btn_style, color_screen);
+    createButton(evtHandlerTemp, 20, 160, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "green",
+                 LV_COLOR_MAKE(0, 255, 0), LV_COLOR_MAKE(0, 255, 0), color_btn_rounded, &green_btn_style, color_screen);
+    createButton(evtHandlerTemp, 115, 160, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "chartreuse",
+                 LV_COLOR_MAKE(127, 255, 0), LV_COLOR_MAKE(127, 255, 0), color_btn_rounded, &chartreuse_btn_style, color_screen);
+    createButton(evtHandlerTemp, 210, 160, COLOR_BUTTON_WIDTH, BACK_BUTTON_HEIGHT, "yellow",
+                 LV_COLOR_MAKE(255, 255, 0), LV_COLOR_MAKE(255, 255, 0), color_btn_rounded, &yellow_btn_style, color_screen);
 
-    createButton(evtHandlerTemp, 20, 55, BUTTON_WIDTH, BUTTON_HEIGHT, "orange",LV_COLOR_MAKE(255,  127, 0),
-                 LV_COLOR_MAKE(255, 127, 0), color_btn_rounded, &orange_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 115, 55, BUTTON_WIDTH, BUTTON_HEIGHT, "red", LV_COLOR_MAKE(255, 0, 0),
-                 LV_COLOR_MAKE(255, 0, 0), color_btn_rounded, &red_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 210, 55, BUTTON_WIDTH, BUTTON_HEIGHT, "rose", LV_COLOR_MAKE(255, 0, 127),
-                 LV_COLOR_MAKE(255, 0, 127), color_btn_rounded, &rose_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 20, 90, BUTTON_WIDTH, BUTTON_HEIGHT, "magenta", LV_COLOR_MAKE(255, 0, 255),
-                 LV_COLOR_MAKE(255, 0, 255), color_btn_rounded, &magenta_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 115, 90, BUTTON_WIDTH, BUTTON_HEIGHT, "violet", LV_COLOR_MAKE(127, 0, 255),
-                 LV_COLOR_MAKE(127, 0, 255), color_btn_rounded, &violet_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 210, 90, BUTTON_WIDTH, BUTTON_HEIGHT, "blue", LV_COLOR_MAKE(0, 0, 255),
-                 LV_COLOR_MAKE(0, 0, 255), color_btn_rounded, &blue_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 20, 125, BUTTON_WIDTH, BUTTON_HEIGHT, "azure", LV_COLOR_MAKE(0, 127, 255),
-                 LV_COLOR_MAKE(0, 127, 255), color_btn_rounded, &azure_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 115, 125, BUTTON_WIDTH, BUTTON_HEIGHT, "cyan", LV_COLOR_MAKE(0, 255, 255),
-                 LV_COLOR_MAKE(0, 255, 255), color_btn_rounded, &cyan_btn_style, color_screen);
-    createButton(evtHandlerTemp, 210, 125, BUTTON_WIDTH, BUTTON_HEIGHT, "aquamarine", LV_COLOR_MAKE(0, 255, 127),
-                 LV_COLOR_MAKE(0, 255, 127), color_btn_rounded, &aquamarine_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 20, 160, BUTTON_WIDTH, BUTTON_HEIGHT, "green", LV_COLOR_MAKE(0, 255, 0),
-                 LV_COLOR_MAKE(0, 255, 0), color_btn_rounded, &green_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 115, 160, BUTTON_WIDTH, BUTTON_HEIGHT, "chartreuse", LV_COLOR_MAKE(127, 255, 0),
-                 LV_COLOR_MAKE(127, 255, 0), color_btn_rounded, &chartreuse_btn_style, color_screen);
-
-    createButton(evtHandlerTemp, 210, 160, BUTTON_WIDTH, BUTTON_HEIGHT, "yellow", LV_COLOR_MAKE(255, 255, 0),
-                 LV_COLOR_MAKE(255, 255, 0), color_btn_rounded, &yellow_btn_style, color_screen);
-
-    createSlider(evtHandlerTemp, 30, 220, 20, 220, 100, LV_COLOR_MAKE(255, 0, 0), &red_slider_style, color_screen);
+    // Red slider and label
+    createSlider(evtHandlerTemp, 30, 220, SLIDER_WIDTH, SLIDER_HEIGHT, 100, LV_COLOR_MAKE(255, 0, 0), &red_slider_style, color_screen);
     createLabel(22, 450, "Red", color_screen);
 
-    createSlider(evtHandlerTemp, 102, 220, 20, 220, 100, LV_COLOR_MAKE(0, 200, 0), &green_slider_style, color_screen);
+    // Green slider and label
+    createSlider(evtHandlerTemp, 102, 220, SLIDER_WIDTH, SLIDER_HEIGHT, 100, LV_COLOR_MAKE(0, 200, 0), &green_slider_style, color_screen);
     createLabel(85, 450, "Green", color_screen);
 
-    createSlider(evtHandlerTemp, 180, 220, 20, 220, 100, LV_COLOR_MAKE(0, 0, 255), &blue_slider_style, color_screen);
+    // Blue slider and label
+    createSlider(evtHandlerTemp, 180, 220, SLIDER_WIDTH, SLIDER_HEIGHT, 100, LV_COLOR_MAKE(0, 0, 255), &blue_slider_style, color_screen);
     createLabel(170, 450, "Blue", color_screen);
 
-    createButton(evtHandlerTemp, 230, 220, 70, 80, "White", lv_color_white(), lv_color_black(),
-                 btn_rounded, &white_btn_style, color_screen);
+    // White light button
+    createButton(evtHandlerTemp, 230, 220, WHITE_AND_OFF_BUTTON_WIDTH, WHITE_AND_OFF_BUTTON_HEIGHT, "White",
+                 lv_color_white(), lv_color_black(), btn_rounded, &white_btn_style, color_screen);
 
-    createButton(evtHandlerTemp, 230, 320, 70, 80, "Off", lv_color_black(), lv_color_white(),
-                 btn_rounded, &black_btn_style, color_screen);
-
+    // Off button
+    createButton(evtHandlerTemp, 230, 320, WHITE_AND_OFF_BUTTON_WIDTH, WHITE_AND_OFF_BUTTON_HEIGHT, "Off",
+                 lv_color_black(), lv_color_white(), btn_rounded, &black_btn_style, color_screen);
 }
 
 void switchToColorScreen() {
