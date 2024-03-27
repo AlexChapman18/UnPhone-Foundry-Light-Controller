@@ -200,7 +200,7 @@ void renderArchitecturalScreen() {
     // Define width, height and style for all btns on the page
     const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 75;
     lv_color_t btn_bg_color = LV_COLOR_MAKE(35, 35, 35);
-    lv_coord_t btn_rounded = 2;
+    lv_coord_t btn_rounded = 5;
 
     // Design the layout of the architectural screen
     createLabel(70, 20, "Select Architectural Group", architectural_screen);
@@ -239,6 +239,7 @@ void renderArchitecturalScreen() {
 void switchToArchitecturalScreen() {
     renderArchitecturalScreen();
     lv_scr_load(architectural_screen);
+    lv_obj_del(color_screen);
 }
 
 void switchToColorScreen(ArchitectureGroup * currentGroup) {
@@ -311,6 +312,7 @@ void switchToColorScreen(ArchitectureGroup * currentGroup) {
                  lv_color_black(), lv_color_white(), btn_rounded, &black_btn_style, color_screen);
     
     lv_scr_load(color_screen);
+    lv_obj_del(architectural_screen);
 }
 
 void renderIntensityEffectsScreen() {
