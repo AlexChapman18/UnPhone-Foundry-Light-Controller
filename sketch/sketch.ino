@@ -21,6 +21,10 @@ TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
 static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[ screenWidth * 10 ];
 
+// Define the screens
+static lv_obj_t *architectural_screen;
+
+// Initialise UnPhone
 unPhone nuphone = unPhone();
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,6 +79,67 @@ void displayFlush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_
   lv_disp_flush_ready(disp);
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// TEMPORARY EVENT HANDLER; NEEDS DEFINING
+static void evtHandlerArchitecturalGroup(lv_event_t * e) {
+    lv_event_code_t code = lv_event_get_code(e);
+    if(code == LV_EVENT_CLICKED) {
+      Serial.println("Click!");
+    }
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SCREENS (PAGES) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+void renderArchitecturalScreen() {
+    // Initialise the architectural screen
+    architectural_screen = lv_obj_create(NULL);
+
+    // Define width, height and style for all buttons on the page
+    static lv_style_t button_style;
+    lv_color_t button_bg_color = LV_COLOR_MAKE(0, 0, 0);
+    const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 75;
+
+    // Design the layout of the architectural screen
+    createLabel(70, 20, "Select Architectural Group", architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 20,  50, BUTTON_WIDTH, BUTTON_HEIGHT, "Toilets",        
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 115, 50, BUTTON_WIDTH, BUTTON_HEIGHT, "Main\nExit",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 210, 50, BUTTON_WIDTH, BUTTON_HEIGHT, "Merch\nLights",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 20,  130, BUTTON_WIDTH, BUTTON_HEIGHT, "Pillars",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 115, 130, BUTTON_WIDTH, BUTTON_HEIGHT, "Dancefloor",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 210, 130, BUTTON_WIDTH, BUTTON_HEIGHT, "Main Bar\nLeft",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 20,  210, BUTTON_WIDTH, BUTTON_HEIGHT, "Main Bar\nRight",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 115, 210, BUTTON_WIDTH, BUTTON_HEIGHT, "Bar 1",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 210, 210, BUTTON_WIDTH, BUTTON_HEIGHT, "Bar 2",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 20,  290, BUTTON_WIDTH, BUTTON_HEIGHT, "Bar 3",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 115, 290, BUTTON_WIDTH, BUTTON_HEIGHT, "Raised\nArea Back",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 210, 290, BUTTON_WIDTH, BUTTON_HEIGHT, "Raised\nBar",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 20,  370, BUTTON_WIDTH, BUTTON_HEIGHT, "Raised\nFOH",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 115, 370, BUTTON_WIDTH, BUTTON_HEIGHT, "All\nArcs",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+    createButton(evtHandlerArchitecturalGroup, 210, 370, BUTTON_WIDTH, BUTTON_HEIGHT, "All\nBars",
+                 button_bg_color, LV_COLOR_MAKE(255, 255, 255), &button_style, architectural_screen);
+}
+
+void switchToArchitecturalScreen() {
+    renderArchitecturalScreen();
+    lv_scr_load(architectural_screen);
+}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -116,6 +181,10 @@ void setup() {
   indev_drv.type = LV_INDEV_TYPE_POINTER;
   indev_drv.read_cb = touchpadRead;
   lv_indev_drv_register(&indev_drv);
+
+  // Render and load the initial screen
+  renderArchitecturalScreen();
+  lv_scr_load(architectural_screen);
 }
 
 void loop() { lv_timer_handler(); }
