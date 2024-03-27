@@ -96,7 +96,6 @@ static void evtHandlerTemp(lv_event_t * e) {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SCREENS (PAGES) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void renderArchitecturalScreen() {
-    // Initialise the architectural screen
     architectural_screen = lv_obj_create(NULL);
 
     // Style object(s)
@@ -219,41 +218,39 @@ void switchToColorScreen() {
 }
 
 void renderIntensityEffectsScreen() {
-
     intensity_effects_screen = lv_obj_create(NULL);
 
+    // Style object(s)
+    static lv_style_t effect_button_style, solid_button_style, back_btn_style, slider_style;
+
+    // Define width, height and styles for components on the page
     const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 55;
     const int SLIDER_WIDTH = 20, SLIDER_HEIGHT = 280;
-
     lv_coord_t btn_rounded = 5;
-
-    static lv_style_t effect_button_style, solid_button_style, back_btn_style, slider_style;
     lv_color_t bg_color = LV_COLOR_MAKE(45, 45, 45);
     lv_color_t btn_text_color = LV_COLOR_MAKE(255, 255, 255);
 
+    // Design the layout of the color screen
     createLabel(85, 13, "Intensity and Effects", intensity_effects_screen);
-
     createButton(evtHandlerTemp, 210, 70, BUTTON_WIDTH, BUTTON_HEIGHT, "Solid",
                  lv_color_black(), btn_text_color, btn_rounded, &solid_button_style, intensity_effects_screen);
-
     createButton(evtHandlerTemp, 210, 130, BUTTON_WIDTH, BUTTON_HEIGHT, "Pulse\nEffect",
                  bg_color, btn_text_color, btn_rounded, &effect_button_style, intensity_effects_screen);
-
     createButton(evtHandlerTemp, 210, 190, BUTTON_WIDTH, BUTTON_HEIGHT, "Odd-Even\nEffect",
                  bg_color, btn_text_color, btn_rounded, &effect_button_style, intensity_effects_screen);
-
     createButton(evtHandlerTemp, 210, 250, BUTTON_WIDTH, BUTTON_HEIGHT, "Swiping\nEffect",
                  bg_color, btn_text_color, btn_rounded, &effect_button_style, intensity_effects_screen);
-
     createButton(evtHandlerTemp, 210, 310, BUTTON_WIDTH, BUTTON_HEIGHT, "Temp1",
                  bg_color, btn_text_color, btn_rounded, &effect_button_style, intensity_effects_screen);
-
     createButton(evtHandlerTemp, 210, 370, BUTTON_WIDTH, BUTTON_HEIGHT, "Temp2",
                  bg_color, btn_text_color, btn_rounded, &effect_button_style, intensity_effects_screen);
 
+
+    // Brightness / Intensity slider
     createSlider(evtHandlerTemp, 40, 100, SLIDER_WIDTH, SLIDER_HEIGHT, 100, bg_color, &slider_style, intensity_effects_screen);
     createLabel(20, 405, "Intensity", intensity_effects_screen);
 
+    // Effect spped slider
     createSlider(evtHandlerTemp, 135, 100, SLIDER_WIDTH, SLIDER_HEIGHT, 100, bg_color, &slider_style, intensity_effects_screen);
     createLabel(120, 405, "Effect\nSpeed", intensity_effects_screen);
 }
