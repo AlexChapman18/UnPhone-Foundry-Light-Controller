@@ -179,13 +179,17 @@ static void evtHandlerBlueSlider(lv_event_t * e) {
 static void evtHandlerIntensitySlider(lv_event_t * e) {
     lv_obj_t * slider = lv_event_get_target(e);
     uint8_t value = (uint8_t)lv_slider_get_value(slider);
-    // Set the intensity value
+    // Bring value into range 0 and 1
+    float normalised_value = (float)value / 255.0;
+    Serial.println(normalised_value);
 }
 
 static void evtHandlerSpeedSlider(lv_event_t * e) {
     lv_obj_t * slider = lv_event_get_target(e);
     uint8_t value = (uint8_t)lv_slider_get_value(slider);
-    // Set the speed value
+    // Bring value into range 0 and 1
+    float normalised_value = (float)value / 255.0;
+    Serial.println(normalised_value);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -406,8 +410,10 @@ void setup() {
   }
 
   // Render and load the initial screen
-  renderArchitecturalScreen();
-  lv_scr_load(architectural_screen);
+  // renderArchitecturalScreen();
+  // lv_scr_load(architectural_screen);
+  renderIntensityEffectsScreen();
+  lv_scr_load(intensity_effects_screen);
 }
 
 void loop() { lv_timer_handler(); }
