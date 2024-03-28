@@ -392,9 +392,7 @@ void setup() {
   espwifi.begin();
 
   // Begin ArtNetUniverse
-  anu.begin();
-
-
+  anu.setup();
 
   // Initiate the LCD
   tft.begin();
@@ -430,10 +428,14 @@ void setup() {
   }
 
   // Render and load the initial screen
-  // renderArchitecturalScreen();
-  // lv_scr_load(architectural_screen);
-  renderIntensityEffectsScreen();
-  lv_scr_load(intensity_effects_screen);
+  renderArchitecturalScreen();
+  lv_scr_load(architectural_screen);
+//   renderIntensityEffectsScreen();
+//   lv_scr_load(architectural_screen);
+
+
+//   Begin art-net transmissiom
+    anu.begin();
 }
 
 void loop() { 

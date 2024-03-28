@@ -10,6 +10,10 @@
 
 #include <Arduino.h>
 #include <stdint.h>
+#include <ArtnetWifi.h>
+#include <private.h>
+
+void keepSendingUniverse(void *params);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -18,6 +22,7 @@ class ArtNetUniverse {
     public:
         ArtNetUniverse();
 
+        void setup();
         void begin();
         void buildOutputUniverse();
         
@@ -30,10 +35,11 @@ class ArtNetUniverse {
         float getSpeed();
         void getOutputUniverse(uint8_t* _arr);
 
+        static uint8_t output_universe[512];
+
     private:
         uint8_t color_universe[512];
         float intensity_universe[512];
-        uint8_t output_universe[512];
         
         float intensity;
         float speed;
