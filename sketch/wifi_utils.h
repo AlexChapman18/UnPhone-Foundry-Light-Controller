@@ -12,10 +12,13 @@
 #include <WiFi.h>
 #include <private.h>
 
+void keepWiFiAlive(void * params);
+
 class ESPWiFi {
     public:
         ESPWiFi();
         void begin();
+        bool isConnected();
 };
 
 #endif

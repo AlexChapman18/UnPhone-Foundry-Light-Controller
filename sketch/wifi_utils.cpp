@@ -23,6 +23,10 @@ void ESPWiFi::begin() {
     );
 };
 
+bool ESPWiFi::isConnected() {
+    return WiFi.status() == WL_CONNECTED;
+};
+
 
 void keepWiFiAlive(void * params) {
     while(true) {
