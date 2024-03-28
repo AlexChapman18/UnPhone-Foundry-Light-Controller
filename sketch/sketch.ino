@@ -5,6 +5,7 @@
  * sketch.ino
 */
 
+#include <artnet_utils.h>
 #include <fixture_utils.h>
 #include <NuPhone.h>
 #include <TFT_eSPI.h>
@@ -28,6 +29,9 @@ static lv_obj_t *intensity_effects_screen;
 
 // Initialise UnPhone
 NuPhone nuphone = NuPhone();
+
+// Initialise ArtNetUniverse
+ArtNetUniverse anu = ArtNetUniverse();
 
 // Architecture groups
 ArchitectureGroup architecture_group_list[15];
@@ -372,6 +376,9 @@ void setup() {
   nuphone.tsp->setRotation(2);
   nuphone.setBacklight(true);
 
+  // Begin ArtNetUniverse
+  anu.begin();
+
   // Initiate the LCD
   tft.begin();
   tft.setRotation(0);
@@ -410,4 +417,6 @@ void setup() {
   lv_scr_load(architectural_screen);
 }
 
-void loop() { lv_timer_handler(); }
+void loop() { 
+    lv_timer_handler(); 
+}
