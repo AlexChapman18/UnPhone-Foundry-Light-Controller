@@ -428,5 +428,14 @@ void setup() {
 }
 
 void loop() { 
-    lv_timer_handler(); 
+    lv_timer_handler();
+    if (nuphone.isButton1()) {
+
+    }
+    if (nuphone.isButton2()) {
+
+    }
+    if (nuphone.isButton3()) {
+
+    }
 }

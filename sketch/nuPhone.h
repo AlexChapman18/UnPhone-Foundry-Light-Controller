@@ -32,9 +32,16 @@ class NuPhone {
         void checkPowerSwitch();
         void setLEDRGB(uint8_t red, uint8_t green, uint8_t blue);
         void setBacklight(bool shouldBacklight);
+
+        bool isButton1();
+        bool isButton2();
+        bool isButton3();
     
     private:
         void initializeTCAChip();
+        bool isButton1Held;
+        bool isButton2Held;
+        bool isButton3Held;
 };
 
 #endif
