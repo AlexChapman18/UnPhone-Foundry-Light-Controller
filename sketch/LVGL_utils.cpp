@@ -42,7 +42,7 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE SLIDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void createSlider(lv_event_cb_t event_handler, int position_x, int position_y,
-                  int size_x, int size_y, double proportion, lv_color_t bg_color,
+                  int size_x, int size_y, float proportion, lv_color_t bg_color,
 				          lv_style_t *style_pointer, lv_obj_t *screen) {
 
 	// Create a slider				

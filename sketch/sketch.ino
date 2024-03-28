@@ -183,13 +183,17 @@ static void evtHandlerBlueSlider(lv_event_t * e) {
 static void evtHandlerIntensitySlider(lv_event_t * e) {
     lv_obj_t * slider = lv_event_get_target(e);
     uint8_t value = (uint8_t)lv_slider_get_value(slider);
-    // Set the intensity value
+    // Bring value into range 0 and 1
+    float normalised_value = (float)value / 255.0;
+    anu.setIntensity(normalised_value);
 }
 
 static void evtHandlerSpeedSlider(lv_event_t * e) {
     lv_obj_t * slider = lv_event_get_target(e);
     uint8_t value = (uint8_t)lv_slider_get_value(slider);
-    // Set the speed value
+    // Bring value into range 0 and 1
+    float normalised_value = (float)value / 255.0;
+    anu.setSpeed(normalised_value);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -346,14 +350,18 @@ void renderIntensityEffectsScreen() {
                  bg_color, btn_text_color, btn_rounded, &effect_button_style, intensity_effects_screen);
     createButton(evtHandlerEffectsBtns, 210, 370, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[5],
                  bg_color, btn_text_color, btn_rounded, &effect_button_style, intensity_effects_screen);
+    
+    // Denormalise intensity and speed
+    uint8_t denormalised_intensity_value = (uint8_t)(anu.getIntensity()*255.0);
+    uint8_t denormalised_speed_value = (uint8_t)(anu.getSpeed()*255.0);
 
     // Brightness / Intensity slider
-    createSlider(evtHandlerIntensitySlider, 40, 100, SLIDER_WIDTH, SLIDER_HEIGHT, 100, bg_color,
+    createSlider(evtHandlerIntensitySlider, 40, 100, SLIDER_WIDTH, SLIDER_HEIGHT, denormalised_intensity_value, bg_color,
                  &slider_style, intensity_effects_screen);
     createLabel(20, 405, "Intensity", intensity_effects_screen);
 
     // Effect spped slider
-    createSlider(evtHandlerSpeedSlider, 135, 100, SLIDER_WIDTH, SLIDER_HEIGHT, 100, bg_color,
+    createSlider(evtHandlerSpeedSlider, 135, 100, SLIDER_WIDTH, SLIDER_HEIGHT, denormalised_speed_value, bg_color,
                  &slider_style, intensity_effects_screen);
     createLabel(120, 405, "Effect\nSpeed", intensity_effects_screen);
 }
@@ -413,8 +421,10 @@ void setup() {
   }
 
   // Render and load the initial screen
-  renderArchitecturalScreen();
-  lv_scr_load(architectural_screen);
+  // renderArchitecturalScreen();
+  // lv_scr_load(architectural_screen);
+  renderIntensityEffectsScreen();
+  lv_scr_load(intensity_effects_screen);
 }
 
 void loop() { 
