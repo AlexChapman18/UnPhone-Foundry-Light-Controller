@@ -5,6 +5,7 @@
  * sketch.ino
 */
 
+#include <wifi_utils.h>
 #include <artnet_utils.h>
 #include <fixture_utils.h>
 #include <NuPhone.h>
@@ -29,6 +30,9 @@ static lv_obj_t *intensity_effects_screen;
 
 // Initialise UnPhone
 NuPhone nuphone = NuPhone();
+
+// Initialise WiFi connection
+ESPWiFi espwifi = ESPWiFi();
 
 // Initialise ArtNetUniverse
 ArtNetUniverse anu = ArtNetUniverse();
@@ -384,8 +388,13 @@ void setup() {
   nuphone.tsp->setRotation(2);
   nuphone.setBacklight(true);
 
+  // Begin WiFi
+  espwifi.begin();
+
   // Begin ArtNetUniverse
   anu.begin();
+
+
 
   // Initiate the LCD
   tft.begin();
