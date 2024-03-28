@@ -96,3 +96,30 @@ void continuousPowerCheck(void *param) {
   // Check power switch every 10th of sec
   while (true) { NuPhone::me->checkPowerSwitch(); delay(100); }
 }
+
+bool NuPhone::isButton1() { 
+    bool isPressed = digitalRead(BUTTON1) == LOW;
+    if (isPressed && isButton1Held) {
+        return false;
+    }
+    isButton1Held = isPressed;
+    return isPressed; 
+}
+
+bool NuPhone::isButton2() { 
+    bool isPressed = digitalRead(BUTTON2) == LOW;
+    if (isPressed && isButton2Held) {
+        return false;
+    }
+    isButton2Held = isPressed;
+    return isPressed; 
+}
+
+bool NuPhone::isButton3() { 
+    bool isPressed = digitalRead(BUTTON3) == LOW;
+    if (isPressed && isButton3Held) {
+        return false;
+    }
+    isButton3Held = isPressed;
+    return isPressed;  
+}
