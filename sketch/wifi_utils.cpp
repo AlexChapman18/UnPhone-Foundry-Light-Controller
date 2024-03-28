@@ -20,7 +20,7 @@ void ESPWiFi::begin() {
         1,
         NULL,
         CONFIG_ARDUINO_RUNNING_CORE
-    )
+    );
 };
 
 
