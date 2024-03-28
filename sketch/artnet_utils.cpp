@@ -9,6 +9,11 @@
 
 ArtnetWifi artnet;
 
+uint8_t ArtNetUniverse::output_universe[512] = {}; // Initialise the empty universe
+float ArtNetUniverse::intensity_universe[512] = {}; // Initialise the empty universe
+// uint8_t ArtNetUniverse::color_universe[512] = {}; // Initialise the empty universe
+
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -17,7 +22,7 @@ ArtNetUniverse::ArtNetUniverse(){}
 void ArtNetUniverse::setup() {
     for (int i = 0; i < 512; i++) {
         color_universe[i] = 0;
-        intensity_universe[i] = 0.0;
+        intensity_universe[i] = 1.0;
         output_universe[i] = 0;
     }
 
@@ -39,7 +44,7 @@ void ArtNetUniverse::begin() {
     );
 }
 
-void ArtNetUniverse::buildOutputUniverse() {
+inline void ArtNetUniverse::buildOutputUniverse() {
     for (int i = 0; i < 512; i++) {
         output_universe[i] = intensity_universe[i] * color_universe[i];
     }
@@ -48,12 +53,6 @@ void ArtNetUniverse::buildOutputUniverse() {
 void ArtNetUniverse::setIntensityUniverse(float *_arr) {
     for (int i = 0; i < 512; i++) {
         intensity_universe[i] = _arr[i];
-    }
-}
-
-void ArtNetUniverse::setColorUniverse(uint8_t *_arr) {
-    for (int i = 0; i < 512; i++) {
-        color_universe[i] = _arr[i];
     }
 }
 
@@ -76,9 +75,9 @@ float ArtNetUniverse::getSpeed() {
 }
 
 
-uint8_t ArtNetUniverse::output_universe[512] = {}; // Initialise the empty universe
 void keepSendingUniverse(void *params) {
     while (true) {
+        ArtNetUniverse::buildOutputUniverse();
         for (int i = 0; i < 512; i++) {
             artnet.setByte(i, ArtNetUniverse::output_universe[i]);
         }
