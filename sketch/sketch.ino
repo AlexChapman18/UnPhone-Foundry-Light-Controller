@@ -12,6 +12,7 @@
 #include <TFT_eSPI.h>
 #include <LVGL_utils.h>
 #include <Adafruit_SPIFlash.h>
+#include <private.h>
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VARIABLE INITIALISATIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41,8 +42,6 @@ ArtNetUniverse anu = ArtNetUniverse();
 
 // Architecture groups
 ArchitectureGroup architecture_group_list[15];
-// Address list          
-uint8_t address_list[] = {1, 4, 7};
 
 // Colors list
 const char* colors_list[] = {"orange", "red", "rose", "magenta", "violet", "blue", "azure", "cyan", "aquamarine",
@@ -474,7 +473,7 @@ void setup() {
 
   // Create architecture objects
   for (int i=0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
-      architecture_group_list[i] = ArchitectureGroup(address_list, 3, architectures_list[i]);
+      architecture_group_list[i] = ArchitectureGroup(i, architectures_list[i]);
   }
 
   // Render and load the initial screen

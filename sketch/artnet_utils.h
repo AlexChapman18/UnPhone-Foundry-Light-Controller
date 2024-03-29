@@ -27,7 +27,6 @@ class ArtNetUniverse {
         
         void setIntensity(float _intensity);
         void setSpeed(float _speed);
-        void setIntensityUniverse(float *_arr);
 
         float getIntensity();
         float getSpeed();

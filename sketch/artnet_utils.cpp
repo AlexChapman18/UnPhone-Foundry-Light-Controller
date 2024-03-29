@@ -38,12 +38,6 @@ void ArtNetUniverse::begin() {
     xTaskCreate(keepSendingUniverse, "Art-net output", 5000, NULL, 5, NULL);
 }
 
-void ArtNetUniverse::setIntensityUniverse(float *_arr) {
-    for (int i = 0; i < 512; i++) {
-        intensity_universe[i] = _arr[i];
-    }
-}
-
 void ArtNetUniverse::setIntensity(float _intensity) {
     intensity = _intensity;
     for (int i = 0; i < 512; i++) {

@@ -19,7 +19,7 @@ class ArchitectureGroup {
         const char* name;
 
         uint8_t num_fixtures;
-        uint8_t* addresses;
+        uint16_t *addresses;
 
         uint8_t red;
         uint8_t green;
@@ -27,14 +27,14 @@ class ArchitectureGroup {
 
     public:
         ArchitectureGroup();
-        ArchitectureGroup(uint8_t* _addresses, uint8_t _num_fixtures, const char* _name);
+        ArchitectureGroup(uint8_t _addresses_index, const char* _name);
 
         void setRGB(uint8_t _red, uint8_t _green, uint8_t _blue);
         void setRed(uint8_t _red);
         void setGreen(uint8_t _green);
         void setBlue(uint8_t _blue);
 
-        uint8_t* getAddresses();
+        uint16_t* getAddresses();
         uint8_t getNumFixtures();
         uint8_t getRed();
         uint8_t getGreen();
