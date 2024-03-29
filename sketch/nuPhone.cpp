@@ -35,6 +35,8 @@ NuPhone::NuPhone() { me = this; }
 NuPhone *NuPhone::me = NULL;
 
 void NuPhone::begin() {
+
+    checkPowerSwitch();
     // Setup RGB LED
     pinMode(LED_RED,   OUTPUT);
     pinMode(LED_GREEN, OUTPUT);
