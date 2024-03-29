@@ -13,8 +13,7 @@ float ArtNetUniverse::intensity_universe[512] =
     {};  // Initialise the empty universe
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ArtNetUniverse::ArtNetUniverse() {}
 
@@ -65,6 +64,6 @@ void keepSendingUniverse(void *params) {
                                   ArtNetUniverse::color_universe[i]);
         }
         artnet.write();
-        vTaskDelay(60 / portTICK_RATE_MS);  // Wait 30 MS and send again
+        vTaskDelay(60 / portTICK_RATE_MS);  // Wait 60 MS and send again
     }
 }
