@@ -27,6 +27,7 @@ static lv_color_t buf[ screenWidth * 10 ];
 static lv_obj_t *architectural_screen;
 static lv_obj_t *color_screen;
 static lv_obj_t *intensity_effects_screen;
+static lv_obj_t *current_screen;
 
 // Initialise UnPhone
 NuPhone nuphone = NuPhone();
@@ -251,7 +252,8 @@ void renderArchitecturalScreen() {
 void switchToArchitecturalScreen() {
     renderArchitecturalScreen();
     lv_scr_load(architectural_screen);
-    lv_obj_del(color_screen);
+    lv_obj_del(current_screen);
+    current_screen = architectural_screen;
 }
 
 void switchToColorScreen(ArchitectureGroup * currentGroup) {
@@ -324,10 +326,11 @@ void switchToColorScreen(ArchitectureGroup * currentGroup) {
                  lv_color_black(), lv_color_white(), btn_rounded, &black_btn_style, color_screen);
     
     lv_scr_load(color_screen);
-    lv_obj_del(architectural_screen);
+    lv_obj_del(current_screen);
+    current_screen = color_screen;
 }
 
-void renderIntensityEffectsScreen() {
+void switchToIntensityEffectsScreen() {
     intensity_effects_screen = lv_obj_create(NULL);
 
     // Style object(s)
@@ -368,12 +371,12 @@ void renderIntensityEffectsScreen() {
     createSlider(evtHandlerSpeedSlider, 135, 100, SLIDER_WIDTH, SLIDER_HEIGHT, denormalised_speed_value, bg_color,
                  &slider_style, intensity_effects_screen);
     createLabel(120, 405, "Effect\nSpeed", intensity_effects_screen);
+
+    lv_scr_load(intensity_effects_screen);
+    lv_obj_del(current_screen);
+    current_screen = intensity_effects_screen;
 }
 
-void switchToIntensityEffectsScreen() {
-    renderIntensityEffectsScreen();
-    lv_scr_load(intensity_effects_screen);
-}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -430,9 +433,7 @@ void setup() {
   // Render and load the initial screen
   renderArchitecturalScreen();
   lv_scr_load(architectural_screen);
-//   renderIntensityEffectsScreen();
-//   lv_scr_load(architectural_screen);
-
+  current_screen = architectural_screen;
 
 //   Begin art-net transmissiom
     anu.begin();
@@ -440,13 +441,13 @@ void setup() {
 
 void loop() { 
     lv_timer_handler(); 
-    if (nuphone.isButton1()) {
-
+    if (nuphone.isButton1() && (current_screen != architectural_screen)) { 
+      Serial.println("Switching screen.");
+      switchToArchitecturalScreen();
     }
-    if (nuphone.isButton2()) {
-
+    if (nuphone.isButton2() && (current_screen != intensity_effects_screen)) {
+      Serial.println("Switching screen.");
+      switchToIntensityEffectsScreen();
     }
-    if (nuphone.isButton3()) {
-
-    }
+    if (nuphone.isButton3()) {}
 }
