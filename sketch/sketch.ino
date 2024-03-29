@@ -384,8 +384,11 @@ void switchToIntensityEffectsScreen() {
 void switchToColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
     // Style object(s)
-    static lv_style_t block_style;
-
+    static lv_style_t style1, style2, style3, style4, style5, style6, style7, style8,
+                      style9, style10, style11, style12, style13, style14, style15;
+    static lv_style_t styles_list[] = {style1, style2, style3, style4, style5, style6, style7, style8,
+                                       style9, style10, style11, style12, style13, style14, style15};
+                
     // Define width, height and styles
     const int BLOCK_SIZE_X = 50, BLOCK_SIZE_Y = 20;
     lv_coord_t block_rounded = 5;
@@ -411,11 +414,14 @@ void switchToColorStatusScreen() {
       // Add the architecture label with the corresponding background color
       createLabel(initial_x, initial_y, nameString.c_str(), color_status_screen);
       createButton(evtDoNothing, initial_x+200, initial_y, BLOCK_SIZE_X, BLOCK_SIZE_Y, "",
-                   bg_color, bg_color, block_rounded, &block_style, color_status_screen);
+                   bg_color, bg_color, block_rounded, &styles_list[i], color_status_screen);
 
       initial_y += padding;
     }
+    
     lv_scr_load(color_status_screen);
+    lv_obj_del(current_screen);
+    current_screen = color_status_screen;
 }
 
 
@@ -472,24 +478,26 @@ void setup() {
   }
 
   // Render and load the initial screen
-  // renderArchitecturalScreen();
-  // lv_scr_load(architectural_screen);
-  // current_screen = architectural_screen;
-  switchToColorStatusScreen();
+  renderArchitecturalScreen();
+  lv_scr_load(architectural_screen);
+  current_screen = architectural_screen;
 
-//   Begin art-net transmissiom
-    anu.begin();
+  // Begin art-net transmissiom
+  anu.begin();
 }
 
 void loop() { 
     lv_timer_handler(); 
     if (nuphone.isButton1() && (current_screen != architectural_screen)) { 
-      Serial.println("Switching screen.");
-      switchToArchitecturalScreen();
+        Serial.println("Switching screen 1.");
+        switchToArchitecturalScreen();
     }
     if (nuphone.isButton2() && (current_screen != intensity_effects_screen)) {
-      Serial.println("Switching screen.");
-      switchToIntensityEffectsScreen();
+        Serial.println("Switching screen 2.");
+        switchToIntensityEffectsScreen();
     }
-    if (nuphone.isButton3()) {}
+    if (nuphone.isButton3() && (current_screen != color_status_screen)) {
+        Serial.println("Switching screen 3.");
+        switchToColorStatusScreen();
+    }
 }
