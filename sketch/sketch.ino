@@ -29,7 +29,7 @@ static lv_obj_t *architectural_screen;      // screen 0
 static lv_obj_t *color_screen;              // screen 1
 static lv_obj_t *intensity_effects_screen;  // screen 2
 static lv_obj_t *color_status_screen;       // screen 3
-static int current_screen;
+static int current_screen;                  // 0, 1, 2, or 3
 
 // Initialise UnPhone
 NuPhone nuphone = NuPhone();
@@ -140,8 +140,8 @@ static void evtHandlerArchGroupBtns(lv_event_t * e) {
             if (strcmp(text, architectures_list[i]) == 0) {
                 renderColorScreen(&architecture_group_list[i]);
                 lv_scr_load(color_screen);
-                delete_screen();
-                current_screen = 2;
+                delete_previous_screen();
+                current_screen = 1;
                 break;
             }
         }
@@ -168,7 +168,7 @@ static void evtHandlerBackBtn(lv_event_t * e) {
     if(code == LV_EVENT_CLICKED) {
         renderArchitecturalScreen();
         lv_scr_load(architectural_screen);
-        delete_screen();
+        delete_previous_screen();
         current_screen = 0;
     }
 }
@@ -410,12 +410,15 @@ void renderColorStatusScreen() {
     }
 }
 
+void delete_previous_screen() {
+  if (current_screen == 0) {lv_obj_del(architectural_screen); }
+  if (current_screen == 1) {lv_obj_del(color_screen); }
+  if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
+  if (current_screen == 3) {lv_obj_del(color_status_screen); }
+}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // lv_scr_load(color_screen);
-    // lv_obj_del(current_screen);
-    // current_screen = color_screen;
 
 void setup() {
   Serial.begin(115200);
@@ -475,12 +478,7 @@ void setup() {
   anu.begin();
 }
 
-void delete_screen() {
-  if (current_screen == 0) {lv_obj_del(architectural_screen); }
-  if (current_screen == 1) {lv_obj_del(color_screen); }
-  if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
-  if (current_screen == 3) {lv_obj_del(color_status_screen); }
-}
+
 
 void loop() { 
     lv_timer_handler();
@@ -491,7 +489,7 @@ void loop() {
         Serial.println("Switching screen");
         renderArchitecturalScreen();
         lv_scr_load(architectural_screen);
-        delete_screen();
+        delete_previous_screen();
         current_screen = 0;
       }
     } else if (nuphone.isButton2()) {
@@ -500,7 +498,7 @@ void loop() {
         Serial.println("Switching screen");
         renderIntensityEffectsScreen();
         lv_scr_load(intensity_effects_screen);
-        delete_screen();
+        delete_previous_screen();
         current_screen = 2;
       }
     } else if (nuphone.isButton3()) {
@@ -509,10 +507,9 @@ void loop() {
         Serial.println("Switching screen");
         renderColorStatusScreen();
         lv_scr_load(color_status_screen);
-        delete_screen();
+        delete_previous_screen();
         current_screen = 3;
       }
     }
-
     delay(5);
 }
