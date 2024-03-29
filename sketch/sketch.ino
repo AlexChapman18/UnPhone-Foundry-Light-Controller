@@ -383,32 +383,38 @@ void switchToIntensityEffectsScreen() {
 
 void switchToColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
-
     // Style object(s)
     static lv_style_t block_style;
 
-    // Define width, height and styles for components on the page
+    // Define width, height and styles
     const int BLOCK_SIZE_X = 50, BLOCK_SIZE_Y = 20;
     lv_coord_t block_rounded = 5;
 
-    // Design the layout of the color screen
+    // Design the layout of the screen
     createLabel(88, 13, "Global Color Status", color_status_screen);
 
-    int initial_x = 20, initial_y = 60;
+    int initial_x = 30, initial_y = 60;
     int padding = BLOCK_SIZE_Y + 5;
 
+    // Create t
     for (int i=0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
       // Get the name of the architecture and remove "\n" and replace with a space
       const char* name = architecture_group_list[i].getName();
       std::string nameString = std::string(name);
       std::replace(nameString.begin(), nameString.end(), '\n', ' ');
 
+      // Make thr RGB color
+      lv_color_t bg_color = LV_COLOR_MAKE(architecture_group_list[i].getRed(),
+                                          architecture_group_list[i].getGreen(),
+                                          architecture_group_list[i].getBlue());
+
+      // Add the architecture label with the corresponding background color
       createLabel(initial_x, initial_y, nameString.c_str(), color_status_screen);
-      createButton(evtDoNothing, initial_x+200, initial_y, BLOCK_SIZE_X, BLOCK_SIZE_Y, "", lv_color_black(), lv_color_black(),
-                   block_rounded, &block_style, color_status_screen);
+      createButton(evtDoNothing, initial_x+200, initial_y, BLOCK_SIZE_X, BLOCK_SIZE_Y, "",
+                   bg_color, bg_color, block_rounded, &block_style, color_status_screen);
+
       initial_y += padding;
     }
-
     lv_scr_load(color_status_screen);
 }
 
