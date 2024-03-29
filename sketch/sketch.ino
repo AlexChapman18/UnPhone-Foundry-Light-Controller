@@ -488,16 +488,8 @@ void setup() {
 
 void loop() { 
     lv_timer_handler(); 
-    if (nuphone.isButton1() && (current_screen != architectural_screen)) { 
-        Serial.println("Switching screen 1.");
-        switchToArchitecturalScreen();
-    }
-    if (nuphone.isButton2() && (current_screen != intensity_effects_screen)) {
-        Serial.println("Switching screen 2.");
-        switchToIntensityEffectsScreen();
-    }
-    if (nuphone.isButton3() && (current_screen != color_status_screen)) {
-        Serial.println("Switching screen 3.");
-        switchToColorStatusScreen();
-    }
+    if (nuphone.isButton1()) { switchToArchitecturalScreen(); }
+    else if (nuphone.isButton2()) { switchToIntensityEffectsScreen(); }
+    else if (nuphone.isButton3()) { switchToColorStatusScreen(); }
+    delay(5);
 }
