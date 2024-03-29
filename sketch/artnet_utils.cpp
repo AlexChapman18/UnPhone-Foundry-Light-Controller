@@ -9,9 +9,7 @@
 
 ArtnetWifi artnet;
 
-uint8_t ArtNetUniverse::output_universe[512] = {}; // Initialise the empty universe
 float ArtNetUniverse::intensity_universe[512] = {}; // Initialise the empty universe
-// uint8_t ArtNetUniverse::color_universe[512] = {}; // Initialise the empty universe
 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,7 +21,6 @@ void ArtNetUniverse::setup() {
     for (int i = 0; i < 512; i++) {
         color_universe[i] = 0;
         intensity_universe[i] = 1.0;
-        output_universe[i] = 0;
     }
 
     while (WiFi.status() != WL_CONNECTED){}
@@ -42,12 +39,6 @@ void ArtNetUniverse::begin() {
         5,
         NULL
     );
-}
-
-inline void ArtNetUniverse::buildOutputUniverse() {
-    for (int i = 0; i < 512; i++) {
-        output_universe[i] = intensity_universe[i] * color_universe[i];
-    }
 }
 
 void ArtNetUniverse::setIntensityUniverse(float *_arr) {
@@ -77,9 +68,8 @@ float ArtNetUniverse::getSpeed() {
 
 void keepSendingUniverse(void *params) {
     while (true) {
-        ArtNetUniverse::buildOutputUniverse();
         for (int i = 0; i < 512; i++) {
-            artnet.setByte(i, ArtNetUniverse::output_universe[i]);
+            artnet.setByte(i, ArtNetUniverse::intensity_universe[i] * ArtNetUniverse::color_universe[i]);
         }
         artnet.write();
         vTaskDelay(60/portTICK_RATE_MS); // Wait 30 MS and send again

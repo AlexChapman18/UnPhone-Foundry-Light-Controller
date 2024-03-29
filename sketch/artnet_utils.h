@@ -24,7 +24,6 @@ class ArtNetUniverse {
 
         void setup();
         void begin();
-        static inline void buildOutputUniverse();
         
         void setIntensity(float _intensity);
         void setSpeed(float _speed);
@@ -33,7 +32,6 @@ class ArtNetUniverse {
         float getIntensity();
         float getSpeed();
 
-        static uint8_t output_universe[512];
         static uint8_t color_universe[512];
         static float intensity_universe[512];
 
