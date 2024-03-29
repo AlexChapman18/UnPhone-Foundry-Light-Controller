@@ -441,13 +441,13 @@ void setup() {
 
 void loop() { 
     lv_timer_handler(); 
-    if (nuphone.isButton1()) {
-
+    if (nuphone.isButton1() && (current_screen != architectural_screen)) { 
+      Serial.println("Switching screen.");
+      switchToArchitecturalScreen();
     }
-    if (nuphone.isButton2()) {
-
+    if (nuphone.isButton2() && (current_screen != intensity_effects_screen)) {
+      Serial.println("Switching screen.");
+      switchToIntensityEffectsScreen();
     }
-    if (nuphone.isButton3()) {
-
-    }
+    if (nuphone.isButton3()) {}
 }
