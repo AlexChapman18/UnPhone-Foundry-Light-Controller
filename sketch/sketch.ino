@@ -484,27 +484,21 @@ void loop() {
     lv_timer_handler();
     
     if (nuphone.isButton1()) {
-      Serial.println("Button 1 Pressed");
       if (current_screen != 0) {
-        Serial.println("Switching screen");
         renderArchitecturalScreen();
         lv_scr_load(architectural_screen);
         delete_previous_screen();
         current_screen = 0;
       }
     } else if (nuphone.isButton2()) {
-      Serial.println("Button 2 Pressed");
       if (current_screen != 2) {
-        Serial.println("Switching screen");
         renderIntensityEffectsScreen();
         lv_scr_load(intensity_effects_screen);
         delete_previous_screen();
         current_screen = 2;
       }
     } else if (nuphone.isButton3()) {
-      Serial.println("Button 3 Pressed");
       if (current_screen != 3) {
-        Serial.println("Switching screen");
         renderColorStatusScreen();
         lv_scr_load(color_status_screen);
         delete_previous_screen();
