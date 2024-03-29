@@ -25,11 +25,11 @@ static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[ screenWidth * 10 ];
 
 // Define the screens
-static lv_obj_t *architectural_screen;
-static lv_obj_t *color_screen;
-static lv_obj_t *intensity_effects_screen;
-static lv_obj_t *color_status_screen;
-static lv_obj_t *current_screen;
+static lv_obj_t *architectural_screen;      // screen 0
+static lv_obj_t *color_screen;              // screen 1
+static lv_obj_t *intensity_effects_screen;  // screen 2
+static lv_obj_t *color_status_screen;       // screen 3
+static int current_screen;                  // 0, 1, 2, or 3
 
 // Initialise UnPhone
 NuPhone nuphone = NuPhone();
@@ -138,7 +138,10 @@ static void evtHandlerArchGroupBtns(lv_event_t * e) {
         // Find which exact button was pressed (for loop is compact rather than individual evt listeners)
         for (int i=0; i < sizeof(architectures_list)/sizeof(architectures_list[0]); i++) {
             if (strcmp(text, architectures_list[i]) == 0) {
-                switchToColorScreen(&architecture_group_list[i]);
+                renderColorScreen(&architecture_group_list[i]);
+                lv_scr_load(color_screen);
+                delete_previous_screen();
+                current_screen = 1;
                 break;
             }
         }
@@ -163,7 +166,10 @@ static void evtHandlerEffectsBtns(lv_event_t * e) {
 static void evtHandlerBackBtn(lv_event_t * e) {
     lv_event_code_t code = lv_event_get_code(e);
     if(code == LV_EVENT_CLICKED) {
-        switchToArchitecturalScreen();
+        renderArchitecturalScreen();
+        lv_scr_load(architectural_screen);
+        delete_previous_screen();
+        current_screen = 0;
     }
 }
 
@@ -251,14 +257,7 @@ void renderArchitecturalScreen() {
                  btn_bg_color, lv_color_white(), btn_rounded, &btn_style, architectural_screen);
 }
 
-void switchToArchitecturalScreen() {
-    renderArchitecturalScreen();
-    lv_scr_load(architectural_screen);
-    lv_obj_del(current_screen);
-    current_screen = architectural_screen;
-}
-
-void switchToColorScreen(ArchitectureGroup * currentGroup) {
+void renderColorScreen(ArchitectureGroup * currentGroup) {
     currentArcGroup = currentGroup;
     color_screen = lv_obj_create(NULL);
 
@@ -326,13 +325,9 @@ void switchToColorScreen(ArchitectureGroup * currentGroup) {
     // Off button
     createButton(evtHandlerColorBtns, 230, 320, WHITE_AND_OFF_BUTTON_WIDTH, WHITE_AND_OFF_BUTTON_HEIGHT, colors_list[13],
                  lv_color_black(), lv_color_white(), btn_rounded, &black_btn_style, color_screen);
-    
-    lv_scr_load(color_screen);
-    lv_obj_del(current_screen);
-    current_screen = color_screen;
 }
 
-void switchToIntensityEffectsScreen() {
+void renderIntensityEffectsScreen() {
     intensity_effects_screen = lv_obj_create(NULL);
 
     // Style object(s)
@@ -373,14 +368,10 @@ void switchToIntensityEffectsScreen() {
     createSlider(evtHandlerSpeedSlider, 135, 100, SLIDER_WIDTH, SLIDER_HEIGHT, denormalised_speed_value, bg_color,
                  &slider_style, intensity_effects_screen);
     createLabel(120, 405, "Effect\nSpeed", intensity_effects_screen);
-
-    lv_scr_load(intensity_effects_screen);
-    lv_obj_del(current_screen);
-    current_screen = intensity_effects_screen;
 }
 
 
-void switchToColorStatusScreen() {
+void renderColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
     // Style object(s)
     static lv_style_t style1, style2, style3, style4, style5, style6, style7, style8,
@@ -417,12 +408,14 @@ void switchToColorStatusScreen() {
 
       initial_y += padding;
     }
-    
-    lv_scr_load(color_status_screen);
-    lv_obj_del(current_screen);
-    current_screen = color_status_screen;
 }
 
+void delete_previous_screen() {
+  if (current_screen == 0) {lv_obj_del(architectural_screen); }
+  if (current_screen == 1) {lv_obj_del(color_screen); }
+  if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
+  if (current_screen == 3) {lv_obj_del(color_status_screen); }
+}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -479,16 +472,38 @@ void setup() {
   // Render and load the initial screen
   renderArchitecturalScreen();
   lv_scr_load(architectural_screen);
-  current_screen = architectural_screen;
+  current_screen = 0;
 
-  // Begin art-net transmissiom
+  // Begin art-net transmission
   anu.begin();
 }
 
+
+
 void loop() { 
-    lv_timer_handler(); 
-    if (nuphone.isButton1()) { switchToArchitecturalScreen(); }
-    else if (nuphone.isButton2()) { switchToIntensityEffectsScreen(); }
-    else if (nuphone.isButton3()) { switchToColorStatusScreen(); }
+    lv_timer_handler();
+    
+    if (nuphone.isButton1()) {
+      if (current_screen != 0) {
+        renderArchitecturalScreen();
+        lv_scr_load(architectural_screen);
+        delete_previous_screen();
+        current_screen = 0;
+      }
+    } else if (nuphone.isButton2()) {
+      if (current_screen != 2) {
+        renderIntensityEffectsScreen();
+        lv_scr_load(intensity_effects_screen);
+        delete_previous_screen();
+        current_screen = 2;
+      }
+    } else if (nuphone.isButton3()) {
+      if (current_screen != 3) {
+        renderColorStatusScreen();
+        lv_scr_load(color_status_screen);
+        delete_previous_screen();
+        current_screen = 3;
+      }
+    }
     delay(5);
 }
