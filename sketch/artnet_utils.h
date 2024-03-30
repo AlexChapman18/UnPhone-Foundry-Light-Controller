@@ -14,6 +14,7 @@
 #include <private.h>
 
 void keepSendingUniverse(void *params);
+void keepRunningEffects(void *params);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,11 +34,11 @@ class ArtNetUniverse {
 
         static uint8_t color_universe[512];
         static float intensity_universe[512];
+        static uint8_t current_effect;
+        static uint8_t current_speed;
 
-    private:
-        
+    private:    
         float intensity;
-        float speed;
 };
 
 

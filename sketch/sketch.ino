@@ -156,7 +156,7 @@ static void evtHandlerEffectsBtns(lv_event_t * e) {
         // Find which exact button was pressed (for loop is compact rather than individual evt listeners)
         for (int i=0; i < sizeof(effects_list)/sizeof(effects_list[0]); i++) {
             if (strcmp(text, effects_list[i]) == 0) {
-                Serial.println(effects_list[i]);
+                anu.current_effect = i;
                 break;
             }
         }

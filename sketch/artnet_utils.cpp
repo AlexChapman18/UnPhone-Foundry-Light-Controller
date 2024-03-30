@@ -9,8 +9,10 @@
 
 ArtnetWifi artnet;
 
-float ArtNetUniverse::intensity_universe[512] =
-    {};  // Initialise the empty universe
+float ArtNetUniverse::intensity_universe[512] = {};  // Initialise the empty universe
+uint8_t ArtNetUniverse::current_effect = 0;
+uint8_t ArtNetUniverse::current_speed = 0;
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26,8 +28,8 @@ void ArtNetUniverse::setup() {
     while (WiFi.status() != WL_CONNECTED) {
     }
 
-    intensity = 1;
-    speed = 1;
+    current_effect = 0;
+    current_speed = 1;
 
     artnet.begin(TARGET_IP);
     artnet.setUniverse(1);
@@ -35,29 +37,50 @@ void ArtNetUniverse::setup() {
 }
 
 void ArtNetUniverse::begin() {
-    xTaskCreate(keepSendingUniverse, "Art-net output", 5000, NULL, 5, NULL);
+    xTaskCreate(keepSendingUniverse, "Art-net output", 7000, NULL, configMAX_PRIORITIES - 1, NULL);
 }
 
 void ArtNetUniverse::setIntensity(float _intensity) {
     intensity = _intensity;
-    for (int i = 0; i < 512; i++) {
-        intensity_universe[i] = _intensity;
+    if (current_effect == 0){
+        for (int i = 0; i < 512; i++) {
+            intensity_universe[i] = _intensity;
+        }
     }
 }
 
-void ArtNetUniverse::setSpeed(float _speed) { speed = _speed; }
+void ArtNetUniverse::setSpeed(float _speed) { current_speed = _speed; }
+
+float ArtNetUniverse::getSpeed() { return current_speed; }
 
 float ArtNetUniverse::getIntensity() { return intensity; }
 
-float ArtNetUniverse::getSpeed() { return speed; }
-
 void keepSendingUniverse(void *params) {
     while (true) {
-        for (int i = 0; i < 512; i++) {
-            artnet.setByte(i, ArtNetUniverse::intensity_universe[i] *
-                                  ArtNetUniverse::color_universe[i]);
+        float step = 0;
+
+        // Effect 1
+        while (ArtNetUniverse::current_effect == 0){
+            for (int i = 0; i < 512; i++) {
+                artnet.setByte(i, ArtNetUniverse::intensity_universe[i] *
+                                    ArtNetUniverse::color_universe[i]);
+            }
+            artnet.write();
+            vTaskDelay(60 / portTICK_RATE_MS);
         }
-        artnet.write();
-        vTaskDelay(60 / portTICK_RATE_MS);  // Wait 60 MS and send again
+
+        // Effect 2
+        while (ArtNetUniverse::current_effect == 1){
+
+            float value = abs(sin(step/(100 + (200 * (1 - ArtNetUniverse::current_speed)))));
+            for (int i = 0; i < 512; i++) {
+                artnet.setByte(i, value * ArtNetUniverse::color_universe[i]);
+            }
+            step++;
+            artnet.write();
+            Serial.println(value);
+            vTaskDelay(60 / portTICK_RATE_MS);
+        }
+        vTaskDelay(100 / portTICK_RATE_MS);  // Wait 60 MS and send again
     }
 }
