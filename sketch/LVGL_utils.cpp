@@ -41,7 +41,7 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE SLIDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void createSlider(lv_event_cb_t event_handler, int position_x, int position_y,
+lv_obj_t * createSlider(lv_event_cb_t event_handler, int position_x, int position_y,
                   int size_x, int size_y, float proportion, lv_color_t bg_color,
 				          lv_style_t *style_pointer, lv_obj_t *screen) {
 
@@ -66,6 +66,8 @@ void createSlider(lv_event_cb_t event_handler, int position_x, int position_y,
 
     // Set slider value by default to its current value
     lv_slider_set_value(slider, (uint8_t)proportion, LV_ANIM_ON);
+
+    return slider;
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
