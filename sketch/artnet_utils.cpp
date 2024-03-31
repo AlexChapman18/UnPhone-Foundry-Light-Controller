@@ -9,9 +9,9 @@
 
 ArtnetWifi artnet;
 
-float ArtNetUniverse::intensity_universe[512] = {};  // Initialise the empty universe
 uint8_t ArtNetUniverse::current_effect = 0;
 uint8_t ArtNetUniverse::current_speed = 0;
+float ArtNetUniverse::current_intensity = 0;
 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -20,16 +20,13 @@ uint8_t ArtNetUniverse::current_speed = 0;
 ArtNetUniverse::ArtNetUniverse() {}
 
 void ArtNetUniverse::setup() {
-    for (int i = 0; i < 512; i++) {
-        color_universe[i] = 0;
-        intensity_universe[i] = 1.0;
-    }
 
     while (WiFi.status() != WL_CONNECTED) {
     }
 
     current_effect = 0;
     current_speed = 1;
+    current_intensity = 1;
 
     artnet.begin(TARGET_IP);
     artnet.setUniverse(1);
@@ -41,19 +38,14 @@ void ArtNetUniverse::begin() {
 }
 
 void ArtNetUniverse::setIntensity(float _intensity) {
-    intensity = _intensity;
-    if (current_effect == 0){
-        for (int i = 0; i < 512; i++) {
-            intensity_universe[i] = _intensity;
-        }
-    }
+    current_intensity = _intensity;
 }
 
 void ArtNetUniverse::setSpeed(float _speed) { current_speed = _speed; }
 
 float ArtNetUniverse::getSpeed() { return current_speed; }
 
-float ArtNetUniverse::getIntensity() { return intensity; }
+float ArtNetUniverse::getIntensity() { return current_intensity; }
 
 void keepSendingUniverse(void *params) {
     while (true) {
@@ -62,7 +54,7 @@ void keepSendingUniverse(void *params) {
         // Effect 1
         while (ArtNetUniverse::current_effect == 0){
             for (int i = 0; i < 512; i++) {
-                artnet.setByte(i, ArtNetUniverse::intensity_universe[i] *
+                artnet.setByte(i, ArtNetUniverse::current_intensity *
                                     ArtNetUniverse::color_universe[i]);
             }
             artnet.write();
@@ -72,7 +64,7 @@ void keepSendingUniverse(void *params) {
         // Effect 2
         while (ArtNetUniverse::current_effect == 1){
 
-            float value = abs(sin(step/(100 + (200 * (1 - ArtNetUniverse::current_speed)))));
+            float value = abs(sin(step/(100 + (200 * (1 - ArtNetUniverse::current_speed))))) * ArtNetUniverse::current_intensity;
             for (int i = 0; i < 512; i++) {
                 artnet.setByte(i, value * ArtNetUniverse::color_universe[i]);
             }
@@ -88,11 +80,9 @@ void keepSendingUniverse(void *params) {
             float speed = 1 / (25 + 200 * (1 - (float)ArtNetUniverse::current_speed));
             for (int i = 0; i < patch_All_Arcs_length; i++) {
 
-
                 float offset = i%2 * 3.14 / 2;
-                // float offset = ((float)i / (float)patch_All_Arcs_length) * 3.14;
                 float index = step * speed + offset;
-                float intensity = abs(sin(index));
+                float intensity = abs(sin(index)) * ArtNetUniverse::current_intensity;
 
                 uint16_t red_address = patch_All_Arcs[i] - 1;
                 uint16_t green_address = patch_All_Arcs[i];
@@ -116,7 +106,7 @@ void keepSendingUniverse(void *params) {
 
                 float offset = ((float)i / (float)patch_All_Arcs_length) * 3.14;
                 float index = step * speed + offset;
-                float intensity = abs(sin(index));
+                float intensity = abs(sin(index)) * ArtNetUniverse::current_intensity;
 
                 uint16_t red_address = patch_All_Arcs[i] - 1;
                 uint16_t green_address = patch_All_Arcs[i];

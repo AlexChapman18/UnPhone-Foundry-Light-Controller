@@ -34,12 +34,9 @@ class ArtNetUniverse {
         float getSpeed();
 
         static uint8_t color_universe[512];
-        static float intensity_universe[512];
         static uint8_t current_effect;
         static uint8_t current_speed;
-
-    private:    
-        float intensity;
+        static float current_intensity;
 };
 
 
