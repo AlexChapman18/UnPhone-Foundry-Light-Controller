@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include <ArtnetWifi.h>
 #include <private.h>
+#include <fixture_utils.h>
 
 void keepSendingUniverse(void *params);
 void keepRunningEffects(void *params);

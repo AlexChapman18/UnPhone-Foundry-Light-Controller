@@ -421,7 +421,7 @@ void delete_previous_screen() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void setup() {
-  // Serial.begin(115200);
+  Serial.begin(115200);
   // Wait for Serial line to open
   // while (!Serial) { ; }
 
