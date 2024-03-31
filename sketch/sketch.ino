@@ -43,6 +43,11 @@ ArtNetUniverse anu = ArtNetUniverse();
 // Architecture groups
 ArchitectureGroup architecture_group_list[15];
 
+// RGB sliders (global to allow live refresh)
+static lv_obj_t * red_slider;
+static lv_obj_t * green_slider;
+static lv_obj_t * blue_slider;
+
 // Colors list
 const char* colors_list[] = {"orange", "red", "rose", "magenta", "violet", "blue", "azure", "cyan", "aquamarine",
                              "green", "chartreuse", "yellow", "White", "Off"};
@@ -124,6 +129,9 @@ static void evtHandlerColorBtns(lv_event_t * e) {
         for (int i=0; i < sizeof(colors_list)/sizeof(colors_list[0]); i++) {
             if (strcmp(text, colors_list[i]) == 0) {
                 currentArcGroup->setRGB(color_values_list[i][0], color_values_list[i][1], color_values_list[i][2]);
+                lv_slider_set_value(red_slider, color_values_list[i][0], LV_ANIM_ON);
+                lv_slider_set_value(green_slider, color_values_list[i][1], LV_ANIM_ON);
+                lv_slider_set_value(blue_slider, color_values_list[i][2], LV_ANIM_ON);
                 break;
             }
         }
@@ -304,18 +312,18 @@ void renderColorScreen(ArchitectureGroup * currentGroup) {
                  LV_COLOR_MAKE(255, 255, 0), LV_COLOR_MAKE(255, 255, 0), color_btn_rounded, &yellow_btn_style, color_screen);
 
     // Red slider and label
-    createSlider(evtHandlerRedSlider, 30, 220, SLIDER_WIDTH, SLIDER_HEIGHT, currentArcGroup->getRed(),
-                 LV_COLOR_MAKE(255, 0, 0), &red_slider_style, color_screen);
+    red_slider = createSlider(evtHandlerRedSlider, 30, 220, SLIDER_WIDTH, SLIDER_HEIGHT, currentArcGroup->getRed(),
+                              LV_COLOR_MAKE(255, 0, 0), &red_slider_style, color_screen);
     createLabel(22, 450, "Red", color_screen);
 
     // Green slider and label
-    createSlider(evtHandlerGreenSlider, 102, 220, SLIDER_WIDTH, SLIDER_HEIGHT, currentArcGroup->getGreen(),
-                 LV_COLOR_MAKE(0, 200, 0), &green_slider_style, color_screen);
+    green_slider = createSlider(evtHandlerGreenSlider, 102, 220, SLIDER_WIDTH, SLIDER_HEIGHT, currentArcGroup->getGreen(),
+                                LV_COLOR_MAKE(0, 200, 0), &green_slider_style, color_screen);
     createLabel(85, 450, "Green", color_screen);
 
     // Blue slider and label
-    createSlider(evtHandlerBlueSlider, 180, 220, SLIDER_WIDTH, SLIDER_HEIGHT, currentArcGroup->getBlue(),
-                 LV_COLOR_MAKE(0, 0, 255), &blue_slider_style, color_screen);
+    blue_slider = createSlider(evtHandlerBlueSlider, 180, 220, SLIDER_WIDTH, SLIDER_HEIGHT, currentArcGroup->getBlue(),
+                               LV_COLOR_MAKE(0, 0, 255), &blue_slider_style, color_screen);
     createLabel(170, 450, "Blue", color_screen);
 
     // White light button
