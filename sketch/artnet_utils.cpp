@@ -78,9 +78,8 @@ void keepSendingUniverse(void *params) {
             }
             step++;
             artnet.write();
-            Serial.println(value);
-            vTaskDelay(60 / portTICK_RATE_MS);
+            vTaskDelay(60 / portTICK_RATE_MS); // Wait 60 MS and send again
         }
-        vTaskDelay(100 / portTICK_RATE_MS);  // Wait 60 MS and send again
+        vTaskDelay(100 / portTICK_RATE_MS);
     }
 }

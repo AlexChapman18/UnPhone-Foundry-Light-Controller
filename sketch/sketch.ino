@@ -87,7 +87,7 @@ void touchpadRead(lv_indev_drv_t * indev_driver, lv_indev_data_t * data) {
     p = nuphone.tsp->getPoint();
 
     if(p.z < 400) { return; }
-    if(p.x < 0 || p.y < 0) Serial.println("Less than zero!");
+    // if(p.x < 0 || p.y < 0) Serial.println("Less than zero!");
 
     long xMin = 320, xMax = 3945;
     long yMin = 220, yMax = 3915;
@@ -421,9 +421,9 @@ void delete_previous_screen() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void setup() {
-  Serial.begin(115200);
+  // Serial.begin(115200);
   // Wait for Serial line to open
-  while (!Serial) { ; }
+  // while (!Serial) { ; }
 
   // Begin unPhone with a set orientation
   nuphone.begin();
@@ -440,7 +440,6 @@ void setup() {
   tft.begin();
   tft.setRotation(0);
 
-  // TODO: Calibration needs changing
   uint16_t calData[5] = { 347, 3549, 419, 3352, 5 };
   tft.setTouch(calData);
 
