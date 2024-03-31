@@ -81,9 +81,35 @@ void keepSendingUniverse(void *params) {
             vTaskDelay(60 / portTICK_RATE_MS); // Wait 60 MS and send again
         }
 
-        
+
         // Effect 3
         while (ArtNetUniverse::current_effect == 2){
+
+            float speed = 1 / (25 + 200 * (1 - (float)ArtNetUniverse::current_speed));
+            for (int i = 0; i < patch_All_Arcs_length; i++) {
+
+
+                float offset = i%2 * 3.14 / 2;
+                // float offset = ((float)i / (float)patch_All_Arcs_length) * 3.14;
+                float index = step * speed + offset;
+                float intensity = abs(sin(index));
+
+                uint16_t red_address = patch_All_Arcs[i] - 1;
+                uint16_t green_address = patch_All_Arcs[i];
+                uint16_t blue_address = patch_All_Arcs[i] + 1;
+
+                artnet.setByte(red_address, intensity * ArtNetUniverse::color_universe[red_address]);
+                artnet.setByte(green_address, intensity * ArtNetUniverse::color_universe[green_address]);
+                artnet.setByte(blue_address, intensity * ArtNetUniverse::color_universe[blue_address]);
+            }
+            step++;
+            artnet.write();
+            vTaskDelay(60 / portTICK_RATE_MS); // Wait 60 MS and send again
+        }
+
+        
+        // Effect 4
+        while (ArtNetUniverse::current_effect == 3){
 
             float speed = 1 / (25 + 200 * (1 - (float)ArtNetUniverse::current_speed));
             for (int i = 0; i < patch_All_Arcs_length; i++) {
