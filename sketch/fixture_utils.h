@@ -11,6 +11,26 @@
 #include <Arduino.h>
 #include <stdint.h>
 
+// 17, 11, 3, 4, 32, 18, 15, 1, 1, 1, 28, 19, 13, 157, 3
+extern uint16_t patch_By_Toilets[];
+extern uint16_t patch_Main_exit[];
+extern uint16_t patch_Merch_Downlighters[];
+extern uint16_t patch_Pillars[];
+extern uint16_t patch_Dancefloor_Back[];
+extern uint16_t patch_Main_Bar_Left[];
+extern uint16_t patch_Main_Bar_Right[];
+extern uint16_t patch_Bar_1[];
+extern uint16_t patch_Bar_2[];
+extern uint16_t patch_Bar_3[];
+extern uint16_t patch_Raised_Area_Back[];
+extern uint16_t patch_Raised_Bar[];
+extern uint16_t patch_Raised_FOH[];
+extern uint16_t patch_All_Arcs[];
+extern uint16_t patch_All_Bars[];
+extern uint16_t patch_All_Arcs_length;
+extern uint8_t PATCH_LENGTHS[];
+extern uint16_t *PATCH_ADDRESSES[];
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARCHITECTURE GROUP CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

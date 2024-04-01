@@ -12,8 +12,10 @@
 #include <stdint.h>
 #include <ArtnetWifi.h>
 #include <private.h>
+#include <fixture_utils.h>
 
 void keepSendingUniverse(void *params);
+void keepRunningEffects(void *params);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,12 +34,9 @@ class ArtNetUniverse {
         float getSpeed();
 
         static uint8_t color_universe[512];
-        static float intensity_universe[512];
-
-    private:
-        
-        float intensity;
-        float speed;
+        static uint8_t current_effect;
+        static uint8_t current_speed;
+        static float current_intensity;
 };
 
 
