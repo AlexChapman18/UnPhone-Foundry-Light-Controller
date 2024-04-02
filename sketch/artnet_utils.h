@@ -35,7 +35,7 @@ class ArtNetUniverse {
 
         static uint8_t color_universe[512];
         static uint8_t current_effect;
-        static uint8_t current_speed;
+        static float current_speed;
         static float current_intensity;
 };
 

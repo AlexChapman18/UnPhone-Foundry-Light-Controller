@@ -10,7 +10,7 @@
 ArtnetWifi artnet;
 
 uint8_t ArtNetUniverse::current_effect = 0;
-uint8_t ArtNetUniverse::current_speed = 0;
+float ArtNetUniverse::current_speed = 0;
 float ArtNetUniverse::current_intensity = 0;
 
 
