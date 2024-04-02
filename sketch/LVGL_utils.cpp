@@ -1,5 +1,7 @@
 /**
  * LVGL utils implementation.
+ * Contains implementations to simplify the process of creating
+ * buttons, sliders, and labels.
  * 
  * Author: Kush Bharakhada and Alex Chapman
  * LVGL_utils.cpp
@@ -10,7 +12,7 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATING BUTTONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void createButton(lv_event_cb_t event_handler, int position_x, int position_y, int size_x, int size_y,
+void createButton(lv_event_cb_t event_handler, int position_x, int position_y, int width, int height,
                   const char *button_text, lv_color_t bg_color, lv_color_t text_color, lv_coord_t rounded,
                   lv_style_t *style_pointer, lv_obj_t *screen) {
     
@@ -28,24 +30,24 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
     lv_obj_add_style(button, style_pointer, 0);
 
     // Set size and position of button
-    lv_obj_set_size(button, size_x, size_y);
+    lv_obj_set_size(button, width, height);
     lv_obj_set_pos(button, position_x, position_y);
 
     // Add label to button
-    lv_obj_t * label = lv_label_create(button);
+    lv_obj_t *label = lv_label_create(button);
     lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
     lv_label_set_text(label, button_text);
     lv_obj_center(label);
 }
 
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE SLIDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-lv_obj_t * createSlider(lv_event_cb_t event_handler, int position_x, int position_y,
-                  int size_x, int size_y, float proportion, lv_color_t bg_color,
-				          lv_style_t *style_pointer, lv_obj_t *screen) {
+lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position_y, int width, int height,
+                        float proportion, lv_color_t bg_color, lv_style_t *style_pointer, lv_obj_t *screen) {
 
-	// Create a slider				
+	  // Create a slider				
     lv_obj_t *slider = lv_slider_create(screen);
     lv_obj_add_event_cb(slider, event_handler, LV_EVENT_VALUE_CHANGED, NULL);
 
@@ -60,15 +62,17 @@ lv_obj_t * createSlider(lv_event_cb_t event_handler, int position_x, int positio
     lv_obj_add_style(slider, style_pointer, 0);
 
     // Set size and position of slider
-    lv_obj_set_size(slider, size_x, size_y);
+    lv_obj_set_size(slider, width, height);
     lv_obj_set_pos(slider, position_x, position_y);
+
+    // Slider range is from 0-255 as most sliders will use this
     lv_slider_set_range(slider, 0, 255);
 
-    // Set slider value by default to its current value
+    // Set slider value
     lv_slider_set_value(slider, (uint8_t)proportion, LV_ANIM_ON);
-
     return slider;
 }
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE LABEL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
