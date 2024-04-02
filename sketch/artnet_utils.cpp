@@ -29,7 +29,7 @@ void ArtNetUniverse::setup() {
     current_intensity = 1;
 
     artnet.begin(TARGET_IP);
-    artnet.setUniverse(1);
+    artnet.setUniverse(5);
     artnet.setLength(512);
 }
 
