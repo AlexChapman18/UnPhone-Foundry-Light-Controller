@@ -82,7 +82,7 @@ void effect3(ArtnetWifi* artnet, float step) {
     }
 }
 
-// Effect 4, Swiping
+// Effect 4, Fade Swipe
 void effect4(ArtnetWifi* artnet, float step) {
     float speed = 1 / (20 + 30 * (1 - (float)ArtNetUniverse::current_speed));
     for (int i = 0; i < patch_All_Arcs_length; i++) {
@@ -100,6 +100,46 @@ void effect4(ArtnetWifi* artnet, float step) {
         artnet->setByte(blue_address, intensity * ArtNetUniverse::color_universe[blue_address]);
     }
 }
+
+// Effect 5, binary swipe
+void effect5(ArtnetWifi* artnet, float step) {
+    float speed = 1 / (20 + 30 * (1 - (float)ArtNetUniverse::current_speed));
+    for (int i = 0; i < patch_All_Arcs_length; i++) {
+
+        float offset = ((float)i / (float)patch_All_Arcs_length) * 3.14;
+        float index = step * speed + offset;
+        float intensity = round(abs(sin(index))) * ArtNetUniverse::current_intensity;
+
+        uint16_t red_address = patch_All_Arcs[i] - 1;
+        uint16_t green_address = patch_All_Arcs[i];
+        uint16_t blue_address = patch_All_Arcs[i] + 1;
+
+        artnet->setByte(red_address, intensity * ArtNetUniverse::color_universe[red_address]);
+        artnet->setByte(green_address, intensity * ArtNetUniverse::color_universe[green_address]);
+        artnet->setByte(blue_address, intensity * ArtNetUniverse::color_universe[blue_address]);
+    }
+}
+
+// Effect 6, Bars Fade
+void effect6(ArtnetWifi* artnet, float step) {
+    effect1(artnet);
+    float speed = 1 / (20 + 30 * (1 - (float)ArtNetUniverse::current_speed));
+    for (int i = 0; i < 3; i++) {
+
+        float offset = ((float)i / (float)3) * 3.14;
+        float index = step * speed + offset;
+        float intensity = abs(sin(index)) * ArtNetUniverse::current_intensity;
+
+        uint16_t red_address = patch_All_Bars[i] - 1;
+        uint16_t green_address = patch_All_Bars[i];
+        uint16_t blue_address = patch_All_Bars[i] + 1;
+
+        artnet->setByte(red_address, intensity * ArtNetUniverse::color_universe[red_address]);
+        artnet->setByte(green_address, intensity * ArtNetUniverse::color_universe[green_address]);
+        artnet->setByte(blue_address, intensity * ArtNetUniverse::color_universe[blue_address]);
+    }
+}
+
 
 // Thread for sending the universe
 void keepSendingUniverse(void *params) {
@@ -131,8 +171,14 @@ void keepSendingUniverse(void *params) {
             case 3:
                 effect4(&artnet, step);
                 break;
+            case 4:
+                effect5(&artnet, step);
+                break;
+            case 5:
+                effect6(&artnet, step);
+                break;
         }
         artnet.write();
-        vTaskDelay(60 / portTICK_RATE_MS); // Wait 60 MS and send again
+        vTaskDelay(35 / portTICK_RATE_MS); // Wait 35 MS between sending packets
     }
 }
