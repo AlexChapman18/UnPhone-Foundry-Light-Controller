@@ -64,8 +64,8 @@ const char* architectures_list[] = {"Toilets", "Main\nExit", "Merch\nLights", "P
                                     "Bar 1", "Bar 2", "Bar 3", "Raised\nArea Back", "Raised\nBar",
                                     "Raised\nFOH", "All\nArcs", "All\nBars"};
 // Effect list
-const char* effects_list[] = {"Solid", "Pulse\nEffect", "Odd-Even\nEffect", "Swiping\nEffect",
-                              "Temp1", "Temp2"};
+const char* effects_list[] = {"Solid", "Pulse\nEffect", "Odd-Even\nEffect",
+                              "Fade\nSwipe", "Binary\nSwipe", "Bars\nFade"};
 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
