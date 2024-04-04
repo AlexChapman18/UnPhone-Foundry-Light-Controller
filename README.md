@@ -4,6 +4,11 @@ The Internet of Things [REF] at The University of Sheffield [REF] (2024)
 
 Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (achapman5@sheffield.ac.uk)
 
+## Table of Contents  
+- [Project Description](#project-description)  
+- [Permissions](#light-control-permissions)  
+
+
 ## Project Description
 
 The objective of this project has been to control the LED lighting strips throughout different rooms in the Student Union [REF], employing a variety of effects and colours, all managed by the UnPhone [REF]. Currently, the lighting system relies on dedicated software and a computer interface, which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (group of lights) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
@@ -15,9 +20,6 @@ Permission was requested and granted from (the lighting people) for access to it
 ## Project Equipmment
 
 unphone led
-
-
-
 
 ## Design
 
@@ -126,7 +128,7 @@ To fully grasp an understanding of the UnPhone library, a new library (inspired 
 
 #### LVGL Header File and its C++ Implementation
 
-The user interface has been created in LVGL [REF]. Add...
+The user interface has been created in LVGL [REF], providing a clear and simplistic design. For consistency and a DRY approach, functions were implemented to easily create buttons, sliders, and labels with custom styling attributes provided as parameters. The main setup for LVGL and the LCD touch display were acquired from the Demo Examples [REF]. The general properties and understanding of the LVGL widgets was achieved by experimenting with the LVGL Widget Examples [REF] in source code, and reading its documentation [REF] for further customisations.
 
 #### Screen Switching Logic
 
