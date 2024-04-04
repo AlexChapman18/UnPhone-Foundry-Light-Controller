@@ -1,5 +1,8 @@
 # UnPhone Student Union Lighting Controller
-By Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (achapman5@sheffield.ac.uk)
+
+The Internet of Things [REF] at The University of Sheffield [REF] (2024)
+
+Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (achapman5@sheffield.ac.uk)
 
 ## Project Description
 
@@ -8,6 +11,13 @@ The objective of this project has been to control the LED lighting strips throug
 ## Light Control Permissions
 
 Permission was requested and granted from (the lighting people) for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
+
+## Project Equipmment
+
+unphone led
+
+
+
 
 ## Design
 
