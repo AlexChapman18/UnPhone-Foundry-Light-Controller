@@ -1,6 +1,6 @@
 # UnPhone Student Union Lighting Controller
 
-The Internet of Things [REF] at The University of Sheffield [REF] (2024)
+The Internet of Things at [The University of Sheffield](https://www.sheffield.ac.uk/) (2024)
 
 Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (achapman5@sheffield.ac.uk)
 
@@ -11,7 +11,7 @@ Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (acha
 
 ## Project Description
 
-The objective of this project has been to control the LED lighting strips throughout different rooms in the Student Union [REF], employing a variety of effects and colours, all managed by the UnPhone [REF]. Currently, the lighting system relies on dedicated software and a computer interface, which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (group of lights) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
+The objective of this project has been to control the LED lighting strips throughout different rooms in the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software and a computer interface [REF?], which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (group of lights) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
 
 ## Light Control Permissions
 
@@ -19,7 +19,9 @@ Permission was requested and granted from (the lighting people) for access to it
 
 ## Project Equipmment
 
-unphone led
+The following equipment has been utilised for this project:
+- UnPhone
+- Exact LED name...
 
 ## Design
 
@@ -56,7 +58,7 @@ unphone led
 
 ### Default Colour Options
 
-The default colours the user can select from have been decided from the 12 colour wheel, as illustrated below. This presents the user with a sufficient number of default colours as well as the ability to create custom colours using RGB faders.
+The default colours the user can select from have been decided from the [12 colour wheel](https://en.wikipedia.org/wiki/Color_wheel#:~:text=The%20typical%20artists'%20paint%20or,%2Dblue%20and%20blue%2Dgreen.), as illustrated below. This presents the user with a sufficient number of default colours as well as the ability to create custom colours using RGB faders.
 
 |       | Red | Rose | Magenta | Violet | Blue | Azure | Cyan | Aquamarine | Green | Chartreuse | Yellow | Orange |
 | ----- | --- | ---- | ------- | ------ | ---- | ----- | ---- | ---------- | ----- | ---------- | ------ | ------ |
@@ -123,6 +125,9 @@ This project utilises the following features from UnPhone:
 
 To fully grasp an understanding of the UnPhone library, a new library (inspired from UnPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the UnPhone library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the UnPhone backlight functionality.
 
+#### Libraries Used
+
+Temporary text.
 
 ### User Interface and LVGL
 
@@ -138,11 +143,14 @@ Each screen is created using LVGL objects [REF]. By tracking the current screen 
 
 Images of final GUI go here.
 
-### Libraries Used
+## Testing
 
 Temporary text.
 
-#### Testing
+## Future Work
 
-Temporary text.
+Need to word properly
+- More effects and light animations;
+- Extending to more light structures (those moving ones);
+- Ability to control effect of each architecture, rather than effects working on all of them;
 
