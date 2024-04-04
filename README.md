@@ -104,11 +104,27 @@ Temporary text.
 
 ### UnPhone to NuPhone
 
-Temporary text.
+This project utilises the following features from UnPhone:
+- WiFi;
+- UnPhone's three physical buttons (triangle, circle, and square);
+- <p style="color: red;">(Alex please add)</p>
+
+To fully grasp an understanding of the UnPhone library, a new library (inspired from UnPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the UnPhone library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the UnPhone backlight functionality.
+
 
 ### User Interface and LVGL
 
-Temporary text.
+#### LVGL Header File and its C++ Implementation
+
+The user interface has been created in LVGL [REF]. Add...
+
+#### Screen Switching Logic
+
+Each screen is created using LVGL objects [REF]. By tracking the current screen with an integer, it makes it possible to delete the previous screen when the user switches to a new screen. Most of the screens require displaying information that was previously updated, therefore these screens need to be re-rendered. Individual components could be rendered and storing components which remain static on the screen, however this quickly increased the complexity of the application. By deleting the previous screen, and only rendering when the user visits, can save a small amount of memory. Rendering the screen is also instant. Furthermore, the screen switching logic prevents the user from spam rendering the current screen by checking the current screen before switching.
+
+#### User Interface Screenshots
+
+Images of final GUI go here.
 
 ### Libraries Used
 
