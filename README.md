@@ -13,7 +13,6 @@ Permission was requested and granted from (the lighting people) for access to it
 
 ### Application Features
 
-<center>
 
 | Feature | Description |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -24,13 +23,12 @@ Permission was requested and granted from (the lighting people) for access to it
 | Default Effects | Allow the user to visualise lighting animations, from a pre-defined, set of effects.|
 | Intensity and Speed | Provide the user with the ability to utilise faders to control the speed of effects and the lighting intensity. |
 | Global Colour View | For a global view of colours, the user must be able to visualise every single architecture and its currently set colour on one screen. 
-| UnPhone Buttons (Triangle, Circle and Square) | UnPhone will be utilised for navigation. Therefore, there must be three main screens architecture selection, setting *effects and intensity, and global colour view. Setting a colour must be navigated to via the architecture screen. |
+| UnPhone Buttons (Triangle, Circle and Square) | UnPhone will be utilised for navigation. Therefore, there must be three main screens architecture selection, setting effects and intensity, and global colour view. Setting a colour must be navigated to via the architecture screen. |
 
-</center>
 
 ### Architectures
 
-<center>
+<p style="color: red;">(Alex please describe what architectures are and fill in the table below)</p>
 
 | Architecture | Number of Lights in Group |
 | ------------ | ------------------------- |
@@ -43,13 +41,10 @@ Permission was requested and granted from (the lighting people) for access to it
 | g            | o                         |
 | h            | p                         |
 
-</center>
 
 ### Default Colour Options
 
 The default colours the user can select from have been decided from the 12 colour wheel, as illustrated below. This presents the user with a sufficient number of default colours as well as the ability to create custom colours using RGB faders.
-
-<center>
 
 |       | Red | Rose | Magenta | Violet | Blue | Azure | Cyan | Aquamarine | Green | Chartreuse | Yellow | Orange |
 | ----- | --- | ---- | ------- | ------ | ---- | ----- | ---- | ---------- | ----- | ---------- | ------ | ------ |
@@ -57,11 +52,10 @@ The default colours the user can select from have been decided from the 12 colou
 | **G** | 0   | 0    | 0       | 0      | 0    | 127   | 255  | 255        | 255   | 255        | 255    | 127    |
 | **B** | 0   | 127  | 255     | 255    | 255  | 255   | 255  | 127        | 0     | 0          | 0      | 0      |
 
-</center>
 
 ### Lighting Effects
 
-<center>
+<p style="color: red;">(Alex please fill in the table below)</p>
 
 | Effect Name | Description |
 | ----------- | ----------- |
@@ -74,35 +68,33 @@ The default colours the user can select from have been decided from the 12 colou
 | g           | o           |
 | h           | p           |
 
-</center>
-
 ### User Interface
 
-The application will consist of four main screens:
+**The user interface must be:**
+- Simple and easy to use.
+- Large enough buttons to prevent misclicks.
+- Contrasting text against background for accessability.
+- Large enough text for ease of readability.
 
-<center>
+**The application will consist of four main screens:**
 
 | Screen | Navigation | Description | Interactive Screen |
 | ---------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | Architecture Screen | Physical Triangle Button | Presents the user with buttons to choose an architecture that they would like to change the colours for. | YES |
 | Colour Screen | From Architecture Screen | Presents the user with default colour options as well as RGB faders for custom colours. | YES |
 | Effects and Intensity Screen | Physical Circle Button | Presents the user with two faders; intensity of lighting and speed of effects. Furthermore, buttons will be presented for various lighting effects. | YES |
-| Global Colour Screen | Physical Square Button | Presents the user with all architectures with its current lighting colour (black if the corresponding architecture is OFF). | NO|
+| Global Colour Screen | Physical Square Button | Presents the user with all architectures with their current lighting colours (black if the corresponding architecture is OFF). | NO |
 
-</center>
+**Wireframes illustrating the designs of the screens:**
 
-Wireframes illustrating the designs of the screens:
+<img src="images/wireframe-screens.png" alt="breadboard" width="650"/>
+<img src="images/wireframe-navigation-buttons.png" alt="breadboard" width="247"/>
 
-<center>
-<img src="images/wireframe-screens.png" alt="breadboard" width="700"/>
-<img src="images/wireframe-navigation-buttons.png" alt="breadboard" width="250"/>
-</center>
+**Diagram illustrating the connection and navigation between different screens:**
 
-Diagram to illustrate the connection and navigation between different screens:
+As presented in the diagram, three screens can be navigated to using the physical UnPhone buttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the UnPhone triangle button.
 
-<center>
-<img src="images/navigation-diagram.png" alt="breadboard" width="350"/>
-</center>
+<img src="images/navigation-diagram.png" alt="breadboard" width="400"/>
 
 ### Networking and Backend
 
@@ -111,6 +103,10 @@ Temporary text.
 ## Implementation
 
 ### UnPhone to NuPhone
+
+Temporary text.
+
+### User Interface and LVGL
 
 Temporary text.
 
