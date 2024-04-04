@@ -11,17 +11,18 @@ Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (acha
 
 ## Project Description
 
-The objective of this project has been to control the LED lighting strips throughout different rooms in the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software and a computer interface [REF?], which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (group of lights) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
+The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software and a computer interface [REF_REQUIRED?], which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
 
 ## Light Control Permissions
 
-Permission was requested and granted from (the lighting people) for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
+Permission was requested and granted from (Tech Services Department) for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
 
 ## Project Equipmment
 
 The following equipment has been utilised for this project:
 - UnPhone
-- Exact LED name...
+- WiFi Router
+- Enttec Storm 8 art-net node
 
 ## Design
 
@@ -30,30 +31,41 @@ The following equipment has been utilised for this project:
 
 | Feature | Description |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Choosing an Architecture | Allow the user to choose which architecture (lighting group) they would like to change the colour for. The architectures must be pre-defined and the user must be able to easily press the architecture which they would like to control. |
+| Choosing an Architecture | Allow the user to choose which architecture (LED group) they would like to change the colour for. The architectures must be pre-defined and the user must be able to easily press the architecture which they would like to control. |
 | Default Colour Options | When an architecture is selected, the user must be provided an array of default colour options to choose from and set the lights to.|
 | RGB Colour Faders | For more flexible colour options, the user must have the ability to set RGB colours using faders (sliders). There must be three faders. For user experience, if a default colour option is chosen, the RGB faders must automatically update and set to the corresponding RGB levels.|
-| Switching Lights OFF | The user must be given the ability to turn the lights OFF, individually for an architecture.|
+| Switching Lights OFF | The user must be given the ability to turn the lights OFF, individually for each architecture.|
 | Default Effects | Allow the user to visualise lighting animations, from a pre-defined, set of effects.|
 | Intensity and Speed | Provide the user with the ability to utilise faders to control the speed of effects and the lighting intensity. |
 | Global Colour View | For a global view of colours, the user must be able to visualise every single architecture and its currently set colour on one screen. 
 | UnPhone Buttons (Triangle, Circle and Square) | UnPhone will be utilised for navigation. Therefore, there must be three main screens architecture selection, setting effects and intensity, and global colour view. Setting a colour must be navigated to via the architecture screen. |
 
 
-### Architectures
+### Architecturals
 
-<p style="color: red;">(Alex please describe what architectures are and fill in the table below)</p>
+An architecture is a group of individually controllable LED fixtures that are placed in key spots around the Foundry venue.
+The Architectuals as a whole are primarly used during clubnights, gigs and corporate events for accentend lighting. A prime example being the St Paddys Day clubnight in which they were set to a mix of green, white and orange colours.
 
-| Architecture | Number of Lights in Group |
-| ------------ | ------------------------- |
-| a            | i                         |
-| b            | j                         |
-| c            | k                         |
-| d            | l                         |
-| e            | m                         |
-| f            | n                         |
-| g            | o                         |
-| h            | p                         |
+For the purpose of this project, the Architectuals were splot into groups based on their locations within the venue:
+
+| Architecture       | Number of Lights in Group |
+| -------------------| ------------------------- |
+| Toilets            | 17                        |
+| Main Exit          | 11                        |
+| Merch Lights       | 3                         |
+| Pillars            | 4                         |
+| Dancefloor         | 32                        |
+| Main Bar Left      | 18                        |
+| Main Bar Right     | 15                        |
+| Bar 1              | 1                         |
+| Bar 2              | 1                         |
+| Bar 3              | 1                         |
+| Raised Area Back   | 28                        |
+| Raised Bar         | 19                        |
+| Raised FOH         | 13                        |
+| All Arcs           | 157                       |
+| All Bars           | 3                         |
+
 
 
 ### Default Colour Options
@@ -69,18 +81,16 @@ The default colours the user can select from have been decided from the [12 colo
 
 ### Lighting Effects
 
-<p style="color: red;">(Alex please fill in the table below)</p>
+For each of the effects below, the intensity fader acts as a maximum brightness that any effect can go.
 
-| Effect Name | Description |
-| ----------- | ----------- |
-| a           | i           |
-| b           | j           |
-| c           | k           |
-| d           | l           |
-| e           | m           |
-| f           | n           |
-| g           | o           |
-| h           | p           |
+| Effect Name  | Description                                                                             |
+| -------------| ----------------------------------------------------------------------------------------|
+| Solid        | Keeps the lights at a solid intensity                                                   |
+| Pulse        | Pulses all the architecturals on and off in unison over time                            |
+| Odd-Even     | Pulses all the architecturals on and off, with the odd and even fixtured being inverted |
+| Fade Swipe   | Has the intensity of the fixtures slowly fade off as it moves around the room           |
+| Binary Swipe | Has the intensity of the fixtures snap off as it moves around the room                  |
+| Bars Fade    | Has the intensity of the bars fixtures slowly fade off as it moves around the room      |
 
 ### User Interface
 
@@ -119,14 +129,17 @@ Temporary text.
 ### UnPhone to NuPhone
 
 This project utilises the following features from UnPhone:
-- WiFi;
+- LED Display
+- Touchscreen interface 
 - UnPhone's three physical buttons (triangle, circle, and square);
-- <p style="color: red;">(Alex please add)</p>
+- WiFi
+- Battery power supply
 
 To fully grasp an understanding of the UnPhone library, a new library (inspired from UnPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the UnPhone library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the UnPhone backlight functionality.
 
 #### Libraries Used
 
+- ArtnetWifi
 Temporary text.
 
 ### User Interface and LVGL
@@ -153,4 +166,9 @@ Need to word properly
 - More effects and light animations;
 - Extending to more light structures (those moving ones);
 - Ability to control effect of each architecture, rather than effects working on all of them;
+
+- Color effects
+- Multi venue control
+- Ability for effects to continue to run even if UnPhone disconnects
+- Multi UnPhone support
 
