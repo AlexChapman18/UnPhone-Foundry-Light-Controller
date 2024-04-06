@@ -18,13 +18,13 @@ Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (acha
 ## Project Description
 
 
-The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software and a computer interface [REF_REQUIRED?], which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
+The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software and a computer interface [ TODO - Is there a software you specifically use which you could reference - reference the link on the word 'computer interface' if so. ], which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
 
 
 ## Light Control Permissions
 
 
-Permission was requested and granted from the Tech Services Department for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
+Permission was requested and granted from the Tech Services Department [ TODO - Add a reference link on Tech Services Dept. if they have a webpage. ] for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
 
 
 ## Project Equipmment
@@ -32,9 +32,9 @@ Permission was requested and granted from the Tech Services Department for acces
 
 The following equipment has been utilised for this project:
 
-- UnPhone;
+- [UnPhone](https://unphone.net/);
 - WiFi Router;
-- Enttec Storm 8 Artnet Node;
+- Enttec Storm 8 Artnet Node; [TODO - Is there a specific spec link we could attach to this as a reference? ]
 
 
 ## Design
@@ -58,8 +58,8 @@ The following equipment has been utilised for this project:
 ### Architecturals
 
 
-An architecture is a group of individually controllable LED fixtures that are placed in key spots around the Foundry venue.
-The Architecturals as a whole are primarly used during clubnights, gigs and corporate events for accented lighting. A prime example being the St. Paddys Day clubnight in which they were set to a mix of green, white and orange colours.
+An architecture is a group of individually controllable LED fixtures that are placed in key spots around the [Foundry venue](https://foundrysu.com/).
+The Architecturals as a whole are primarly used during clubnights, gigs and corporate events for accented lighting. A prime example being the [St. Paddys](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) [ TODO - Change to St. Patick ? ] Day clubnight in which they were set to a mix of green, white and orange colours.
 
 For the purpose of this project, the Architecturals were split into groups based on their locations within the venue:
 
@@ -113,6 +113,7 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 
 
 **The user interface must be:**
+
 - Simple and easy to use.
 - Large enough buttons to prevent misclicks.
 - Contrasting text against background for accessability.
@@ -134,7 +135,7 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 
 **Diagram illustrating the connection and navigation between different screens:**
 
-As presented in the diagram, three screens can be navigated to using the physical UnPhone buttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the UnPhone triangle button.
+As presented in the diagram below, three screens can be navigated to using the physical UnPhone buttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the UnPhone triangle button.
 
 <img src="images/navigation-diagram.png" alt="breadboard" width="400"/>
 
@@ -159,7 +160,7 @@ This project utilises the following features from the UnPhone:
 - WiFi;
 - Battery Power Supply;
 
-To fully grasp an understanding of the UnPhone library, a new library (inspired from UnPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the UnPhone library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the UnPhone backlight functionality.
+To fully grasp an understanding of the [UnPhone library](https://gitlab.com/hamishcunningham/unphonelibrary), a new library (inspired from UnPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the UnPhone library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the UnPhone backlight functionality.
 
 
 #### Libraries Used
@@ -174,13 +175,13 @@ TODO - Add the libraries used and what they have been used for at the end of the
 #### LVGL Header File and its C++ Implementation
 
 
-The user interface has been created in LVGL [REF], providing a clear and simplistic design. For consistency and a DRY approach, functions were implemented to easily create buttons, sliders, and labels with custom styling attributes provided as parameters. The main setup for LVGL and the LCD touch display were acquired from the Demo Examples [REF]. The general properties and understanding of the LVGL widgets was achieved by experimenting with the LVGL Widget Examples [REF] in source code, and reading its documentation [REF] for further customisations.
+The user interface has been created in [LVGL](https://lvgl.io/), providing a clear and simplistic design. For consistency and a DRY approach, functions were implemented to easily create buttons, sliders, and labels with custom styling attributes provided as parameters. The main setup for LVGL and the LCD touch display were acquired from the [Demo Examples](https://gitlab.com/hamishcunningham/unphonelibrary/-/tree/main/examples/lvgl-demo?ref_type=heads). The general properties and understanding of the LVGL widgets was achieved by experimenting with the [LVGL Widget Examples](https://github.com/lvgl/lvgl/tree/master/examples) in source code, and reading its [documentation](https://docs.lvgl.io/master/intro/index.html) for further customisations.
 
 
 #### Screen Switching Logic
 
 
-Each screen is created using LVGL objects [REF]. By tracking the current screen with an integer, it makes it possible to delete the previous screen when the user switches to a new screen. Most of the screens require displaying information that was previously updated, therefore these screens need to be re-rendered. Individual components could be rendered and storing components which remain static on the screen, however this quickly increased the complexity of the application. By deleting the previous screen, and only rendering when the user visits, can save a small amount of memory. Rendering the screen is also instant. Furthermore, the screen switching logic prevents the user from spam rendering the current screen by checking the current screen before switching.
+Each screen is created using [LVGL screen object](https://docs.lvgl.io/master/widgets/obj.html). By tracking the current screen with an integer, it makes it possible to delete the previous screen when the user switches to a new screen. Most of the screens require displaying information that was previously updated, therefore these screens need to be re-rendered. Individual components could be rendered and storing components which remain static on the screen, however this quickly increased the complexity of the application. By deleting the previous screen, and only rendering when the user visits, can save a small amount of memory. Rendering the screen is also instant. Furthermore, the screen switching logic prevents the user from spam rendering the current screen by checking the current screen before switching.
 
 
 #### User Interface Screenshots
