@@ -291,38 +291,22 @@ void renderArchitectureScreen() {
     lv_color_t BTN_BG_COLOR = LV_COLOR_MAKE(35, 35, 35);
     lv_coord_t BTN_ROUNDED = 5;
 
+    int initial_x = 15, initial_y = 50;
+    int PADDING_X = 10, PADDING_Y = 5;
+
     // Design the layout of the architecture screen
     createLabel(70, 20, "Select Architecture Group", architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 20,  50, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[0],        
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 115, 50, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[1],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 210, 50, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[2],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 20,  130, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[3],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 115, 130, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[4],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 210, 130, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[5],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 20,  210, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[6],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 115, 210, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[7],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 210, 210, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[8],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 20,  290, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[9],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 115, 290, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[10],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 210, 290, BUTTON_WIDTH, BUTTON_HEIGHT,architectures_list[11],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 20,  370, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[12],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 115, 370, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[13],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
-    createButton(evtHandlerArchGroupBtns, 210, 370, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[14],
-                 BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
+    for (int i = 0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
+        createButton(evtHandlerArchGroupBtns, initial_x, initial_y, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[i],        
+                     BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
+
+        // Adjust coordinates as necessary for creating a grid
+        initial_x += BUTTON_WIDTH + PADDING_X;
+        if ((i + 1) % 3 == 0) {
+            initial_x = 15;
+            initial_y += BUTTON_HEIGHT + PADDING_Y;
+        }
+    }
 }
 
 /**
