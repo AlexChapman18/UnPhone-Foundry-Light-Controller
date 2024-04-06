@@ -1,16 +1,22 @@
-**Ctrl+F "TODO" then remove this last.**
+Alex:
+- Ctrl+F "TODO" and do as much as possible of your part then remove this last.
+- Replace fixture_utils with architecture_utils or similar?
+- Refactor and docstring all your functions.
 
-**Reference as much as possible**
+**We'll Reference as much as possible**
+
+---
 
 # UnPhone Student Union Lighting Controller
 
 
-The Internet of Things at [The University of Sheffield](https://www.sheffield.ac.uk/) (2024)
+[The Internet of Things](https://iot.unphone.net/) at [The University of Sheffield](https://www.sheffield.ac.uk/) (2024)
 
 Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (achapman5@sheffield.ac.uk)
 
 
 ## Table of Contents  
+- TODO - Complete this table of contents once documentation is complete.
 - [Project Description](#project-description)  
 - [Permissions](#light-control-permissions)  
 
@@ -205,3 +211,7 @@ TODO - Write up the below into a paragraph and join it with the paragraph above.
 - Multi venue control
 - Ability for effects to continue to run even if UnPhone disconnects
 - Multi UnPhone support
+
+## Video Link
+
+Link: 
