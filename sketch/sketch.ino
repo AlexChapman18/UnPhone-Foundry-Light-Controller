@@ -318,10 +318,14 @@ void renderColorScreen(ArchitectureGroup *current_group) {
     color_screen = lv_obj_create(NULL);
 
     // Style object(s)
-    static lv_style_t back_btn_style, orange_btn_style, red_btn_style, rose_btn_style, magenta_btn_style, 
-                      violet_btn_style, blue_btn_style, azure_btn_style, cyan_btn_style, aquamarine_btn_style,
-                      green_btn_style, chartreuse_btn_style, yellow_btn_style, black_btn_style, white_btn_style,
+    static lv_style_t back_btn_style, black_btn_style, white_btn_style,
                       red_slider_style, green_slider_style, blue_slider_style;
+
+    // The -2 in size is because we want to exclude black and white in the default color grid
+    static lv_style_t color_styles_list[sizeof(colors_list) / sizeof(colors_list[0])-2];
+    for (int i = 0; i < sizeof(colors_list) / sizeof(colors_list[0])-2; i++) {
+        lv_style_init(&color_styles_list[i]);
+    }
 
     // Define width, height and styles for components on the page
     const int BUTTON_WIDTH = 90, BUTTON_HEIGHT = 30;
@@ -330,34 +334,26 @@ void renderColorScreen(ArchitectureGroup *current_group) {
     lv_coord_t COLOR_BTN_ROUNDED = 15;
     lv_coord_t REG_BTN_ROUNDED = 5;
 
+    int initial_x = 20, initial_y = 55;
+    int PADDING = 5;
+
     // Design the layout of the color screen
     createLabel(200, 13, "Lighting Color", color_screen);
     createButton(evtHandlerBackBtn, 20, 10, BUTTON_WIDTH, BUTTON_HEIGHT, "Back", lv_color_black(), lv_color_white(),
                  REG_BTN_ROUNDED, &back_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 20, 55, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[0], LV_COLOR_MAKE(255,  127, 0),
-                 LV_COLOR_MAKE(255, 127, 0), COLOR_BTN_ROUNDED, &orange_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 115, 55, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[1], LV_COLOR_MAKE(255, 0, 0),
-                 LV_COLOR_MAKE(255, 0, 0), COLOR_BTN_ROUNDED, &red_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 210, 55, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[2], LV_COLOR_MAKE(255, 0, 127),
-                 LV_COLOR_MAKE(255, 0, 127), COLOR_BTN_ROUNDED, &rose_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 20, 90, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[3], LV_COLOR_MAKE(255, 0, 255),
-                 LV_COLOR_MAKE(255, 0, 255), COLOR_BTN_ROUNDED, &magenta_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 115, 90, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[4], LV_COLOR_MAKE(127, 0, 255),
-                 LV_COLOR_MAKE(127, 0, 255), COLOR_BTN_ROUNDED, &violet_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 210, 90, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[5], LV_COLOR_MAKE(0, 0, 255),
-                 LV_COLOR_MAKE(0, 0, 255), COLOR_BTN_ROUNDED, &blue_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 20, 125, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[6], LV_COLOR_MAKE(0, 127, 255),
-                 LV_COLOR_MAKE(0, 127, 255), COLOR_BTN_ROUNDED, &azure_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 115, 125, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[7], LV_COLOR_MAKE(0, 255, 255),
-                 LV_COLOR_MAKE(0, 255, 255), COLOR_BTN_ROUNDED, &cyan_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 210, 125, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[8], LV_COLOR_MAKE(0, 255, 127),
-                 LV_COLOR_MAKE(0, 255, 127), COLOR_BTN_ROUNDED, &aquamarine_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 20, 160, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[9], LV_COLOR_MAKE(0, 255, 0),
-                 LV_COLOR_MAKE(0, 255, 0), COLOR_BTN_ROUNDED, &green_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 115, 160, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[10], LV_COLOR_MAKE(127, 255, 0),
-                 LV_COLOR_MAKE(127, 255, 0), COLOR_BTN_ROUNDED, &chartreuse_btn_style, color_screen);
-    createButton(evtHandlerColorBtns, 210, 160, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[11], LV_COLOR_MAKE(255, 255, 0),
-                 LV_COLOR_MAKE(255, 255, 0), COLOR_BTN_ROUNDED, &yellow_btn_style, color_screen);
+
+    for (int i = 0; i < sizeof(colors_list) / sizeof(colors_list[0])-2; i++) {
+        lv_color_t color = LV_COLOR_MAKE(color_values_list[i][0], color_values_list[i][1], color_values_list[i][2]);
+        createButton(evtHandlerColorBtns, initial_x, initial_y, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[i],
+                     color, color, COLOR_BTN_ROUNDED, &color_styles_list[i], color_screen);
+
+        // Adjust coordinates as necessary for creating a grid
+        initial_x += BUTTON_WIDTH + PADDING;
+        if ((i + 1) % 3 == 0) {
+            initial_x = 20;
+            initial_y += BUTTON_HEIGHT + PADDING;
+        }
+    }
 
     // Red slider and label
     red_slider = createSlider(evtHandlerRedSlider, 30, 220, SLIDER_WIDTH, SLIDER_HEIGHT, current_arc_group->getRed(),
@@ -401,21 +397,17 @@ void renderIntensityEffectsScreen() {
     lv_color_t BTN_BG_COLOR = LV_COLOR_MAKE(45, 45, 45);
     lv_color_t BTN_TEXT_COLOR = LV_COLOR_MAKE(255, 255, 255);
 
+    int initial_y = 70;
+    int PADDING = 5;
+
     // Design the layout of the color screen
-    createLabel(85, 13, "Intensity and Effects", intensity_effects_screen);
-    createButton(evtHandlerEffectsBtns, 210, 70, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[0],
-                 lv_color_black(), BTN_TEXT_COLOR, BTN_ROUNDED, &solid_button_style, intensity_effects_screen);
-    createButton(evtHandlerEffectsBtns, 210, 130, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[1],
-                 BTN_BG_COLOR, BTN_TEXT_COLOR, BTN_ROUNDED, &effect_button_style, intensity_effects_screen);
-    createButton(evtHandlerEffectsBtns, 210, 190, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[2],
-                 BTN_BG_COLOR, BTN_TEXT_COLOR, BTN_ROUNDED, &effect_button_style, intensity_effects_screen);
-    createButton(evtHandlerEffectsBtns, 210, 250, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[3],
-                 BTN_BG_COLOR, BTN_TEXT_COLOR, BTN_ROUNDED, &effect_button_style, intensity_effects_screen);
-    createButton(evtHandlerEffectsBtns, 210, 310, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[4],
-                 BTN_BG_COLOR, BTN_TEXT_COLOR, BTN_ROUNDED, &effect_button_style, intensity_effects_screen);
-    createButton(evtHandlerEffectsBtns, 210, 370, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[5],
-                 BTN_BG_COLOR, BTN_TEXT_COLOR, BTN_ROUNDED, &effect_button_style, intensity_effects_screen);
-    
+    for (int i = 0; i < sizeof(effects_list) / sizeof(effects_list[0]); i++) {
+        createButton(evtHandlerEffectsBtns, 210, initial_y, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[i],
+                     BTN_BG_COLOR, BTN_TEXT_COLOR, BTN_ROUNDED, &solid_button_style, intensity_effects_screen);
+        
+        initial_y += BUTTON_HEIGHT + PADDING;
+    }
+
     // Denormalise intensity and speed
     uint8_t denormalised_intensity_value = (uint8_t)(anu.getIntensity()*255.0);
     uint8_t denormalised_speed_value = (uint8_t)(anu.getSpeed()*255.0);
@@ -438,17 +430,18 @@ void renderIntensityEffectsScreen() {
 */
 void renderColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
+
     // Style object(s)
-    static lv_style_t style1, style2, style3, style4, style5, style6, style7, style8,
-                      style9, style10, style11, style12, style13, style14, style15;
-    static lv_style_t styles_list[] = {style1, style2, style3, style4, style5, style6, style7, style8,
-                                       style9, style10, style11, style12, style13, style14, style15};
+    static lv_style_t styles_list[sizeof(architecture_group_list)/sizeof(architecture_group_list[0])];
+    for (int i = 0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
+        lv_style_init(&styles_list[i]);
+    }
                 
     // Define width, height and styles
     const int COLOR_BLOCK_WIDTH = 50, COLOR_BLOCK_HEIGHT = 20;
     lv_coord_t COLOR_BLOCK_ROUNDED = 5;
     int initial_x = 30, initial_y = 60;
-    int padding = COLOR_BLOCK_HEIGHT + 5;
+    int PADDING = 5;
 
     // Design the layout of the screen
     createLabel(88, 13, "Global Color Status", color_status_screen);
@@ -468,7 +461,7 @@ void renderColorStatusScreen() {
         createButton(evtDoNothing, initial_x+200, initial_y, COLOR_BLOCK_WIDTH, COLOR_BLOCK_HEIGHT, "",
                      bg_color, bg_color, COLOR_BLOCK_ROUNDED, &styles_list[i], color_status_screen);
 
-        initial_y += padding;
+        initial_y += COLOR_BLOCK_HEIGHT + PADDING;
     }
 }
 
