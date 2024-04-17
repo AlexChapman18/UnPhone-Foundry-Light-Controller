@@ -65,7 +65,7 @@ void createRectangle(int position_x, int position_y, int width, int height, lv_c
  * @param style_pointer   Style object to store the style (not created in this function otherwise
  *                        styles will not render correctly when used in main).
  * @param screen          Screen to attach the slider object to.
- * @param slider          Slider object, to allow slider methods to be used in main on the slider.
+ * @return slider          Slider object, to allow slider methods to be used in main on the slider.
  */
 lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position_y, int width, int height,
                         float proportion, lv_color_t bg_color, lv_style_t *style_pointer, lv_obj_t *screen);
@@ -78,7 +78,8 @@ lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position
  * @param position_y      Label position on the y-axis.
  * @param text            Text to add onto the label.
  * @param screen          Screen to attach the text object to.
+ * @return label          Label object, to allow methods to be used in main on the label.
  */
-void createLabel(int position_x, int position_y, const char *text, lv_obj_t *screen);
+lv_obj_t *createLabel(int position_x, int position_y, const char *text, lv_obj_t *screen);
 
 #endif

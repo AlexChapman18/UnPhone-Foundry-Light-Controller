@@ -35,6 +35,11 @@ ArchitectureGroup architecture_group_list[15];
 // Current architecure group the user is on
 ArchitectureGroup *current_arc_group;
 
+// WiFi Status updates for user interface
+lv_obj_t *wifi_status_label;
+// Used to detect a change
+int current_wifi_status;
+
 // Define the screens (pages)
 static lv_obj_t *architecture_screen;      // screen 0
 static lv_obj_t *color_screen;              // screen 1
@@ -268,6 +273,14 @@ static void evtHandlerSpeedSlider(lv_event_t *e) {
     anu.setSpeed(normalised_value);
 }
 
+
+// static void evtHandlerWiFiConnection(lv_event_t *e) {
+//   lv_event_code_t code = lv_event_get_code(e);
+//     if (code == LV_EVENT_VALUE_CHANGED) {
+//       lv_label_set_text(wifi_status_label, espwifi.isConnected() ? "Connected" : "Disconnected");
+//     }
+// }
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SCREENS (PAGES) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -276,6 +289,8 @@ static void evtHandlerSpeedSlider(lv_event_t *e) {
 */
 void renderArchitectureScreen() {
     architecture_screen = lv_obj_create(NULL);
+
+    wifiStatusHandler(architecture_screen);
 
     // Style object(s)
     static lv_style_t btn_style;
@@ -310,6 +325,8 @@ void renderArchitectureScreen() {
 void renderColorScreen(ArchitectureGroup *current_group) {
     current_arc_group = current_group;
     color_screen = lv_obj_create(NULL);
+
+    wifiStatusHandler(color_screen);
 
     // Style object(s)
     static lv_style_t back_btn_style, black_btn_style, white_btn_style,
@@ -381,6 +398,8 @@ void renderColorScreen(ArchitectureGroup *current_group) {
 void renderIntensityEffectsScreen() {
     intensity_effects_screen = lv_obj_create(NULL);
 
+    wifiStatusHandler(intensity_effects_screen);
+
     // Style object(s)
     static lv_style_t effect_button_style, solid_button_style, back_btn_style, slider_style;
 
@@ -425,6 +444,8 @@ void renderIntensityEffectsScreen() {
 void renderColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
 
+    wifiStatusHandler(color_status_screen);
+
     // Style object(s)
     static lv_style_t styles_list[sizeof(architecture_group_list)/sizeof(architecture_group_list[0])];
     for (int i = 0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
@@ -457,6 +478,12 @@ void renderColorStatusScreen() {
 
         initial_y += COLOR_BLOCK_HEIGHT + PADDING;
     }
+}
+
+
+void wifiStatusHandler(lv_obj_t *screen) {
+  wifi_status_label = createLabel(100, 10, "", screen);
+  lv_label_set_text(wifi_status_label, espwifi.isConnected() ? "Connected" : "Disconnected");
 }
 
 
@@ -523,6 +550,8 @@ void setup() {
   renderArchitectureScreen();
   lv_scr_load(architecture_screen);
   current_screen = 0;
+  current_wifi_status = espwifi.isConnected();
+  wifiStatusHandler(architecture_screen);
 
   // Begin art-net transmission
   anu.begin();
@@ -553,6 +582,10 @@ void loop() {
         delete_previous_screen();
         current_screen = 3;
       }
+    }
+    if (current_wifi_status != espwifi.isConnected()) {
+      lv_label_set_text(wifi_status_label, espwifi.isConnected() ? "Connected" : "Disconnected");
+      current_wifi_status = espwifi.isConnected();
     }
     delay(5);
 }
