@@ -34,6 +34,23 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
 
 
 /**
+ * Designs and creates a LVGL rectangle.
+ *
+ * @param position_x      Rectangle position on the x-axis.
+ * @param position_y      Rectangle position on the y-axis.
+ * @param width           Rectangle width.
+ * @param height          Rectangle height.
+ * @param bg_color        Rectangle background color.
+ * @param rounded         Roundness of the Rectangle corners.
+ * @param style_pointer   Style object to store the style (not created in this function otherwise
+ *                        styles will not render correctly when used in main).
+ * @param screen          Screen to attach the button object to.
+ */
+void createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color, lv_coord_t rounded,
+                     lv_style_t *style_pointer, lv_obj_t *screen);
+
+
+/**
  * Designs and creates an LVGL slider.
  *
  * @param event_handler   Event handler to be attached to the slider created.

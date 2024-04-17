@@ -282,7 +282,7 @@ static void evtDoNothing(lv_event_t *e) {}
 */
 void renderArchitectureScreen() {
     architecture_screen = lv_obj_create(NULL);
-
+    
     // Style object(s)
     static lv_style_t btn_style;
 

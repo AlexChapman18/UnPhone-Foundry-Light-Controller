@@ -42,6 +42,29 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATING RECTANGLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+void createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color, lv_coord_t rounded,
+                  lv_style_t *style_pointer, lv_obj_t *screen) {
+    
+    // Create rectangle
+    lv_obj_t *rectangle = lv_btn_create(screen);
+
+    // Style the rectangle
+    lv_style_init(style_pointer);
+    lv_style_set_bg_color(style_pointer, bg_color);
+    lv_style_set_border_width(style_pointer, 2);
+    lv_style_set_radius(style_pointer, rounded);
+    lv_style_set_border_color(style_pointer, lv_color_black());
+    lv_obj_add_style(rectangle, style_pointer, 0);
+
+    // Set size and position of rectangle
+    lv_obj_set_size(rectangle, width, height);
+    lv_obj_set_pos(rectangle, position_x, position_y);
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE SLIDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position_y, int width, int height,
