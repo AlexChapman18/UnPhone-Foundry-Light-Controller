@@ -48,7 +48,7 @@ void createRectangle(int position_x, int position_y, int width, int height, lv_c
                   lv_style_t *style_pointer, lv_obj_t *screen) {
     
     // Create rectangle
-    lv_obj_t *rectangle = lv_btn_create(screen);
+    lv_obj_t *rectangle = lv_obj_create(screen);
 
     // Style the rectangle
     lv_style_init(style_pointer);

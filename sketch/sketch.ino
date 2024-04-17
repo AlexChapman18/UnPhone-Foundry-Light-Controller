@@ -268,12 +268,6 @@ static void evtHandlerSpeedSlider(lv_event_t *e) {
     anu.setSpeed(normalised_value);
 }
 
-/**
- * Event listener to do nothing when a button is pressed.
- */
-static void evtDoNothing(lv_event_t *e) {}
-
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SCREENS (PAGES) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -282,7 +276,7 @@ static void evtDoNothing(lv_event_t *e) {}
 */
 void renderArchitectureScreen() {
     architecture_screen = lv_obj_create(NULL);
-    
+
     // Style object(s)
     static lv_style_t btn_style;
 
@@ -458,8 +452,8 @@ void renderColorStatusScreen() {
 
         // Add the architecture label with the corresponding background color
         createLabel(initial_x, initial_y, nameString.c_str(), color_status_screen);
-        createButton(evtDoNothing, initial_x+200, initial_y, COLOR_BLOCK_WIDTH, COLOR_BLOCK_HEIGHT, "",
-                     bg_color, bg_color, COLOR_BLOCK_ROUNDED, &styles_list[i], color_status_screen);
+        createRectangle(initial_x+200, initial_y, COLOR_BLOCK_WIDTH, COLOR_BLOCK_HEIGHT,
+                        bg_color, COLOR_BLOCK_ROUNDED, &styles_list[i], color_status_screen);
 
         initial_y += COLOR_BLOCK_HEIGHT + PADDING;
     }
