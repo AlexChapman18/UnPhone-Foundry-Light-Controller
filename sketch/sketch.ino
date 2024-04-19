@@ -23,6 +23,7 @@ static const uint16_t screenHeight = 480;
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
 static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[screenWidth * 10];
+boolean is_init_boot = true;
 
 // Initialise UnPhone
 NuPhone nuphone = NuPhone();
@@ -511,7 +512,6 @@ void setup() {
 
   // Begin WiFi and ArtNetUniverse
   espwifi.begin();
-  anu.setup();
 
   // Initiate the LCD
   tft.begin();
@@ -550,12 +550,16 @@ void setup() {
   lv_scr_load(architecture_screen);
   current_screen = 0;
   current_wifi_status = espwifi.isConnected();
-
-  // Begin art-net transmission
-  anu.begin();
 }
 
 void loop() { 
+    // Setup the art-net output when wifi is connected
+    if (espwifi.isConnected() && is_init_boot) {
+        anu.setup();
+        anu.begin();
+        is_init_boot = false;
+    }
+
     lv_timer_handler();
     
     // Switch screens if UnPhone buttons are pressed
