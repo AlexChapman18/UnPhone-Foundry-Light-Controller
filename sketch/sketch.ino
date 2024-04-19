@@ -38,6 +38,7 @@ ArchitectureGroup *current_arc_group;
 
 // Used to detect a change
 uint8_t current_wifi_status;
+unsigned long last_bar_update = 0;
 
 // Initialise signal strength variables
 static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style;
@@ -486,33 +487,40 @@ void renderColorStatusScreen() {
  * Needs commenting.
 */
 void initialiseSignalStrengthBars(lv_obj_t *screen) {
-  signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
-  signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
-  signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
+    signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
+    signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
+    signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
 }
 
 
 /**
  * Needs commenting.
 */
-void signalStrengthHandler(uint8_t wifi_status) { 
-  if (wifi_status == 0) {
-    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
-    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
-    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
-  } else if (wifi_status == 1) {
-    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
-    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
-    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
-  } else if (wifi_status == 2) {
-    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
-    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
-    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
-  } else if (wifi_status == 3) {
-    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
-    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
-    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
-  }
+void drawSignalStrength(uint8_t wifi_status) { 
+    Serial.println("AAHHHHHHHH");
+    
+    if (wifi_status == 0) {
+        
+        
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+    } else if (wifi_status == 1) {
+        Serial.println(1);
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+    } else if (wifi_status == 2) {
+        Serial.println(2);
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+    } else if (wifi_status == 3) {
+        Serial.println(3);
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
+    }
 }
 
 
@@ -521,65 +529,65 @@ void signalStrengthHandler(uint8_t wifi_status) {
  * Deletes the screen after the user has switched to another screen.
 */
 void deletePreviousScreen() {
-  if (current_screen == 0) {lv_obj_del(architecture_screen); }
-  if (current_screen == 1) {lv_obj_del(color_screen); }
-  if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
-  if (current_screen == 3) {lv_obj_del(color_status_screen); }
+    if (current_screen == 0) {lv_obj_del(architecture_screen); }
+    if (current_screen == 1) {lv_obj_del(color_screen); }
+    if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
+    if (current_screen == 3) {lv_obj_del(color_status_screen); }
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void setup() {
-  Serial.begin(115200);
+    Serial.begin(115200);
 
-  // Begin unPhone with a set orientation
-  nuphone.begin();
-  nuphone.tsp->setRotation(2);
-  nuphone.setBacklight(true);
+    // Begin unPhone with a set orientation
+    nuphone.begin();
+    nuphone.tsp->setRotation(2);
+    nuphone.setBacklight(true);
 
-  // Begin WiFi and ArtNetUniverse
-  espwifi.begin();
+    // Begin WiFi and ArtNetUniverse
+    espwifi.begin();
 
-  // Initiate the LCD
-  tft.begin();
-  tft.setRotation(0);
+    // Initiate the LCD
+    tft.begin();
+    tft.setRotation(0);
 
-  uint16_t calData[5] = { 347, 3549, 419, 3352, 5 };
-  tft.setTouch(calData);
+    uint16_t calData[5] = { 347, 3549, 419, 3352, 5 };
+    tft.setTouch(calData);
 
-  // Initiate LVGL and initialise the drawing buffer
-  lv_init();
-  lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * 10 );
+    // Initiate LVGL and initialise the drawing buffer
+    lv_init();
+    lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * 10 );
 
-  // Initialise the display driver
-  static lv_disp_drv_t disp_drv;
-  lv_disp_drv_init(&disp_drv);
-  disp_drv.hor_res = screenWidth;
-  disp_drv.ver_res = screenHeight;
-  disp_drv.flush_cb = displayFlush;
-  disp_drv.draw_buf = &draw_buf;
-  lv_disp_drv_register(&disp_drv);
+    // Initialise the display driver
+    static lv_disp_drv_t disp_drv;
+    lv_disp_drv_init(&disp_drv);
+    disp_drv.hor_res = screenWidth;
+    disp_drv.ver_res = screenHeight;
+    disp_drv.flush_cb = displayFlush;
+    disp_drv.draw_buf = &draw_buf;
+    lv_disp_drv_register(&disp_drv);
 
-  // Initialise the input device driver 
-  static lv_indev_drv_t indev_drv;
-  lv_indev_drv_init(&indev_drv);
-  indev_drv.type = LV_INDEV_TYPE_POINTER;
-  indev_drv.read_cb = touchpadRead;
-  lv_indev_drv_register(&indev_drv);
+    // Initialise the input device driver 
+    static lv_indev_drv_t indev_drv;
+    lv_indev_drv_init(&indev_drv);
+    indev_drv.type = LV_INDEV_TYPE_POINTER;
+    indev_drv.read_cb = touchpadRead;
+    lv_indev_drv_register(&indev_drv);
 
-  // Create architecture objects
-  for (int i=0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
-      architecture_group_list[i] = ArchitectureGroup(i, architectures_list[i]);
-  }
+    // Create architecture objects
+    for (int i=0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
+        architecture_group_list[i] = ArchitectureGroup(i, architectures_list[i]);
+    }
 
-  // Render and load the initial screen
-  renderArchitectureScreen();
-  lv_scr_load(architecture_screen);
-  current_screen = 0;
+    // Render and load the initial screen
+    renderArchitectureScreen();
+    lv_scr_load(architecture_screen);
+    current_screen = 0;
 
-  // Begin art-net transmission
-  anu.begin();
+    // Begin art-net transmission
+    anu.begin();
 }
 
 void loop() { 
@@ -616,8 +624,12 @@ void loop() {
       }
     }
 
-    current_wifi_status = espwifi.getWiFiStrength();
-    signalStrengthHandler(current_wifi_status);
+    // Update the wifi bars every second
+    unsigned long current_time = millis();
+    if (current_time - last_bar_update >= 1000) {
+        drawSignalStrength(espwifi.getWiFiStrength());
+        last_bar_update = current_time;
+    }   
 
     delay(5);
 }
