@@ -21,9 +21,6 @@ ArtNetUniverse::ArtNetUniverse() {}
 
 void ArtNetUniverse::setup() {
 
-    while (WiFi.status() != WL_CONNECTED) {
-    }
-
     current_effect = 0;
     current_speed = 1;
     current_intensity = 1;
