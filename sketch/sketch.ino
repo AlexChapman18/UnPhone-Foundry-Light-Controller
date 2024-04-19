@@ -497,11 +497,7 @@ void initialiseSignalStrengthBars(lv_obj_t *screen) {
  * Needs commenting.
 */
 void drawSignalStrength(uint8_t wifi_status) { 
-    Serial.println("AAHHHHHHHH");
-    
-    if (wifi_status == 0) {
-        
-        
+if (wifi_status == 0) {
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
@@ -521,6 +517,9 @@ void drawSignalStrength(uint8_t wifi_status) {
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
     }
+    lv_obj_invalidate(signal_bar1);
+    lv_obj_invalidate(signal_bar2);
+    lv_obj_invalidate(signal_bar3);
 }
 
 
@@ -585,9 +584,6 @@ void setup() {
     renderArchitectureScreen();
     lv_scr_load(architecture_screen);
     current_screen = 0;
-
-    // Begin art-net transmission
-    anu.begin();
 }
 
 void loop() { 
