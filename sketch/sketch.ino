@@ -35,10 +35,8 @@ ArchitectureGroup architecture_group_list[15];
 // Current architecure group the user is on
 ArchitectureGroup *current_arc_group;
 
-// WiFi Status updates for user interface
-lv_obj_t *wifi_status_label;
 // Used to detect a change
-int current_wifi_status;
+uint8_t current_wifi_status;
 
 // Initialise signal strength variables
 static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style;
@@ -496,7 +494,7 @@ void initialiseSignalStrengthBars(lv_obj_t *screen) {
 /**
  * Needs commenting.
 */
-void signalStrengthHandler(int wifi_status) {
+void signalStrengthHandler(uint8_t wifi_status) { 
   if (wifi_status == 0) {
     lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
     lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
@@ -610,5 +608,9 @@ void loop() {
         current_screen = 3;
       }
     }
+
+    current_wifi_status = espwifi.getWiFiStrength();
+    signalStrengthHandler(current_wifi_status);
+
     delay(5);
 }

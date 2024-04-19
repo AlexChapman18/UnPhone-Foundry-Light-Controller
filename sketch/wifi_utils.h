@@ -19,6 +19,7 @@ class ESPWiFi {
         ESPWiFi();
         void begin();
         bool isConnected();
+        uint8_t getWiFiStrength();
 };
 
 #endif
