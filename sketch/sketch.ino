@@ -40,6 +40,10 @@ lv_obj_t *wifi_status_label;
 // Used to detect a change
 int current_wifi_status;
 
+// Initialise signal strength variables
+static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style;
+lv_obj_t *signal_bar1, *signal_bar2, *signal_bar3;
+
 // Define the screens (pages)
 static lv_obj_t *architecture_screen;      // screen 0
 static lv_obj_t *color_screen;              // screen 1
@@ -282,8 +286,8 @@ static void evtHandlerSpeedSlider(lv_event_t *e) {
 void renderArchitectureScreen() {
     architecture_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(architecture_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(architecture_screen);
 
     // Style object(s)
     static lv_style_t btn_style;
@@ -319,8 +323,8 @@ void renderColorScreen(ArchitectureGroup *current_group) {
     current_arc_group = current_group;
     color_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(color_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(color_screen);
 
     // Style object(s)
     static lv_style_t back_btn_style, black_btn_style, white_btn_style,
@@ -392,8 +396,8 @@ void renderColorScreen(ArchitectureGroup *current_group) {
 void renderIntensityEffectsScreen() {
     intensity_effects_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(intensity_effects_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(intensity_effects_screen);
 
     // Style object(s)
     static lv_style_t effect_button_style, solid_button_style, back_btn_style, slider_style;
@@ -439,8 +443,8 @@ void renderIntensityEffectsScreen() {
 void renderColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(color_status_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(color_status_screen);
 
     // Style object(s)
     static lv_style_t styles_list[sizeof(architecture_group_list)/sizeof(architecture_group_list[0])];
@@ -477,12 +481,36 @@ void renderColorStatusScreen() {
 }
 
 
+
+void initialiseSignalStrengthBars(lv_obj_t *screen) {
+  signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
+  signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
+  signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
+  // exclamation_mark_top = createRectangle(295, 10, 5, 12, lv_color_black(), 0, &signal_exclamation_style, screen);
+  // exclamation_mark_bottom = createRectangle(295, 26, 5, 4, lv_color_black(), 0, &signal_exclamation_style, screen);
+}
+
 /**
  * Used on each screen to initialise the WiFi status.
 */
-void wifiStatusHandler(lv_obj_t *screen) {
-  wifi_status_label = createLabel(290, 10, "", screen);
-  lv_label_set_text(wifi_status_label, espwifi.isConnected() ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
+void signalStrengthHandler(int wifi_status) {
+  if (wifi_status == 0) {
+    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
+    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
+    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+  } else if (wifi_status == 1) {
+    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
+    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+  } else if (wifi_status == 2) {
+    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
+    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+  } else if (wifi_status == 3) {
+    lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+    lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
+    lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
+  }
 }
 
 
@@ -496,7 +524,6 @@ void delete_previous_screen() {
   if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
   if (current_screen == 3) {lv_obj_del(color_status_screen); }
 }
-
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -549,7 +576,7 @@ void setup() {
   renderArchitectureScreen();
   lv_scr_load(architecture_screen);
   current_screen = 0;
-  current_wifi_status = espwifi.isConnected();
+  // current_wifi_status = espwifi.isConnected();
 
   // Begin art-net transmission
   anu.begin();
@@ -582,9 +609,9 @@ void loop() {
       }
     }
     // Check if there is a change in the WiFi connection
-    if (current_wifi_status != espwifi.isConnected()) {
-      lv_label_set_text(wifi_status_label, espwifi.isConnected() ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
-      current_wifi_status = espwifi.isConnected();
-    }
+    // if (current_wifi_status != espwifi.isConnected()) {
+    //   lv_label_set_text(wifi_status_label, espwifi.isConnected() ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
+    //   current_wifi_status = espwifi.isConnected();
+    // }
     delay(5);
 }
