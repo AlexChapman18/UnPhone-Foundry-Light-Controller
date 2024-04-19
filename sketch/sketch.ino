@@ -42,7 +42,9 @@ int current_wifi_status;
 
 // Initialise signal strength variables
 static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style;
-lv_obj_t *signal_bar1, *signal_bar2, *signal_bar3;
+lv_obj_t *signal_bar1;
+lv_obj_t *signal_bar2;
+lv_obj_t *signal_bar3;
 
 // Define the screens (pages)
 static lv_obj_t *architecture_screen;      // screen 0
@@ -182,7 +184,7 @@ static void evtHandlerArchGroupBtns(lv_event_t *e) {
             if (strcmp(text, architectures_list[i]) == 0) {
                 renderColorScreen(&architecture_group_list[i]);
                 lv_scr_load(color_screen);
-                delete_previous_screen();
+                deletePreviousScreen();
                 current_screen = 1;
                 break;
             }
@@ -218,7 +220,7 @@ static void evtHandlerBackBtn(lv_event_t *e) {
     if(code == LV_EVENT_CLICKED) {
         renderArchitectureScreen();
         lv_scr_load(architecture_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 0;
     }
 }
@@ -481,17 +483,18 @@ void renderColorStatusScreen() {
 }
 
 
-
+/**
+ * Needs commenting.
+*/
 void initialiseSignalStrengthBars(lv_obj_t *screen) {
   signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
   signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
   signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
-  // exclamation_mark_top = createRectangle(295, 10, 5, 12, lv_color_black(), 0, &signal_exclamation_style, screen);
-  // exclamation_mark_bottom = createRectangle(295, 26, 5, 4, lv_color_black(), 0, &signal_exclamation_style, screen);
 }
 
+
 /**
- * Used on each screen to initialise the WiFi status.
+ * Needs commenting.
 */
 void signalStrengthHandler(int wifi_status) {
   if (wifi_status == 0) {
@@ -518,7 +521,7 @@ void signalStrengthHandler(int wifi_status) {
  * Used in screen switching.
  * Deletes the screen after the user has switched to another screen.
 */
-void delete_previous_screen() {
+void deletePreviousScreen() {
   if (current_screen == 0) {lv_obj_del(architecture_screen); }
   if (current_screen == 1) {lv_obj_del(color_screen); }
   if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
@@ -576,7 +579,6 @@ void setup() {
   renderArchitectureScreen();
   lv_scr_load(architecture_screen);
   current_screen = 0;
-  // current_wifi_status = espwifi.isConnected();
 
   // Begin art-net transmission
   anu.begin();
@@ -590,28 +592,23 @@ void loop() {
       if (current_screen != 0) {
         renderArchitectureScreen();
         lv_scr_load(architecture_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 0;
       }
     } else if (nuphone.isButton2()) {
       if (current_screen != 2) {
         renderIntensityEffectsScreen();
         lv_scr_load(intensity_effects_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 2;
       }
     } else if (nuphone.isButton3()) {
       if (current_screen != 3) {
         renderColorStatusScreen();
         lv_scr_load(color_status_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 3;
       }
     }
-    // Check if there is a change in the WiFi connection
-    // if (current_wifi_status != espwifi.isConnected()) {
-    //   lv_label_set_text(wifi_status_label, espwifi.isConnected() ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
-    //   current_wifi_status = espwifi.isConnected();
-    // }
     delay(5);
 }
