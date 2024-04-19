@@ -60,7 +60,9 @@ void keepWiFiAlive(void * params) {
         
         unsigned long startTime = millis();
         
-        while (WiFi.status() != WL_CONNECTED && (millis() - startTime < TIMEOUT_MS)) {} // Wait until wifi is connected
+        while (WiFi.status() != WL_CONNECTED && (millis() - startTime < TIMEOUT_MS)) {
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+        } // Wait until wifi is connected
 
         if (WiFi.status() != WL_CONNECTED) {
             vTaskDelay(10000 / portTICK_PERIOD_MS);
