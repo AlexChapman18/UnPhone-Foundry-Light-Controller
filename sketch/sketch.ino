@@ -490,6 +490,7 @@ void initialiseSignalStrengthBars(lv_obj_t *screen) {
     signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
     signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
     signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
+    drawSignalStrength(espwifi.getWiFiStrength());
 }
 
 
