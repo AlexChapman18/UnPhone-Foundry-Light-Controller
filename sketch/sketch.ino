@@ -36,8 +36,7 @@ ArchitectureGroup architecture_group_list[15];
 // Current architecure group the user is on
 ArchitectureGroup *current_arc_group;
 
-// Used to detect a change
-uint8_t current_wifi_status;
+// Used to check the WiFi strength at specific intervals
 unsigned long last_bar_update = 0;
 
 // Initialise signal strength variables
@@ -520,22 +519,22 @@ void initialiseSignalStrengthBars(lv_obj_t *screen) {
  * @param wifi_status The stength of the connections. 0: No connection, 1: Weak, 2: Moderate, 3: Strong
 */
 void drawSignalStrength(uint8_t wifi_status) { 
-    if (wifi_status == 0) {
+    if (wifi_status == espwifi.NO_CONNECTION) {
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&error_bar_style, LV_OPA_90);
-    } else if (wifi_status == 1) {
+    } else if (wifi_status == espwifi.WEAK_CONNECTION) {
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
-    } else if (wifi_status == 2) {
+    } else if (wifi_status == espwifi.MODERATE_CONNECTION) {
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
-    } else if (wifi_status == 3) {
+    } else if (wifi_status == espwifi.STRONG_CONNECTION) {
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
@@ -640,7 +639,7 @@ void loop() {
     if (current_time - last_bar_update >= 1000) {
         drawSignalStrength(espwifi.getWiFiStrength());
         last_bar_update = current_time;
-    }   
+    }
 
     delay(5);
 }
