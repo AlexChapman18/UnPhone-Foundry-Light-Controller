@@ -45,9 +45,10 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
  * @param style_pointer   Style object to store the style (not created in this function otherwise
  *                        styles will not render correctly when used in main).
  * @param screen          Screen to attach the button object to.
+ * @return rectangle      Rectangle object, to allow LVGL object methods to be used in main on the rectangle.
  */
-void createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color, lv_coord_t rounded,
-                     lv_style_t *style_pointer, lv_obj_t *screen);
+lv_obj_t *createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color, lv_coord_t rounded,
+                         lv_style_t *style_pointer, lv_obj_t *screen);
 
 
 /**

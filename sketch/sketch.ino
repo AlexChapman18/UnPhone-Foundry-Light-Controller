@@ -36,13 +36,18 @@ ArchitectureGroup architecture_group_list[15];
 // Current architecure group the user is on
 ArchitectureGroup *current_arc_group;
 
-// WiFi Status updates for user interface
-lv_obj_t *wifi_status_label;
-// Used to detect a change
-int current_wifi_status;
+// Used to check the WiFi strength at specific intervals
+unsigned long last_bar_update = 0;
+
+// Initialise signal strength variables
+static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style, error_bar_style;
+lv_obj_t *signal_bar1;
+lv_obj_t *signal_bar2;
+lv_obj_t *signal_bar3;
+lv_obj_t *error_bar;
 
 // Define the screens (pages)
-static lv_obj_t *architecture_screen;      // screen 0
+static lv_obj_t *architecture_screen;       // screen 0
 static lv_obj_t *color_screen;              // screen 1
 static lv_obj_t *intensity_effects_screen;  // screen 2
 static lv_obj_t *color_status_screen;       // screen 3
@@ -179,7 +184,7 @@ static void evtHandlerArchGroupBtns(lv_event_t *e) {
             if (strcmp(text, architectures_list[i]) == 0) {
                 renderColorScreen(&architecture_group_list[i]);
                 lv_scr_load(color_screen);
-                delete_previous_screen();
+                deletePreviousScreen();
                 current_screen = 1;
                 break;
             }
@@ -215,7 +220,7 @@ static void evtHandlerBackBtn(lv_event_t *e) {
     if(code == LV_EVENT_CLICKED) {
         renderArchitectureScreen();
         lv_scr_load(architecture_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 0;
     }
 }
@@ -283,8 +288,8 @@ static void evtHandlerSpeedSlider(lv_event_t *e) {
 void renderArchitectureScreen() {
     architecture_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(architecture_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(architecture_screen);
 
     // Style object(s)
     static lv_style_t btn_style;
@@ -312,6 +317,7 @@ void renderArchitectureScreen() {
     }
 }
 
+
 /**
  * Initialises and renders components onto the color screen for a given architecuture.
  * @param current_group Architecture group user has selected to modify colors for.
@@ -320,8 +326,8 @@ void renderColorScreen(ArchitectureGroup *current_group) {
     current_arc_group = current_group;
     color_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(color_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(color_screen);
 
     // Style object(s)
     static lv_style_t back_btn_style, black_btn_style, white_btn_style,
@@ -393,8 +399,8 @@ void renderColorScreen(ArchitectureGroup *current_group) {
 void renderIntensityEffectsScreen() {
     intensity_effects_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(intensity_effects_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(intensity_effects_screen);
 
     // Style object(s)
     static lv_style_t effect_button_style, solid_button_style, back_btn_style, slider_style;
@@ -440,8 +446,8 @@ void renderIntensityEffectsScreen() {
 void renderColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
 
-    // Initalise WiFi status symbol
-    wifiStatusHandler(color_status_screen);
+    // Initalise signal strength
+    initialiseSignalStrengthBars(color_status_screen);
 
     // Style object(s)
     static lv_style_t styles_list[sizeof(architecture_group_list)/sizeof(architecture_group_list[0])];
@@ -479,23 +485,65 @@ void renderColorStatusScreen() {
 
 
 /**
- * Used on each screen to initialise the WiFi status.
+ * Used in screen switching.
+ * Deletes the screen after the user has switched to another screen.
 */
-void wifiStatusHandler(lv_obj_t *screen) {
-  wifi_status_label = createLabel(290, 10, "", screen);
-  lv_label_set_text(wifi_status_label, espwifi.isConnected() ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
+void deletePreviousScreen() {
+    if (current_screen == 0) {lv_obj_del(architecture_screen); }
+    if (current_screen == 1) {lv_obj_del(color_screen); }
+    if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
+    if (current_screen == 3) {lv_obj_del(color_status_screen); }
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ SIGNAL STRENGTH HELPER FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * Creates the three signal bars on the top right, and a horizontal strike thorough
+ * for no connection.
+ * @param screen The screen to render the signal bars on.
+*/
+void initialiseSignalStrengthBars(lv_obj_t *screen) {
+    signal_bar1 = createRectangle(278, 24, 8, 10, lv_color_black(), 0, &signal_bar1_style, screen);
+    signal_bar2 = createRectangle(290, 16, 8, 18, lv_color_black(), 0, &signal_bar2_style, screen);
+    signal_bar3 = createRectangle(302, 8, 8, 26, lv_color_black(), 0, &signal_bar3_style, screen);
+    error_bar = createRectangle(275, 22, 38, 4,  LV_COLOR_MAKE(255, 0, 0), 0, &error_bar_style, screen);
+    lv_style_set_border_width(&error_bar_style, 0);
+    drawSignalStrength(espwifi.getWiFiStrength());
 }
 
 
 /**
- * Used in screen switching.
- * Deletes the screen after the user has switched to another screen.
+ * Logic to handle the signal strength as bars shown live.
+ * @param wifi_status The stength of the connections. 0: No connection, 1: Weak, 2: Moderate, 3: Strong
 */
-void delete_previous_screen() {
-  if (current_screen == 0) {lv_obj_del(architecture_screen); }
-  if (current_screen == 1) {lv_obj_del(color_screen); }
-  if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
-  if (current_screen == 3) {lv_obj_del(color_status_screen); }
+void drawSignalStrength(uint8_t wifi_status) { 
+    if (wifi_status == espwifi.NO_CONNECTION) {
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_90);
+    } else if (wifi_status == espwifi.WEAK_CONNECTION) {
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
+    } else if (wifi_status == espwifi.MODERATE_CONNECTION) {
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
+    } else if (wifi_status == espwifi.STRONG_CONNECTION) {
+        lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
+    }
+    lv_obj_invalidate(signal_bar1);
+    lv_obj_invalidate(signal_bar2);
+    lv_obj_invalidate(signal_bar3);
+    lv_obj_invalidate(error_bar);
 }
 
 
@@ -503,53 +551,53 @@ void delete_previous_screen() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void setup() {
-  Serial.begin(115200);
+    Serial.begin(115200);
 
-  // Begin unPhone with a set orientation
-  nuphone.begin();
-  nuphone.tsp->setRotation(2);
-  nuphone.setBacklight(true);
+    // Begin unPhone with a set orientation
+    nuphone.begin();
+    nuphone.tsp->setRotation(2);
+    nuphone.setBacklight(true);
 
-  // Begin WiFi and ArtNetUniverse
-  espwifi.begin();
+    // Begin WiFi and ArtNetUniverse
+    espwifi.begin();
 
-  // Initiate the LCD
-  tft.begin();
-  tft.setRotation(0);
+    // Initiate the LCD
+    tft.begin();
+    tft.setRotation(0);
 
-  uint16_t calData[5] = { 347, 3549, 419, 3352, 5 };
-  tft.setTouch(calData);
+    // Calibration
+    uint16_t calData[5] = { 347, 3549, 419, 3352, 5 };
+    tft.setTouch(calData);
 
-  // Initiate LVGL and initialise the drawing buffer
-  lv_init();
-  lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * 10 );
+    // Initiate LVGL and initialise the drawing buffer
+    lv_init();
+    lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * 10 );
 
-  // Initialise the display driver
-  static lv_disp_drv_t disp_drv;
-  lv_disp_drv_init(&disp_drv);
-  disp_drv.hor_res = screenWidth;
-  disp_drv.ver_res = screenHeight;
-  disp_drv.flush_cb = displayFlush;
-  disp_drv.draw_buf = &draw_buf;
-  lv_disp_drv_register(&disp_drv);
+    // Initialise the display driver
+    static lv_disp_drv_t disp_drv;
+    lv_disp_drv_init(&disp_drv);
+    disp_drv.hor_res = screenWidth;
+    disp_drv.ver_res = screenHeight;
+    disp_drv.flush_cb = displayFlush;
+    disp_drv.draw_buf = &draw_buf;
+    lv_disp_drv_register(&disp_drv);
 
-  // Initialise the input device driver 
-  static lv_indev_drv_t indev_drv;
-  lv_indev_drv_init(&indev_drv);
-  indev_drv.type = LV_INDEV_TYPE_POINTER;
-  indev_drv.read_cb = touchpadRead;
-  lv_indev_drv_register(&indev_drv);
+    // Initialise the input device driver 
+    static lv_indev_drv_t indev_drv;
+    lv_indev_drv_init(&indev_drv);
+    indev_drv.type = LV_INDEV_TYPE_POINTER;
+    indev_drv.read_cb = touchpadRead;
+    lv_indev_drv_register(&indev_drv);
 
-  // Create architecture objects
-  for (int i=0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
-      architecture_group_list[i] = ArchitectureGroup(i, architectures_list[i]);
-  }
+    // Create architecture objects
+    for (int i=0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
+        architecture_group_list[i] = ArchitectureGroup(i, architectures_list[i]);
+    }
 
-  // Render and load the initial screen
-  renderArchitectureScreen();
-  lv_scr_load(architecture_screen);
-  current_screen = 0;
-  current_wifi_status = espwifi.isConnected();
+    // Render and load the initial screen
+    renderArchitectureScreen();
+    lv_scr_load(architecture_screen);
+    current_screen = 0;
 }
 
 void loop() { 
@@ -567,28 +615,31 @@ void loop() {
       if (current_screen != 0) {
         renderArchitectureScreen();
         lv_scr_load(architecture_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 0;
       }
     } else if (nuphone.isButton2()) {
       if (current_screen != 2) {
         renderIntensityEffectsScreen();
         lv_scr_load(intensity_effects_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 2;
       }
     } else if (nuphone.isButton3()) {
       if (current_screen != 3) {
         renderColorStatusScreen();
         lv_scr_load(color_status_screen);
-        delete_previous_screen();
+        deletePreviousScreen();
         current_screen = 3;
       }
     }
-    // Check if there is a change in the WiFi connection
-    if (current_wifi_status != espwifi.isConnected()) {
-      lv_label_set_text(wifi_status_label, espwifi.isConnected() ? LV_SYMBOL_WIFI : LV_SYMBOL_CLOSE);
-      current_wifi_status = espwifi.isConnected();
+
+    // Update the wifi bars every second
+    unsigned long current_time = millis();
+    if (current_time - last_bar_update >= 1000) {
+        drawSignalStrength(espwifi.getWiFiStrength());
+        last_bar_update = current_time;
     }
+
     delay(5);
 }

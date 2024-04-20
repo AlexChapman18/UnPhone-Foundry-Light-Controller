@@ -27,6 +27,27 @@ bool ESPWiFi::isConnected() {
     return WiFi.status() == WL_CONNECTED;
 };
 
+uint8_t ESPWiFi::getWiFiStrength() {
+    // If not connected then 0 connection
+    if (!isConnected()) {
+        return 0;
+    } 
+
+    long GOOD_RSS = -40;
+    long OK_RSS = -70;
+    long POOR_RSS = 0;
+    long rss = WiFi.RSSI();
+    
+    // The better the connection the higher the value
+    if (rss > GOOD_RSS) {
+        return 3;
+    } else if (rss > OK_RSS) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+
 
 void keepWiFiAlive(void * params) {
     while(true) {
