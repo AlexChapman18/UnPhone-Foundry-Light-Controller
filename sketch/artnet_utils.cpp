@@ -1,9 +1,9 @@
 /**
  * Contains artnet related utilities
  *
- * Author: Kush Bharakhada and Alex Chapman
- * artnet_utils.cpp
- */
+ * Author: Kush Bharakhada and Alex Chapman (2024)
+ * Filename: fixture_utils.cpp
+*/
 
 #include <artnet_utils.h>
 
