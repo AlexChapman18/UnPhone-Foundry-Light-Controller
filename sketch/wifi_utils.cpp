@@ -1,17 +1,27 @@
 /**
- * Contains wifi related utilities
+ * Contains wifi related utilities.
  * 
- * Author: Kush Bharakhada and Alex Chapman
- * wifi_utils.cpp
+ * Author: Kush Bharakhada and Alex Chapman (2024)
+ * Filename: wifi_utils.cpp
 */
 
 #include <wifi_utils.h>
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VARIABLE INITIALISATIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Determines the interval for WiFi reconnection attempts
 const long TIMEOUT_MS = 10000;
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ESP WiFi Utilities ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Constructor
 ESPWiFi::ESPWiFi(){}
 
 void ESPWiFi::begin() {
+    // Creates a new thread on the same core that the Arduino is running on
+    // and runs keep WiFi alive on that core
     xTaskCreatePinnedToCore(
         keepWiFiAlive,
         "Keeps WiFi alive",
@@ -24,6 +34,7 @@ void ESPWiFi::begin() {
 };
 
 bool ESPWiFi::isConnected() {
+    // Check WiFi status
     return WiFi.status() == WL_CONNECTED;
 };
 
@@ -33,6 +44,7 @@ uint8_t ESPWiFi::getWiFiStrength() {
         return 0;
     } 
 
+    // Connection strength values
     long GOOD_RSS = -40;
     long OK_RSS = -70;
     long POOR_RSS = 0;
@@ -48,25 +60,26 @@ uint8_t ESPWiFi::getWiFiStrength() {
     }
 }
 
-
-void keepWiFiAlive(void * params) {
-    while(true) {
+void keepWiFiAlive(void *params) {
+    while (true) {
+        // Check if WiFi is connected, if it is then do nothing
         if (WiFi.status() == WL_CONNECTED) {
             vTaskDelay(10000 / portTICK_PERIOD_MS);
             continue;
         }
         
-        WiFi.begin(WIFI_SSID, WIFI_PASSWORD); // Connect to wifi
+        // If WiFi is not connected then attempt to connect
+        WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
         
+        // Waiting until connected
         unsigned long startTime = millis();
-        
         while (WiFi.status() != WL_CONNECTED && (millis() - startTime < TIMEOUT_MS)) {
             vTaskDelay(1000 / portTICK_PERIOD_MS);
-        } // Wait until wifi is connected
-
-        if (WiFi.status() != WL_CONNECTED) {
-            vTaskDelay(10000 / portTICK_PERIOD_MS);
-            continue;
         }
+
+        // if (WiFi.status() != WL_CONNECTED) {
+        //     vTaskDelay(10000 / portTICK_PERIOD_MS);
+        //     continue;
+        // }
     }
 };
