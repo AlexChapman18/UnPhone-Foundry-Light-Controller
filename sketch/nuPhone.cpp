@@ -1,16 +1,13 @@
 /**
- * A reduced version of NuPhone.cpp
+ * A reduced version of UnPhone.cpp
  * 
- * Author: Kush Bharakhada and Alex Chapman
- * NuPhone.cpp
+ * Author: Kush Bharakhada and Alex Chapman (2024)
+ * Filename: fixture_utils.cpp
 */
 
 #include <NuPhone.h>
 
 #define POWER_SWITCH 18
-#define LED_RED 13
-#define LED_GREEN 9
-#define LED_BLUE 13
 static const uint8_t BUTTON1 = 45;   // Left button
 static const uint8_t BUTTON2 = 0;    // Middle button
 static const uint8_t BUTTON3 = 21;   // Right button
@@ -37,12 +34,6 @@ NuPhone *NuPhone::me = NULL;
 void NuPhone::begin() {
 
     checkPowerSwitch();
-    // Setup RGB LED
-    pinMode(LED_RED,   OUTPUT);
-    pinMode(LED_GREEN, OUTPUT);
-    pinMode(LED_BLUE,  OUTPUT);
-    setLEDRGB(0, 0, 0);
-
     // Setup buttons
     pinMode(BUTTON1, INPUT_PULLUP);
     pinMode(BUTTON2, INPUT_PULLUP);
@@ -78,14 +69,6 @@ void NuPhone::checkPowerSwitch() {
     }
 }
 
-// Sets the color of the LED on the NuPhone
-void NuPhone::setLEDRGB(uint8_t red, uint8_t green, uint8_t blue) {
-    red = !red; green = !green; blue = !blue;
-    digitalWrite(LED_RED, red);
-    digitalWrite(LED_GREEN, green);
-    digitalWrite(LED_BLUE, blue);
-}
-
 void NuPhone::setBacklight(bool shouldBacklight) {
     Wire.beginTransmission(TCA9555_ADDRESS); // Transmit to the TCA Chip
     Wire.write(0x02); // Specify the Output Port Register 1
@@ -100,6 +83,10 @@ void continuousPowerCheck(void *param) {
 }
 
 bool NuPhone::isButton1() { 
+    // Checks if the button is pressed,
+    // If it is pressed set a value saying it is being held
+    // If the button status is checked again, it will read as false, 
+    // as to not double read the pressed value
     bool isPressed = digitalRead(BUTTON1) == LOW;
     if (isPressed && isButton1Held) {
         return false;
@@ -109,6 +96,10 @@ bool NuPhone::isButton1() {
 }
 
 bool NuPhone::isButton2() { 
+    // Checks if the button is pressed,
+    // If it is pressed set a value saying it is being held
+    // If the button status is checked again, it will read as false, 
+    // as to not double read the pressed value
     bool isPressed = digitalRead(BUTTON2) == LOW;
     if (isPressed && isButton2Held) {
         return false;
@@ -118,6 +109,10 @@ bool NuPhone::isButton2() {
 }
 
 bool NuPhone::isButton3() { 
+    // Checks if the button is pressed, 
+    // If it is pressed set a value saying it is being held
+    // If the button status is checked again, it will read as false, 
+    // as to not double read the pressed value
     bool isPressed = digitalRead(BUTTON3) == LOW;
     if (isPressed && isButton3Held) {
         return false;
