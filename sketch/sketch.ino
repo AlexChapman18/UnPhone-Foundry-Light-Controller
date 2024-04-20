@@ -41,10 +41,11 @@ uint8_t current_wifi_status;
 unsigned long last_bar_update = 0;
 
 // Initialise signal strength variables
-static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style;
+static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style, error_bar_style;
 lv_obj_t *signal_bar1;
 lv_obj_t *signal_bar2;
 lv_obj_t *signal_bar3;
+lv_obj_t *error_bar;
 
 // Define the screens (pages)
 static lv_obj_t *architecture_screen;      // screen 0
@@ -487,9 +488,18 @@ void renderColorStatusScreen() {
  * Needs commenting.
 */
 void initialiseSignalStrengthBars(lv_obj_t *screen) {
-    signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
-    signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
-    signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
+    // Old styling feel free to add back
+    // signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
+    // signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
+    // signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
+    // error_bar = createRectangle(286, 16, 28, 3, lv_color_make(0xff, 0x00, 0x00), 0, &error_bar_style, screen);
+    // lv_style_set_border_width(&error_bar_style, 0);
+
+    signal_bar1 = createRectangle(278, 24, 8, 10, lv_color_black(), 0, &signal_bar1_style, screen);
+    signal_bar2 = createRectangle(290, 16, 8, 18, lv_color_black(), 0, &signal_bar2_style, screen);
+    signal_bar3 = createRectangle(302, 8, 8, 26, lv_color_black(), 0, &signal_bar3_style, screen);
+    error_bar = createRectangle(275, 22, 38, 4, lv_color_make(0xff, 0x00, 0x00), 0, &error_bar_style, screen);
+    lv_style_set_border_width(&error_bar_style, 0);
     drawSignalStrength(espwifi.getWiFiStrength());
 }
 
@@ -498,29 +508,35 @@ void initialiseSignalStrengthBars(lv_obj_t *screen) {
  * Needs commenting.
 */
 void drawSignalStrength(uint8_t wifi_status) { 
-if (wifi_status == 0) {
+    
+    if (wifi_status == 0) {
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_90);
     } else if (wifi_status == 1) {
         Serial.println(1);
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
     } else if (wifi_status == 2) {
         Serial.println(2);
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
     } else if (wifi_status == 3) {
         Serial.println(3);
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
+        lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
     }
     lv_obj_invalidate(signal_bar1);
     lv_obj_invalidate(signal_bar2);
     lv_obj_invalidate(signal_bar3);
+    lv_obj_invalidate(error_bar);
 }
 
 
