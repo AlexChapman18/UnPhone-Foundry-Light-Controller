@@ -48,7 +48,7 @@ lv_obj_t *signal_bar3;
 lv_obj_t *error_bar;
 
 // Define the screens (pages)
-static lv_obj_t *architecture_screen;      // screen 0
+static lv_obj_t *architecture_screen;       // screen 0
 static lv_obj_t *color_screen;              // screen 1
 static lv_obj_t *intensity_effects_screen;  // screen 2
 static lv_obj_t *color_status_screen;       // screen 3
@@ -318,6 +318,7 @@ void renderArchitectureScreen() {
     }
 }
 
+
 /**
  * Initialises and renders components onto the color screen for a given architecuture.
  * @param current_group Architecture group user has selected to modify colors for.
@@ -485,49 +486,56 @@ void renderColorStatusScreen() {
 
 
 /**
- * Needs commenting.
+ * Used in screen switching.
+ * Deletes the screen after the user has switched to another screen.
+*/
+void deletePreviousScreen() {
+    if (current_screen == 0) {lv_obj_del(architecture_screen); }
+    if (current_screen == 1) {lv_obj_del(color_screen); }
+    if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
+    if (current_screen == 3) {lv_obj_del(color_status_screen); }
+}
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ SIGNAL STRENGTH HELPER FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/**
+ * Creates the three signal bars on the top right, and a horizontal strike thorough
+ * for no connection.
+ * @param screen The screen to render the signal bars on.
 */
 void initialiseSignalStrengthBars(lv_obj_t *screen) {
-    // Old styling feel free to add back
-    // signal_bar1 = createRectangle(290, 18, 5, 6, lv_color_black(), 0, &signal_bar1_style, screen);
-    // signal_bar2 = createRectangle(298, 14, 5, 10, lv_color_black(), 0, &signal_bar2_style, screen);
-    // signal_bar3 = createRectangle(306, 10, 5, 14, lv_color_black(), 0, &signal_bar3_style, screen);
-    // error_bar = createRectangle(286, 16, 28, 3, lv_color_make(0xff, 0x00, 0x00), 0, &error_bar_style, screen);
-    // lv_style_set_border_width(&error_bar_style, 0);
-
     signal_bar1 = createRectangle(278, 24, 8, 10, lv_color_black(), 0, &signal_bar1_style, screen);
     signal_bar2 = createRectangle(290, 16, 8, 18, lv_color_black(), 0, &signal_bar2_style, screen);
     signal_bar3 = createRectangle(302, 8, 8, 26, lv_color_black(), 0, &signal_bar3_style, screen);
-    error_bar = createRectangle(275, 22, 38, 4, lv_color_make(0xff, 0x00, 0x00), 0, &error_bar_style, screen);
+    error_bar = createRectangle(275, 22, 38, 4,  LV_COLOR_MAKE(255, 0, 0), 0, &error_bar_style, screen);
     lv_style_set_border_width(&error_bar_style, 0);
     drawSignalStrength(espwifi.getWiFiStrength());
 }
 
 
 /**
- * Needs commenting.
+ * Logic to handle the signal strength as bars shown live.
+ * @param wifi_status The stength of the connections. 0: No connection, 1: Weak, 2: Moderate, 3: Strong
 */
 void drawSignalStrength(uint8_t wifi_status) { 
-    
     if (wifi_status == 0) {
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&error_bar_style, LV_OPA_90);
     } else if (wifi_status == 1) {
-        Serial.println(1);
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
     } else if (wifi_status == 2) {
-        Serial.println(2);
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_TRANSP);
         lv_style_set_bg_opa(&error_bar_style, LV_OPA_TRANSP);
     } else if (wifi_status == 3) {
-        Serial.println(3);
         lv_style_set_bg_opa(&signal_bar1_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar2_style, LV_OPA_COVER);
         lv_style_set_bg_opa(&signal_bar3_style, LV_OPA_COVER);
@@ -539,17 +547,6 @@ void drawSignalStrength(uint8_t wifi_status) {
     lv_obj_invalidate(error_bar);
 }
 
-
-/**
- * Used in screen switching.
- * Deletes the screen after the user has switched to another screen.
-*/
-void deletePreviousScreen() {
-    if (current_screen == 0) {lv_obj_del(architecture_screen); }
-    if (current_screen == 1) {lv_obj_del(color_screen); }
-    if (current_screen == 2) {lv_obj_del(intensity_effects_screen); }
-    if (current_screen == 3) {lv_obj_del(color_status_screen); }
-}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -569,6 +566,7 @@ void setup() {
     tft.begin();
     tft.setRotation(0);
 
+    // Calibration
     uint16_t calData[5] = { 347, 3549, 419, 3352, 5 };
     tft.setTouch(calData);
 
