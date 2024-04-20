@@ -1,10 +1,9 @@
 /**
- * LVGL utils implementation.
- * Contains implementations to simplify the process of creating
- * buttons, sliders, and labels.
+ * LVGL utils implementation. Contains implementations to simplify the process
+ * of creating buttons, sliders, and labels.
  * 
- * Author: Kush Bharakhada and Alex Chapman
- * LVGL_utils.cpp
+ * Author: Kush Bharakhada and Alex Chapman (2024)
+ * Filename: LVGL_utils.cpp
 */
 
 #include <LVGL_utils.h>
@@ -40,12 +39,11 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
     lv_obj_center(label);
 }
 
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATING RECTANGLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-lv_obj_t *createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color, lv_coord_t rounded,
-                         lv_style_t *style_pointer, lv_obj_t *screen) {
+lv_obj_t *createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color,
+                          lv_coord_t rounded, lv_style_t *style_pointer, lv_obj_t *screen) {
     
     // Create rectangle
     lv_obj_t *rectangle = lv_obj_create(screen);
@@ -65,12 +63,11 @@ lv_obj_t *createRectangle(int position_x, int position_y, int width, int height,
     return rectangle;
 }
 
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE SLIDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position_y, int width, int height,
-                        float proportion, lv_color_t bg_color, lv_style_t *style_pointer, lv_obj_t *screen) {
+                       float proportion, lv_color_t bg_color, lv_style_t *style_pointer, lv_obj_t *screen) {
 
 	  // Create a slider				
     lv_obj_t *slider = lv_slider_create(screen);
@@ -97,7 +94,6 @@ lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position
     lv_slider_set_value(slider, (uint8_t)proportion, LV_ANIM_ON);
     return slider;
 }
-
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATE LABEL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

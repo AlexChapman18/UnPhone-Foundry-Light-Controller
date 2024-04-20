@@ -1,10 +1,9 @@
 /**
- * LVGL utils header file.
- * Contains function headers to simplify the process of creating
- * buttons, sliders, and labels.
+ * LVGL utils header file. Contains function headers to simplify the process
+ * of creating buttons, rectangles, sliders, and labels.
  * 
- * Author: Kush Bharakhada and Alex Chapman
- * LVGL_utils.h
+ * Author: Kush Bharakhada and Alex Chapman (2024)
+ * Filename: LVGL_utils.h
 */
 
 #ifndef LVGL_UTILS_H
@@ -15,18 +14,18 @@
 /**
  * Designs and creates an LVGL button.
  *
- * @param event_handler   Event handler to be attached to the button created.
- * @param position_x      Button position on the x-axis.
- * @param position_y      Button position on the y-axis.
- * @param width           Button width.
- * @param height          Button height.
- * @param button_text     Text on the button.
- * @param bg_color        Button background color.
- * @param text_color      Button text color.
- * @param rounded         Roundness of the button corners.
- * @param style_pointer   Style object to store the style (not created in this function otherwise
- *                        styles will not render correctly when used in main).
- * @param screen          Screen to attach the button object to.
+ * @param event_handler - Event handler to be attached to the button created.
+ * @param position_x    - Button position on the x-axis.
+ * @param position_y    - Button position on the y-axis.
+ * @param width         - Button width.
+ * @param height        - Button height.
+ * @param button_text   - Text on the button.
+ * @param bg_color      - Button background color.
+ * @param text_color    - Button text color.
+ * @param rounded       - Roundness of the button corners.
+ * @param style_pointer - Style object to store the style (not created in this function otherwise
+ *                      - styles will not render correctly when used in main).
+ * @param screen        - Screen to attach the button object to.
  */
 void createButton(lv_event_cb_t event_handler, int position_x, int position_y, int width, int height,
                   const char *button_text,  lv_color_t bg_color, lv_color_t text_color, lv_coord_t rounded,
@@ -36,37 +35,35 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
 /**
  * Designs and creates a LVGL rectangle.
  *
- * @param position_x      Rectangle position on the x-axis.
- * @param position_y      Rectangle position on the y-axis.
- * @param width           Rectangle width.
- * @param height          Rectangle height.
- * @param bg_color        Rectangle background color.
- * @param rounded         Roundness of the Rectangle corners.
- * @param style_pointer   Style object to store the style (not created in this function otherwise
- *                        styles will not render correctly when used in main).
- * @param screen          Screen to attach the button object to.
- * @return rectangle      Rectangle object, to allow LVGL object methods to be used in main on the rectangle.
+ * @param position_x    - Rectangle position on the x-axis.
+ * @param position_y    - Rectangle position on the y-axis.
+ * @param width         - Rectangle width.
+ * @param height        - Rectangle height.
+ * @param bg_color      - Rectangle background color.
+ * @param rounded       - Roundness of the Rectangle corners.
+ * @param style_pointer - Style object to store the style (not created in this function otherwise
+ *                      - styles will not render correctly when used in main).
+ * @param screen        - Screen to attach the button object to.
+ * @return rectangle    - Rectangle object, to allow LVGL object methods to be used in main on the rectangle.
  */
-lv_obj_t *createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color, lv_coord_t rounded,
-                         lv_style_t *style_pointer, lv_obj_t *screen);
+lv_obj_t *createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color,
+                          lv_coord_t rounded, lv_style_t *style_pointer, lv_obj_t *screen);
 
 
 /**
  * Designs and creates an LVGL slider.
  *
- * @param event_handler   Event handler to be attached to the slider created.
- * @param position_x      Slider position on the x-axis.
- * @param position_y      Slider position on the y-axis.
- * @param width           Slider width.
- * @param height          Slider height.
- * @param proportion      Default position to render the slider knob at.
- * 
-
- * @param bg_color        Slider background color.
- * @param style_pointer   Style object to store the style (not created in this function otherwise
+ * @param event_handler - Event handler to be attached to the slider created.
+ * @param position_x    - Slider position on the x-axis.
+ * @param position_y    - Slider position on the y-axis.
+ * @param width         - Slider width.
+ * @param height        - Slider height.
+ * @param proportion    - Default position to render the slider knob at.
+ * @param bg_color      - Slider background color.
+ * @param style_pointer - Style object to store the style (not created in this function otherwise
  *                        styles will not render correctly when used in main).
- * @param screen          Screen to attach the slider object to.
- * @return slider          Slider object, to allow slider methods to be used in main on the slider.
+ * @param screen        - Screen to attach the slider object to.
+ * @return slider       - Slider object, to allow slider methods to be used in main on the slider.
  */
 lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position_y, int width, int height,
                         float proportion, lv_color_t bg_color, lv_style_t *style_pointer, lv_obj_t *screen);
@@ -75,11 +72,11 @@ lv_obj_t *createSlider(lv_event_cb_t event_handler, int position_x, int position
 /**
  * Creates an LVGL label for text.
  *
- * @param position_x      Label position on the x-axis.
- * @param position_y      Label position on the y-axis.
- * @param text            Text to add onto the label.
- * @param screen          Screen to attach the text object to.
- * @return label          Label object, to allow methods to be used in main on the label.
+ * @param position_x - Label position on the x-axis.
+ * @param position_y - Label position on the y-axis.
+ * @param text       - Text to add onto the label.
+ * @param screen     - Screen to attach the text object to.
+ * @return label     - Label object, to allow methods to be used in main on the label.
  */
 lv_obj_t *createLabel(int position_x, int position_y, const char *text, lv_obj_t *screen);
 

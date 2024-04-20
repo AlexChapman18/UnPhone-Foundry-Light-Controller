@@ -1,8 +1,8 @@
 /**
  * Main file to run application.
  * 
- * Author: Kush Bharakhada and Alex Chapman
- * sketch.ino
+ * Author: Kush Bharakhada and Alex Chapman (2024)
+ * Filename: sketch.ino
 */
 
 #include <wifi_utils.h>
@@ -39,7 +39,7 @@ ArchitectureGroup *current_arc_group;
 // Used to check the WiFi strength at specific intervals
 unsigned long last_bar_update = 0;
 
-// Initialise signal strength variables
+// Initialise signal strength styles and variables
 static lv_style_t signal_bar1_style, signal_bar2_style, signal_bar3_style, error_bar_style;
 lv_obj_t *signal_bar1;
 lv_obj_t *signal_bar2;
@@ -58,34 +58,30 @@ static lv_obj_t *red_slider;
 static lv_obj_t *green_slider;
 static lv_obj_t *blue_slider;
 
-// Colors list and corresponding RGB values
-const char* colors_list[] = {"orange", "red", "rose", "magenta", "violet",
-                             "blue", "azure", "cyan", "aquamarine", "green",
-                             "chartreuse", "yellow", "White", "Off"};
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~ LIST OF COLOURS, ARCHITECTURES AND EFFECTS ~~~~~~~~~~~~~~~~~~~~~~~~
 
-const int color_values_list[][3] = {{255, 127, 0}, {255, 0, 0}, {255, 0, 127},
-                                    {255, 0, 255}, {127, 0, 255}, {0, 0, 255},
-                                    {0, 127, 255}, {0, 255, 255}, {0, 255, 127},
-                                    {0, 255, 0}, {127, 255, 0}, {255, 255, 0},
-                                    {255, 255, 255}, {0, 0, 0}};
+// Colors list and corresponding RGB values
+const char* colors_list[] = {"orange", "red", "rose", "magenta", "violet", "blue", "azure", "cyan",
+                             "aquamarine", "green", "chartreuse", "yellow", "White", "Off"};
+
+const int color_values_list[][3] = {{255, 127, 0}, {255, 0, 0}, {255, 0, 127}, {255, 0, 255}, {127, 0, 255},
+                                    {0, 0, 255}, {0, 127, 255}, {0, 255, 255}, {0, 255, 127}, {0, 255, 0},
+                                    {127, 255, 0}, {255, 255, 0}, {255, 255, 255}, {0, 0, 0}};
 
 // Architectures list
-const char* architectures_list[] = {"Toilets", "Main\nExit", "Merch\nLights", "Pillars",
-                                    "Dancefloor", "Main Bar\nLeft", "Main Bar\nRight",
-                                    "Bar 1", "Bar 2", "Bar 3", "Raised\nArea Back", "Raised\nBar",
+const char* architectures_list[] = {"Toilets", "Main\nExit", "Merch\nLights", "Pillars", "Dancefloor", "Main Bar\nLeft",
+                                    "Main Bar\nRight", "Bar 1", "Bar 2", "Bar 3", "Raised\nArea Back", "Raised\nBar",
                                     "Raised\nFOH", "All\nArcs", "All\nBars"};
 // Effect list
-const char* effects_list[] = {"Solid", "Pulse\nEffect", "Odd-Even\nEffect",
-                              "Fade\nSwipe", "Binary\nSwipe", "Bars\nFade"};
-
+const char* effects_list[] = {"Solid", "Pulse\nEffect", "Odd-Even\nEffect", "Fade\nSwipe", "Binary\nSwipe", "Bars\nFade"};
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~ HELPER FUNCTIONS FOR SETTING UP LCD DISPLAY ~~~~~~~~~~~~~~~~~~~~~~~
 
 /**
- * Map touch coordinates to LCD coordinates.
- * A version of map that never returns out of range values.
- * Function taken from Hamish's UnPhone examples.
+ * Map touch coordinates to LCD coordinates. A version of map that never returns out of 
+ * range values. Function taken from Hamish's UnPhone examples.
  */
 long myMapper(long x, long in_min, long in_max, long out_min, long out_max) {
     long probable = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -94,12 +90,10 @@ long myMapper(long x, long in_min, long in_max, long out_min, long out_max) {
     return probable;
 }
 
-
 /**
- * Read the touchpad.
- * Function taken from Hamish's UnPhone examples, with tweaks.
+ * Read the touchpad. Function taken from Hamish's UnPhone examples, with tweaks.
  */
-void touchpadRead(lv_indev_drv_t * indev_driver, lv_indev_data_t * data) {
+void touchpadRead(lv_indev_drv_t *indev_driver, lv_indev_data_t *data) {
     uint16_t touchX, touchY;
     bool touched = nuphone.tsp->touched();
 
@@ -128,7 +122,6 @@ void touchpadRead(lv_indev_drv_t * indev_driver, lv_indev_data_t * data) {
     }
 }
 
-
 /**
  * Display flushing.
  * Function taken from Hamish's UnPhone examples.
@@ -143,13 +136,13 @@ void displayFlush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_
     lv_disp_flush_ready(disp);
 }
 
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EVENT LISTENERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /**
  * Event listener for choosing the colors for an architecture.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerColorBtns(lv_event_t *e) {
     lv_event_code_t code = lv_event_get_code(e);
@@ -172,7 +165,8 @@ static void evtHandlerColorBtns(lv_event_t *e) {
 
 /**
  * Event listener for choosing an architecture to change colors for.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerArchGroupBtns(lv_event_t *e) {
     lv_event_code_t code = lv_event_get_code(e);
@@ -194,7 +188,8 @@ static void evtHandlerArchGroupBtns(lv_event_t *e) {
 
 /**
  * Event listener for choosing effects.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerEffectsBtns(lv_event_t * e) {
     lv_event_code_t code = lv_event_get_code(e);
@@ -213,7 +208,8 @@ static void evtHandlerEffectsBtns(lv_event_t * e) {
 
 /**
  * Event listener for the back button to return to the architecture choice screen.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerBackBtn(lv_event_t *e) {
     lv_event_code_t code = lv_event_get_code(e);
@@ -227,7 +223,8 @@ static void evtHandlerBackBtn(lv_event_t *e) {
 
 /**
  * Event listener for the red color slider.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerRedSlider(lv_event_t *e) {
     lv_obj_t *slider = lv_event_get_target(e);
@@ -237,7 +234,8 @@ static void evtHandlerRedSlider(lv_event_t *e) {
 
 /**
  * Event listener for the green color slider.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerGreenSlider(lv_event_t *e) {
     lv_obj_t *slider = lv_event_get_target(e);
@@ -247,7 +245,8 @@ static void evtHandlerGreenSlider(lv_event_t *e) {
 
 /**
  * Event listener for the blue color slider.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerBlueSlider(lv_event_t *e) {
     lv_obj_t *slider = lv_event_get_target(e);
@@ -257,7 +256,8 @@ static void evtHandlerBlueSlider(lv_event_t *e) {
 
 /**
  * Event listener for the intensity slider used in effects.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerIntensitySlider(lv_event_t *e) {
     lv_obj_t *slider = lv_event_get_target(e);
@@ -269,7 +269,8 @@ static void evtHandlerIntensitySlider(lv_event_t *e) {
 
 /**
  * Event listener for the the speed slider used in effects.
- * @param e Contains all data about the event.
+ * 
+ * @param e - Contains all data about the event.
  */
 static void evtHandlerSpeedSlider(lv_event_t *e) {
     lv_obj_t *slider = lv_event_get_target(e);
@@ -284,7 +285,7 @@ static void evtHandlerSpeedSlider(lv_event_t *e) {
 
 /**
  * Initialises and renders components onto the architecture screen.
-*/
+ */
 void renderArchitectureScreen() {
     architecture_screen = lv_obj_create(NULL);
 
@@ -317,11 +318,11 @@ void renderArchitectureScreen() {
     }
 }
 
-
 /**
  * Initialises and renders components onto the color screen for a given architecuture.
- * @param current_group Architecture group user has selected to modify colors for.
-*/
+ * 
+ * @param current_group - Architecture group user has selected to modify colors for.
+ */
 void renderColorScreen(ArchitectureGroup *current_group) {
     current_arc_group = current_group;
     color_screen = lv_obj_create(NULL);
@@ -354,6 +355,7 @@ void renderColorScreen(ArchitectureGroup *current_group) {
     createButton(evtHandlerBackBtn, 20, 10, BUTTON_WIDTH, BUTTON_HEIGHT, "Back", lv_color_black(), lv_color_white(),
                  REG_BTN_ROUNDED, &back_btn_style, color_screen);
 
+    // Color buttons
     for (int i = 0; i < sizeof(colors_list) / sizeof(colors_list[0])-2; i++) {
         lv_color_t color = LV_COLOR_MAKE(color_values_list[i][0], color_values_list[i][1], color_values_list[i][2]);
         createButton(evtHandlerColorBtns, initial_x, initial_y, BUTTON_WIDTH, BUTTON_HEIGHT, colors_list[i],
@@ -391,11 +393,9 @@ void renderColorScreen(ArchitectureGroup *current_group) {
                  lv_color_black(), lv_color_white(), REG_BTN_ROUNDED, &black_btn_style, color_screen);
 }
 
-
 /**
- * Initialises and renders components onto the intensity and effects screen
- * for a given architecuture.
-*/
+ * Initialises and renders components onto the intensity and effects screen for a given architecuture.
+ */
 void renderIntensityEffectsScreen() {
     intensity_effects_screen = lv_obj_create(NULL);
 
@@ -438,11 +438,9 @@ void renderIntensityEffectsScreen() {
     createLabel(120, 405, "Effect\nSpeed", intensity_effects_screen);
 }
 
-
 /**
- * Initialises and renders components onto the global color screen
- * (visualise all arc colors on one screen).
-*/
+ * Initialises and renders components onto the global color screen (visualise all arc colors on one screen).
+ */
 void renderColorStatusScreen() {
     color_status_screen = lv_obj_create(NULL);
 
@@ -483,11 +481,9 @@ void renderColorStatusScreen() {
     }
 }
 
-
 /**
- * Used in screen switching.
- * Deletes the screen after the user has switched to another screen.
-*/
+ * Used in screen switching. Deletes the screen after the user has switched to another screen.
+ */
 void deletePreviousScreen() {
     if (current_screen == 0) {lv_obj_del(architecture_screen); }
     if (current_screen == 1) {lv_obj_del(color_screen); }
@@ -495,14 +491,14 @@ void deletePreviousScreen() {
     if (current_screen == 3) {lv_obj_del(color_status_screen); }
 }
 
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ SIGNAL STRENGTH HELPER FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /**
  * Creates the three signal bars on the top right, and a horizontal strike thorough
  * for no connection.
- * @param screen The screen to render the signal bars on.
+ * 
+ * @param screen - The screen to render the signal bars on.
 */
 void initialiseSignalStrengthBars(lv_obj_t *screen) {
     signal_bar1 = createRectangle(278, 24, 8, 10, lv_color_black(), 0, &signal_bar1_style, screen);
@@ -513,10 +509,10 @@ void initialiseSignalStrengthBars(lv_obj_t *screen) {
     drawSignalStrength(espwifi.getWiFiStrength());
 }
 
-
 /**
  * Logic to handle the signal strength as bars shown live.
- * @param wifi_status The stength of the connections. 0: No connection, 1: Weak, 2: Moderate, 3: Strong
+ * 
+ * @param wifi_status - The stength of the connection.
 */
 void drawSignalStrength(uint8_t wifi_status) { 
     if (wifi_status == espwifi.NO_CONNECTION) {
@@ -546,10 +542,12 @@ void drawSignalStrength(uint8_t wifi_status) {
     lv_obj_invalidate(error_bar);
 }
 
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SETUP AND LOOP ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+/**
+ * Setup and initialisations.
+ */
 void setup() {
     Serial.begin(115200);
 
@@ -600,6 +598,9 @@ void setup() {
     current_screen = 0;
 }
 
+/**
+ * Loop for keeping the application running.
+ */
 void loop() { 
     // Setup the art-net output when wifi is connected
     if (espwifi.isConnected() && is_init_boot) {
