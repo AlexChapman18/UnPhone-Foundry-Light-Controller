@@ -1,8 +1,8 @@
 /**
- * A reduced version of unPhone.h
+ * A reduced version of unPhone.h.
  * 
  * Author: Kush Bharakhada and Alex Chapman (2024)
- * Filename: LVGL_utils.h
+ * Filename: nuPhone.h
 */
 
 #ifndef NUPHONE_H
@@ -28,8 +28,8 @@ class NuPhone {
         bool isButton3Held;
 
         /**
-         * Initialise the TCA chip
-        */
+         * Initialise the TCA chip.
+         */
         void initializeTCAChip();
 
     public:
@@ -38,46 +38,47 @@ class NuPhone {
         XPT2046_Touchscreen *tsp;
 
         /**
-         * Constructor
+         * Constructor.
          */
         NuPhone();
 
         /**
-         * Sets the pins, initialises the TCA chip, sets the touchscreen and sets up the
-         * power checking function for the switch
+         * Sets the pins, initialises the TCA chip, and sets up the touchscreen and the
+         * power checking function for the switch.
          */
         void begin();
         
         /**
-         * Checks the state of the power switch and runs the appropriate functions
+         * Checks the state of the power switch and runs the appropriate functions.
+         * Turn the device off if necessary.
          */
         void checkPowerSwitch();
 
         /**
-         * Sets the state of the backlight
+         * Sets the state of the backlight.
          * 
-         * @param shouldBacklight  - should the backlight be on or off
+         * @param shouldBacklight - Whether the backlight be on or off.
          */
         void setBacklight(bool shouldBacklight);
 
         /**
-         * gets the current status of button 1
+         * Gets the current status of button 1.
          * 
-         * @return bool  - is button 1 pressed
+         * @return - Boolean whether button 1 is pressed.
          */
         bool isButton1();
 
         /**
-         * gets the current status of button 2
+         * Gets the current status of button 2.
          * 
-         * @return bool  - is button 2 pressed
+         * @return - Boolean whether button 2 is pressed.
          */
         bool isButton2();
 
         /**
-         * gets the current status of button 3
+         * Gets the current status of button 3.
          * 
-         * @return bool  - is button 3 pressed
+         * @return - Boolean whether button 3 is pressed.
          */
         bool isButton3();
 };

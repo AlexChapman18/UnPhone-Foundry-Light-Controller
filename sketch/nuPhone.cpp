@@ -1,8 +1,8 @@
 /**
- * A reduced version of UnPhone.cpp
+ * A reduced version of unPhone.cpp.
  * 
  * Author: Kush Bharakhada and Alex Chapman (2024)
- * Filename: fixture_utils.cpp
+ * Filename: nuPhone.cpp
 */
 
 #include <NuPhone.h>
@@ -39,13 +39,13 @@ void NuPhone::begin() {
     pinMode(BUTTON2, INPUT_PULLUP);
     pinMode(BUTTON3, INPUT_PULLUP);
 
-    // Setup backlight:
+    // Setup backlight
     NuPhone::initializeTCAChip();
 
     // Setup touchscreen
     tsp = new XPT2046_Touchscreen(TOUCH_CS); // no IRQ
 
-    // start power switch checking
+    // Start power switch checking
     xTaskCreate(continuousPowerCheck, "power switch task", 4096, NULL, 1, NULL);
     tsp->begin();
 }
@@ -53,15 +53,15 @@ void NuPhone::begin() {
 void NuPhone::initializeTCAChip(){
     Wire.begin();
     Wire.beginTransmission(TCA9555_ADDRESS); // Transmit to the TCA chip
-    Wire.write(0x06); // Talk to Configuration Registers 1
-    Wire.write(0b11111011); // Set the backlight as an output pin
-    Wire.write(0xFF); // Set the other pins to Input
+    Wire.write(0x06);                        // Talk to Configuration Registers 1
+    Wire.write(0b11111011);                  // Set the backlight as an output pin
+    Wire.write(0xFF);                        // Set the other pins to Input
     Wire.endTransmission();
 }
 
-// Check the power switch and turn the device off if necissary
 void NuPhone::checkPowerSwitch() {
-    if (!digitalRead(POWER_SWITCH)) {  // Is the switch in the off position?
+  // Check if the power switch in the off position
+    if (!digitalRead(POWER_SWITCH)) {
         // If so, enable "Wake on power switch" and go to sleep
         NuPhone::setBacklight(false);
         esp_sleep_enable_ext0_wakeup((gpio_num_t) POWER_SWITCH, 1);
@@ -70,10 +70,10 @@ void NuPhone::checkPowerSwitch() {
 }
 
 void NuPhone::setBacklight(bool shouldBacklight) {
-    Wire.beginTransmission(TCA9555_ADDRESS); // Transmit to the TCA Chip
-    Wire.write(0x02); // Specify the Output Port Register 1
+    Wire.beginTransmission(TCA9555_ADDRESS);     // Transmit to the TCA Chip
+    Wire.write(0x02);                            // Specify the Output Port Register 1
     if (shouldBacklight) Wire.write(0b00000100); // Turn on the backlight output pin
-    else Wire.write(0b00000000); // Turn off the backlight output pin
+    else Wire.write(0b00000000);                 // Turn off the backlight output pin
     Wire.endTransmission();
 }
 
@@ -83,10 +83,9 @@ void continuousPowerCheck(void *param) {
 }
 
 bool NuPhone::isButton1() { 
-    // Checks if the button is pressed,
-    // If it is pressed set a value saying it is being held
-    // If the button status is checked again, it will read as false, 
-    // as to not double read the pressed value
+    // Checks if the button is pressed, if it is pressed set a value saying it is being held
+    // If the button status is checked again, it will read as false, to avoid double reading
+    // of the pressed value.
     bool isPressed = digitalRead(BUTTON1) == LOW;
     if (isPressed && isButton1Held) {
         return false;
@@ -96,10 +95,9 @@ bool NuPhone::isButton1() {
 }
 
 bool NuPhone::isButton2() { 
-    // Checks if the button is pressed,
-    // If it is pressed set a value saying it is being held
-    // If the button status is checked again, it will read as false, 
-    // as to not double read the pressed value
+    // Checks if the button is pressed, if it is pressed set a value saying it is being held
+    // If the button status is checked again, it will read as false, to avoid double reading
+    // of the pressed value.
     bool isPressed = digitalRead(BUTTON2) == LOW;
     if (isPressed && isButton2Held) {
         return false;
@@ -109,10 +107,9 @@ bool NuPhone::isButton2() {
 }
 
 bool NuPhone::isButton3() { 
-    // Checks if the button is pressed, 
-    // If it is pressed set a value saying it is being held
-    // If the button status is checked again, it will read as false, 
-    // as to not double read the pressed value
+    // Checks if the button is pressed, if it is pressed set a value saying it is being held
+    // If the button status is checked again, it will read as false, to avoid double reading
+    // of the pressed value.
     bool isPressed = digitalRead(BUTTON3) == LOW;
     if (isPressed && isButton3Held) {
         return false;

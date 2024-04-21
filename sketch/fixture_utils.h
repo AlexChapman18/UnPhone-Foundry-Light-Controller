@@ -39,85 +39,83 @@ class ArchitectureGroup {
     private:
         // Class variables
         const char *name;
-
         uint8_t num_fixtures;
         uint16_t *addresses; 
-
         uint8_t red;
         uint8_t green;
         uint8_t blue;
 
     public:
         /**
-         * Architecture group constructor
+         * Architecture group constructor.
          */
         ArchitectureGroup();
 
         /**
-         * Architecture group constructor
+         * Architecture group constructor.
          * 
-         * @param _addresses_index  - index of the array of addresses
-         * @param _name             - name of acrchitecture group
+         * @param _addresses_index  - Index of the array of addresses.
+         * @param _name             - Bame of acrchitecture group.
          */
         ArchitectureGroup(uint8_t _addresses_index, const char *_name);
 
         /**
          * Setter for Red, Green and Blue
          * 
-         * @param _red    - new red value
-         * @param _green  - new green value
-         * @param _blue   - new blue value
+         * @param _red    - New red value.
+         * @param _green  - New green value.
+         * @param _blue   - New blue value.
          */
         void setRGB(uint8_t _red, uint8_t _green, uint8_t _blue);
 
         /**
-         * Setter for Red
+         * Setter for Red.
          * 
-         * @param _red    - new red value
+         * @param _red - New red value.
          */
         void setRed(uint8_t _red);
 
         /**
-         * Setter for Green
+         * Setter for Green.
          * 
-         * @param _green  - new green value
+         * @param _green - New green value.
          */
         void setGreen(uint8_t _green);
 
         /**
-         * Setter for Blue
+         * Setter for Blue.
          * 
-         * @param _blue  - new blue value
+         * @param _blue - New blue value.
          */
         void setBlue(uint8_t _blue);
 
         /**
-         * Getter for Red
+         * Getter for Red.
          * 
-         * @return Red  - gets the current red value 
+         * @return - Gets the current red value.
          */
         uint8_t getRed();
 
         /**
          * Getter for Green
          * 
-         * @return Green  - gets the current green value 
+         * @return - Gets the current green value.
          */
         uint8_t getGreen();
 
         /**
-         * Getter for Blue
+         * Getter for Blue.
          * 
-         * @return Blue  - gets the current blue value 
+         * @return - Gets the current blue value .
          */
         uint8_t getBlue();
 
         /**
-         * Getter for Name
+         * Getter for Name.
          * 
-         * @return Name  - gets the current name 
+         * @return - Gets the current architecture group name. 
          */
-        const char* getName();
+        const char *getName();
 };
 
 #endif

@@ -7,14 +7,30 @@
 
 #include <wifi_utils.h>
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ VARIABLE INITIALISATIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 // Determines the interval for WiFi reconnection attempts
 const long TIMEOUT_MS = 10000;
 
+void keepWiFiAlive(void *params) {
+    while (true) {
+        // Check if WiFi is connected, if it is then do nothing
+        if (WiFi.status() == WL_CONNECTED) {
+            vTaskDelay(10000 / portTICK_PERIOD_MS);
+            continue;
+        }
+        
+        // If WiFi is not connected then attempt to connect
+        WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+        
+        // Waiting until connected
+        unsigned long startTime = millis();
+        while (WiFi.status() != WL_CONNECTED && (millis() - startTime < TIMEOUT_MS)) {
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+        }
+    }
+};
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ESP WiFi Utilities ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ESP WIFI CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Constructor
 ESPWiFi::ESPWiFi(){}
@@ -59,27 +75,3 @@ uint8_t ESPWiFi::getWiFiStrength() {
         return 1;
     }
 }
-
-void keepWiFiAlive(void *params) {
-    while (true) {
-        // Check if WiFi is connected, if it is then do nothing
-        if (WiFi.status() == WL_CONNECTED) {
-            vTaskDelay(10000 / portTICK_PERIOD_MS);
-            continue;
-        }
-        
-        // If WiFi is not connected then attempt to connect
-        WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-        
-        // Waiting until connected
-        unsigned long startTime = millis();
-        while (WiFi.status() != WL_CONNECTED && (millis() - startTime < TIMEOUT_MS)) {
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
-        }
-
-        // if (WiFi.status() != WL_CONNECTED) {
-        //     vTaskDelay(10000 / portTICK_PERIOD_MS);
-        //     continue;
-        // }
-    }
-};
