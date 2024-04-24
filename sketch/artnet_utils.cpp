@@ -7,6 +7,9 @@
 
 #include <artnet_utils.h>
 
+
+ArtnetWifi artnet;
+
 void keepSendingUniverse(void *params) {
     // Initialised the values needed to calculate effects
     uint8_t last_effect = 0;
@@ -53,8 +56,6 @@ void keepSendingUniverse(void *params) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARTNET UNIVERSE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-ArtnetWifi artnet;
 
 uint8_t ArtNetUniverse::current_effect = 0;
 float ArtNetUniverse::current_speed = 0;
