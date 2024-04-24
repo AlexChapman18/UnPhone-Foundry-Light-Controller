@@ -40,7 +40,7 @@ void createButton(lv_event_cb_t event_handler, int position_x, int position_y, i
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATING RECTANGLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CREATING RECTANGLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 lv_obj_t *createRectangle(int position_x, int position_y, int width, int height, lv_color_t bg_color,
                           lv_coord_t rounded, lv_style_t *style_pointer, lv_obj_t *screen) {
