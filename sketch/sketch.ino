@@ -304,7 +304,7 @@ void renderArchitectureScreen() {
     int PADDING_X = 10, PADDING_Y = 5;
 
     // Design the layout of the architecture screen
-    createLabel(70, 20, "Select Architecture Group", architecture_screen);
+    createLabel(70, 13, "Select Architecture Group", architecture_screen);
     for (int i = 0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
         createButton(evtHandlerArchGroupBtns, initial_x, initial_y, BUTTON_WIDTH, BUTTON_HEIGHT, architectures_list[i],        
                      BTN_BG_COLOR, lv_color_white(), BTN_ROUNDED, &btn_style, architecture_screen);
@@ -416,6 +416,7 @@ void renderIntensityEffectsScreen() {
     int PADDING = 5;
 
     // Design the layout of the color screen
+    createLabel(88, 13, "Intensity and Effects", intensity_effects_screen);
     for (int i = 0; i < sizeof(effects_list) / sizeof(effects_list[0]); i++) {
         createButton(evtHandlerEffectsBtns, 210, initial_y, BUTTON_WIDTH, BUTTON_HEIGHT, effects_list[i],
                      BTN_BG_COLOR, BTN_TEXT_COLOR, BTN_ROUNDED, &solid_button_style, intensity_effects_screen);
@@ -460,7 +461,7 @@ void renderColorStatusScreen() {
     int PADDING = 5;
 
     // Design the layout of the screen
-    createLabel(88, 13, "Global Color Status", color_status_screen);
+    createLabel(90, 13, "Global Color Status", color_status_screen);
     for (int i=0; i < sizeof(architecture_group_list)/sizeof(architecture_group_list[0]); i++) {
         // Get the name of the architecture and remove "\n" and replace with a space
         const char* name = architecture_group_list[i].getName();

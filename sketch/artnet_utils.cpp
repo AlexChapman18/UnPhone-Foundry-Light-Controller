@@ -7,7 +7,6 @@
 
 #include <artnet_utils.h>
 
-
 ArtnetWifi artnet;
 
 void keepSendingUniverse(void *params) {
