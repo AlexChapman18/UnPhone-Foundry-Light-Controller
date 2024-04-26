@@ -24,13 +24,13 @@ Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (acha
 ## Project Description
 
 
-The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software and a computer interface [ TODO - Is there a software you specifically use which you could reference - reference the link on the word 'computer interface' if so. ], which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
+The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software called [ChamSys](https://chamsyslighting.com/), and a computer interface, which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
 
 
 ## Light Control Permissions
 
 
-Permission was requested and granted from the Tech Services Department [ TODO - Add a reference link on Tech Services Dept. if they have a webpage. ] for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
+Permission was requested and granted from the Tech Services Department for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
 
 
 ## Project Equipmment
@@ -40,7 +40,7 @@ The following equipment has been utilised for this project:
 
 - [UnPhone](https://unphone.net/);
 - WiFi Router;
-- Enttec Storm 8 Artnet Node; [TODO - Is there a specific spec link we could attach to this as a reference? ]
+- [Enttec Storm 8 Artnet Node](https://cdn.enttec.com/pdf/assets/70056/70056_STORM_8_USER_MANUAL.pdf);
 
 
 ## Design
@@ -65,7 +65,7 @@ The following equipment has been utilised for this project:
 
 
 An architecture is a group of individually controllable LED fixtures that are placed in key spots around the [Foundry venue](https://foundrysu.com/).
-The Architecturals as a whole are primarly used during clubnights, gigs and corporate events for accented lighting. A prime example being the [St. Paddys](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) [ TODO - Change to St. Patick ? ] Day clubnight in which they were set to a mix of green, white and orange colours.
+The Architecturals as a whole are primarly used during clubnights, gigs and corporate events for accented lighting. A prime example being the [St. Patick](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) Day clubnight in which they were set to a mix of green, white and orange colours.
 
 For the purpose of this project, the Architecturals were split into groups based on their locations within the venue:
 
@@ -172,7 +172,17 @@ To fully grasp an understanding of the [UnPhone library](https://gitlab.com/hami
 #### Libraries Used
 
 
-TODO - Add the libraries used and what they have been used for at the end of the project. Use a table.
+| Library | Function |
+|---------|----------|
+|[ArtnetWifi](https://www.arduino.cc/reference/en/libraries/artnetwifi/)|Send and receive Art-Net frames using WiFi|
+|         |          |
+|         |          |
+|         |          |
+|         |          |
+|         |          |
+|         |          |
+|         |          |
+|         |          |
 
 
 ### User Interface and LVGL
