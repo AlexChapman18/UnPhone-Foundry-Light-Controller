@@ -1,9 +1,6 @@
-Alex:
-- Ctrl+F "TODO" and do as much as possible of your part then remove this last.
-- Replace fixture_utils with architecture_utils or similar?
-- Refactor and docstring all your functions.
 
-**We'll Reference as much as possible**
+- Replace fixture_utils with architecture_utils or similar?
+- Change UnPhone to unPhone?
 
 ---
 
@@ -159,15 +156,21 @@ they are connected to the router, otherwise the lights cannot be controlled.
 
 Text
 
-<img src="images/backend-thread1.png" alt="breadboard" width="400"/>
+<img src="images/backend-diagram1.png" alt="breadboard" width="400"/>
 
 Text
 
-<img src="images/backend-thread2.png" alt="breadboard" width="400"/>
+<img src="images/backend-diagram2.png" alt="breadboard" width="400"/>
 
-TODO - Diagram and a paragraph illustrating how the UnPhone interacts with the lights (a networking diagram).
+Text
 
-TODO - Any other diagrams for the backend with descriptions.
+<img src="images/backend-diagram3.png" alt="breadboard" width="400"/>
+
+Text
+
+<img src="images/backend-diagram4.png" alt="breadboard" width="400"/>
+
+Text
 
 
 ## Implementation
@@ -230,12 +233,14 @@ Each screen is created using [LVGL screen object](https://docs.lvgl.io/master/wi
 The GUI was tested by following the transition diagram described in the User interface section, ensuring all screens
 transitioned to the desired state when either the touchscreen or unPhone buttons were pressed. 
 
+**WiFi Testing**
+
+The signal indicator at the top right of the screen is persistant accross all pages and indicates there current signal strenth and status. This was tested by connecting the unPhone to a mobile phone hotspot and increasing the distance between them to see changes to the signal indicator. The hotspot was then turned off to visualise the no connection symbol.
+
 **Please Rename this Header Alex**
 
 <img src="images/live-artnet-view.gif" alt="breadboard" width="600"/>
 <img src="images/live-artnet-view2.gif" alt="breadboard" width="600"/>
-
-TODO - Complete testing.
 
 
 ## Future Work
