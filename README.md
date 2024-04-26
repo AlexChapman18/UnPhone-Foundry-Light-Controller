@@ -136,17 +136,34 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 
 **Wireframes illustrating the designs of the screens:**
 
-<img src="images/wireframe-screens.png" alt="breadboard" width="650"/>
-<img src="images/wireframe-navigation-buttons.png" alt="breadboard" width="247"/>
+<img src="images/gui-wireframe.png" alt="breadboard" width="650"/>
+<img src="images/gui-buttons-wireframe.png" alt="breadboard" width="247"/>
 
 **Diagram illustrating the connection and navigation between different screens:**
 
 As presented in the diagram below, three screens can be navigated to using the physical UnPhone buttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the UnPhone triangle button.
 
-<img src="images/navigation-diagram.png" alt="breadboard" width="400"/>
+<img src="images/gui-screen-transition-diagram.png" alt="breadboard" width="400"/>
 
+**Signal Strength Bars and WiFi Connection**
+
+<img src="images/gui-signal-bars.png" alt="breadboard" width="400"/>
+
+The signal strength between the WiFi router and the UnPhone is illustrated by signal bars which updates
+live on the screen, periodically checking every 5 seconds. This provides the user with guidance if
+they are connected to the router, otherwise the lights cannot be controlled.
 
 ### Networking and Backend
+
+<img src="images/network-diagram.png" alt="breadboard" width="400"/>
+
+Text
+
+<img src="images/backend-thread1.png" alt="breadboard" width="400"/>
+
+Text
+
+<img src="images/backend-thread2.png" alt="breadboard" width="400"/>
 
 TODO - Diagram and a paragraph illustrating how the UnPhone interacts with the lights (a networking diagram).
 
@@ -177,6 +194,9 @@ TODO - Add the libraries used and what they have been used for at the end of the
 
 ### User Interface and LVGL
 
+<img src="images/gui-screenshots.png" alt="breadboard" height="300"/>
+
+Text
 
 #### LVGL Header File and its C++ Implementation
 
@@ -198,6 +218,15 @@ TODO - Images of final GUI will go here.
 
 ## Testing
 
+**LVGL GUI Testing**
+
+The GUI was tested by following the transition diagram described in the User interface section, ensuring all screens
+transitioned to the desired state when either the touchscreen or unPhone buttons were pressed. 
+
+**Please Rename this Header Alex**
+
+<img src="images/live-artnet-view.gif" alt="breadboard" width="600"/>
+<img src="images/live-artnet-view2.gif" alt="breadboard" width="600"/>
 
 TODO - Complete testing.
 
