@@ -194,10 +194,7 @@ TODO - Add the libraries used and what they have been used for at the end of the
 
 ### User Interface and LVGL
 
-<img src="images/gui-lighting-screen.jpg" alt="breadboard" height="300"/>
-<img src="images/gui-select-arc-group.jpg" alt="breadboard" height="300"/>
-<img src="images/gui-intensity-and-effects.jpg" alt="breadboard" height="300"/>
-<img src="images/gui-global-colour-status.jpg" alt="breadboard" height="300"/>
+<img src="images/gui-screenshots.png" alt="breadboard" height="300"/>
 
 Text
 
