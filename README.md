@@ -205,9 +205,6 @@ To fully grasp an understanding of the [UnPhone library](https://gitlab.com/hami
 
 ### User Interface and LVGL
 
-<img src="images/gui-screenshots.png" alt="breadboard" height="300"/>
-
-Text
 
 #### LVGL Header File and its C++ Implementation
 
@@ -223,8 +220,7 @@ Each screen is created using [LVGL screen object](https://docs.lvgl.io/master/wi
 
 #### User Interface Screenshots
 
-
-TODO - Images of final GUI will go here.
+<img src="images/gui-screenshots.png" alt="breadboard" height="300"/>
 
 
 ## Testing
