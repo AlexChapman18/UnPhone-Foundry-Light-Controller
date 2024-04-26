@@ -1,0 +1,11 @@
+
+Signal Strength Bars and WiFi Connection
+-----------------------------------------
+The signal strength between the WiFi router and the UnPhone is illustrated by signal bars which updates
+live on the screen, periodically checking every 5 seconds. This provides the user with guidance if
+they are connected to the router, otherwise the lights cannot be controlled.
+
+LVGL GUI Testing
+-----------------
+The GUI was tested by following the transition diagram described in the User interface section, ensuring all screens
+transitioned to the desired state when either the touchscreen or unPhone buttons were pressed. 
