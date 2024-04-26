@@ -178,7 +178,7 @@ they are connected to the router, otherwise the lights cannot be controlled.
 The signal path is as follows:
 1. [Art-net](https://art-net.org.uk/) packets are sent from the unPhone (1) to the Router (2).
 2. The packets are then forwarded from the Router (2) to the network Switch (3) to allow for multiple connections to the [Art-net node](https://art-net.org.uk/) (4).
-3. The [Art-net node](https://art-net.org.uk/) (4) then converts the [Art-net](https://art-net.org.uk/) to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5).
+3. The [Art-net node](https://art-net.org.uk/) (4) then converts the [Art-net](https://art-net.org.uk/) protocol to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5).
 4. Lastly, the DMX signal is split out of the [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5) and send to the lighting fixtures (6) for control.
 
 
@@ -186,9 +186,9 @@ The signal path is as follows:
 
 **Backend diagram for setting Arc Group Colour**
 
-1. To set the color of each Architecture Group individually, the group must first be selected (1) from all the Architecture Groups (2).
-2. The color select page then opens (4), allowing for the color selection of the current Architecture group (3)
-3. Once a color is selected, either via the fader or default colors, the RGB values are sent to the Chosen Architecture Object (3) and Art-Net universe (5) seperatly.
+1. To set the colour of each Architecture Group individually, the group must first be selected (1) from all the Architecture Groups (2).
+2. The colour select page then opens (4), allowing for the colour selection of the current Architecture group (3)
+3. Once a colour is selected, either via the fader or default colours, the RGB values are sent to the Chosen Architecture Object (3) and Art-Net universe (5) seperatly.
 
 
 <img src="images/backend-diagram2.png" alt="breadboard" width="400"/>
@@ -211,7 +211,7 @@ Setting the Intensity, Speed and Effects just calls a setter within the Art-Net 
 
 To send Art-Net packets.
 1. To calcualte the appropriate intensity values, the current effect .is first check, and then the appropriate effect function is run.
-2. This function then takes into account the current step, color and intensity of each RGB fixture anc calculates its new intensity (for the current step).
+2. This function then takes into account the current step, colour and intensity of each RGB fixture anc calculates its new intensity (for the current step).
 3. The results of these calculations are then written as bytes to the output universe.
 4. Once all the bytes have been set, the packet is then slept.
 5. Once sent, the thread sleeps for 35ms(Specification time between Art-Net packets) and then repeats from step 1.
@@ -291,7 +291,7 @@ The signal indicator at the top right of the screen is persistant accross all pa
 ## Future Work
 With the originality of this project, it provides plenty of opportunities to extend on the current progress, the prioritised future features are listed below:
 
-1. **Colour Effects:**  As all of the fixtures are RGB, one of the next additions would be color effects, this would allow for the color slowly change over time or a rainbow pattern go round the room. It would be perfect for events such as the [St. Patick](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) clubnight where Green and Orange effects are expected.
+1. **Colour Effects:**  As all of the fixtures are RGB, one of the next additions would be colour effects, this would allow for the colour slowly change over time or a rainbow pattern go round the room. It would be perfect for events such as the [St. Patick](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) clubnight where Green and Orange effects are expected.
 
 2. **Concurrent Effects:** Currently, the system runs 1 effect over all the architectual groups, but with the addition of individual effects it would be possible to have some fixtures "solid on" whilst others changing brightness over time. 
 
