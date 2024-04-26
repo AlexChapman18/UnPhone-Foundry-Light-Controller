@@ -11,18 +11,33 @@
 
 Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (achapman5@sheffield.ac.uk)
 
-
-## Table of Contents  
-- TODO - Complete this table of contents once documentation is complete.
-- [Project Description](#project-description)  
-- [Permissions](#light-control-permissions)  
-
-
 ## Project Description
 
 
 The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software called [ChamSys](https://chamsyslighting.com/), and a computer interface, which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
 
+## Table of Contents  
+- [Permissions](#light-control-permissions) 
+- [Project Description](#project-description)
+- [Light Control Permissions](#light-control-permissions)
+- [Project Equipmment](#project-equipmment)
+- [Design](#design)
+  - [Application Features](#application-features)
+  - [Architecturals](#architecturals)
+  - [Default Colour Options](#default-colour-options)
+  - [Lighting Effects](#lighting-effects)
+  - [User Interface](#user-interface)
+  - [Networking and Backend](#networking-and-backend)
+  - [Implementation](#implementation)
+    - [UnPhone to NuPhone](#unphone-to-nuphone)
+    - [Libraries Used](#libraries-used)
+    - [User Interface and LVGL](#user-interface-and-lvgl)
+      - [LVGL Header File and its C++ Implementation](#lvgl-header-file-and-its-c++-implementation)
+      - [Screen Switching Logic](#screen-switching-logic)
+      - [User Interface Screenshots](#user-interface-screenshots)
+- [Testing](#testing)
+- [Future Work](#future-work)
+- [Video Link](#video-link)
 
 ## Light Control Permissions
 
@@ -85,6 +100,7 @@ For the purpose of this project, the Architecturals were split into groups based
 | All Bars           | 3                         |
 
 
+
 ### Default Colour Options
 
 
@@ -95,6 +111,7 @@ The default colours the user can select from have been decided from the [12 colo
 | **R** | 255 | 255  | 255     | 127    | 0    | 0     | 0    | 0          | 0     | 127        | 255    | 255    |
 | **G** | 0   | 0    | 0       | 0      | 0    | 127   | 255  | 255        | 255   | 255        | 255    | 127    |
 | **B** | 0   | 127  | 255     | 255    | 255  | 255   | 255  | 127        | 0     | 0          | 0      | 0      |
+
 
 
 ### Lighting Effects
@@ -110,6 +127,7 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 | Fade Swipe   | Has the intensity of the fixtures slowly fade off as it moves around the room           |
 | Binary Swipe | Has the intensity of the fixtures snap off as it moves around the room                  |
 | Bars Fade    | Has the intensity of the bars fixtures slowly fade off as it moves around the room      |
+
 
 
 ### User Interface
@@ -149,6 +167,7 @@ As presented in the diagram below, three screens can be navigated to using the p
 The signal strength between the WiFi router and the UnPhone is illustrated by signal bars which updates
 live on the screen, periodically checking every 5 seconds. This provides the user with guidance if
 they are connected to the router, otherwise the lights cannot be controlled.
+
 
 ### Networking and Backend
 
@@ -267,6 +286,7 @@ The signal indicator at the top right of the screen is persistant accross all pa
 
 
 ## Future Work
+
 With the originality of this project, it provides plenty of opportunities to extend on the current progress, the prioritised future features are listed below:
 
 1. **Colour Effects:**  As all of the fixtures are RGB, one of the next additions would be color effects, this would allow for the color slowly change over time or a rainbow pattern go round the room. It would be perfect for events such as the [St. Patick](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) clubnight where Green and Orange effects are expected.
@@ -276,6 +296,7 @@ With the originality of this project, it provides plenty of opportunities to ext
 3. **UnPhone as an Interface:** Becuase the Art-Net processing takes place on the unPhone, if there are any signal issues the effects will stop running. The addition of a second wired microcontroller could be used, doing the Art-Net processing locally whilst the unPhone acts as a remote interface. This would also allow for multiple unPhone remotes, 1 for each room if needed. 
 
 4. **Multi-venue Control:** Although the Foundry venue is split into three rooms (Main-room, Studio, Fusion), only the Main-room is currently controllable due to WiFi signal concerns. However, with the use of multiple WiFi access-points it would be possible for the lighting remote to control all 3 rooms at once, allowing for a full venue control system. 
+
 
 ## Video Link
 
