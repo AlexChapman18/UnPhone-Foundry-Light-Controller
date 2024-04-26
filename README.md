@@ -186,20 +186,21 @@ This project utilises the following features from the UnPhone:
 To fully grasp an understanding of the [UnPhone library](https://gitlab.com/hamishcunningham/unphonelibrary), a new library (inspired from UnPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the UnPhone library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the UnPhone backlight functionality.
 
 
-#### Libraries Used
+### Libraries Used
 
 
 | Library | Function |
 |---------|----------|
-|[ArtnetWifi](https://www.arduino.cc/reference/en/libraries/artnetwifi/)|Send and receive Art-Net frames using WiFi|
-|         |          |
-|         |          |
-|         |          |
-|         |          |
-|         |          |
-|         |          |
-|         |          |
-|         |          |
+|[Arduino](https://github.com/espressif/arduino-esp32/blob/master/cores/esp32/Arduino.h)|Standard Arduino library.|
+|[stdint](https://cplusplus.com/reference/cstdint/)|For fundamental and extended integral types e.g. uint8_t.|
+|[WiFi](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFi.h)|WiFi connection.|
+|[Wire](https://github.com/espressif/arduino-esp32/blob/master/libraries/Wire/src/Wire.h)|TCA chip communication.|
+|[XPT2046_Touchscreen](https://github.com/PaulStoffregen/XPT2046_Touchscreen)|Touchscreen control.|
+|[lvgl](https://lvgl.io/)|Graphics library.|
+|[ArtnetWifi](https://www.arduino.cc/reference/en/libraries/artnetwifi/)|Transmitting Art-Net frames.|
+
+
+
 
 
 ### User Interface and LVGL
