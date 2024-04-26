@@ -163,8 +163,19 @@ The signal path is as follows:
 
 
 
+**Hardware system wiring diragram**
+The signal path is as follows:
+1. [Art-net](https://art-net.org.uk/) packets are sent from the unphone to the Router(2)
+2. The packets are then forwarded from the Router(2) to the network Switch(3) to allow for multiple connections to the [Art-net node](https://art-net.org.uk/)(4)
+3. The [Art-net node](https://art-net.org.uk/)(4) then converts the [Art-net](https://art-net.org.uk/) to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer)(5)
+4. Lastly, the DMX signal is split out of the [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer)(5) and send to the lighting fixtures(6) for control
+
+
+
 
 <img src="images/backend-diagram1.png" alt="breadboard" width="400"/>
+
+**The processs that run on core 1 of the esp32**
 
 **The processs that run on core 1 of the esp32**
 
