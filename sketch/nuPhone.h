@@ -10,12 +10,8 @@
 
 #include <stdint.h>
 #include <Arduino.h>
-#include <esp_sleep.h>
-#include <esp32-hal-gpio.h>
-#include <WiFi.h>
 #include <XPT2046_Touchscreen.h>
 #include <Wire.h>
-#include <TCA9555.h>
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUPHONE CLASS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

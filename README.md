@@ -1,9 +1,6 @@
-Alex:
-- Ctrl+F "TODO" and do as much as possible of your part then remove this last.
-- Replace fixture_utils with architecture_utils or similar?
-- Refactor and docstring all your functions.
 
-**We'll Reference as much as possible**
+- Replace fixture_utils with architecture_utils or similar?
+- Change UnPhone to unPhone?
 
 ---
 
@@ -14,23 +11,38 @@ Alex:
 
 Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (achapman5@sheffield.ac.uk)
 
-
-## Table of Contents  
-- TODO - Complete this table of contents once documentation is complete.
-- [Project Description](#project-description)  
-- [Permissions](#light-control-permissions)  
-
-
 ## Project Description
 
 
-The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software and a computer interface [ TODO - Is there a software you specifically use which you could reference - reference the link on the word 'computer interface' if so. ], which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
+The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [UnPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software called [ChamSys](https://chamsyslighting.com/), and a computer interface, which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the UnPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
 
+## Table of Contents  
+- [Permissions](#light-control-permissions) 
+- [Project Description](#project-description)
+- [Light Control Permissions](#light-control-permissions)
+- [Project Equipmment](#project-equipmment)
+- [Design](#design)
+  - [Application Features](#application-features)
+  - [Architecturals](#architecturals)
+  - [Default Colour Options](#default-colour-options)
+  - [Lighting Effects](#lighting-effects)
+  - [User Interface](#user-interface)
+  - [Networking and Backend](#networking-and-backend)
+  - [Implementation](#implementation)
+    - [UnPhone to NuPhone](#unphone-to-nuphone)
+    - [Libraries Used](#libraries-used)
+    - [User Interface and LVGL](#user-interface-and-lvgl)
+      - [LVGL Header File and its C++ Implementation](#lvgl-header-file-and-its-c++-implementation)
+      - [Screen Switching Logic](#screen-switching-logic)
+      - [User Interface Screenshots](#user-interface-screenshots)
+- [Testing](#testing)
+- [Future Work](#future-work)
+- [Video Link](#video-link)
 
 ## Light Control Permissions
 
 
-Permission was requested and granted from the Tech Services Department [ TODO - Add a reference link on Tech Services Dept. if they have a webpage. ] for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
+Permission was requested and granted from the Tech Services Department for access to its lighting system, allowing the project to undergo live testing and visualisation of its performance.
 
 
 ## Project Equipmment
@@ -40,7 +52,7 @@ The following equipment has been utilised for this project:
 
 - [UnPhone](https://unphone.net/);
 - WiFi Router;
-- Enttec Storm 8 Artnet Node; [TODO - Is there a specific spec link we could attach to this as a reference? ]
+- [Enttec Storm 8 Artnet Node](https://cdn.enttec.com/pdf/assets/70056/70056_STORM_8_USER_MANUAL.pdf);
 
 
 ## Design
@@ -65,7 +77,7 @@ The following equipment has been utilised for this project:
 
 
 An architecture is a group of individually controllable LED fixtures that are placed in key spots around the [Foundry venue](https://foundrysu.com/).
-The Architecturals as a whole are primarly used during clubnights, gigs and corporate events for accented lighting. A prime example being the [St. Paddys](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) [ TODO - Change to St. Patick ? ] Day clubnight in which they were set to a mix of green, white and orange colours.
+The Architecturals as a whole are primarly used during clubnights, gigs and corporate events for accented lighting. A prime example being the [St. Patick](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) Day clubnight in which they were set to a mix of green, white and orange colours.
 
 For the purpose of this project, the Architecturals were split into groups based on their locations within the venue:
 
@@ -88,6 +100,7 @@ For the purpose of this project, the Architecturals were split into groups based
 | All Bars           | 3                         |
 
 
+
 ### Default Colour Options
 
 
@@ -98,6 +111,7 @@ The default colours the user can select from have been decided from the [12 colo
 | **R** | 255 | 255  | 255     | 127    | 0    | 0     | 0    | 0          | 0     | 127        | 255    | 255    |
 | **G** | 0   | 0    | 0       | 0      | 0    | 127   | 255  | 255        | 255   | 255        | 255    | 127    |
 | **B** | 0   | 127  | 255     | 255    | 255  | 255   | 255  | 127        | 0     | 0          | 0      | 0      |
+
 
 
 ### Lighting Effects
@@ -113,6 +127,7 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 | Fade Swipe   | Has the intensity of the fixtures slowly fade off as it moves around the room           |
 | Binary Swipe | Has the intensity of the fixtures snap off as it moves around the room                  |
 | Bars Fade    | Has the intensity of the bars fixtures slowly fade off as it moves around the room      |
+
 
 
 ### User Interface
@@ -153,21 +168,51 @@ The signal strength between the WiFi router and the UnPhone is illustrated by si
 live on the screen, periodically checking every 5 seconds. This provides the user with guidance if
 they are connected to the router, otherwise the lights cannot be controlled.
 
+
 ### Networking and Backend
 
 <img src="images/network-diagram.png" alt="breadboard" width="400"/>
 
-Text
+**Hardware system wiring diragram**
+The signal path is as follows:
+1. [Art-net](https://art-net.org.uk/) packets are sent from the unphone to the Router(2)
+2. The packets are then forwarded from the Router(2) to the network Switch(3) to allow for multiple connections to the [Art-net node](https://art-net.org.uk/)(4)
+3. The [Art-net node](https://art-net.org.uk/)(4) then converts the [Art-net](https://art-net.org.uk/) to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer)(5)
+4. Lastly, the DMX signal is split out of the [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer)(5) and send to the lighting fixtures(6) for control
 
-<img src="images/backend-thread1.png" alt="breadboard" width="400"/>
 
-Text
 
-<img src="images/backend-thread2.png" alt="breadboard" width="400"/>
+**Hardware system wiring diragram**
+The signal path is as follows:
+1. [Art-net](https://art-net.org.uk/) packets are sent from the unphone to the Router(2)
+2. The packets are then forwarded from the Router(2) to the network Switch(3) to allow for multiple connections to the [Art-net node](https://art-net.org.uk/)(4)
+3. The [Art-net node](https://art-net.org.uk/)(4) then converts the [Art-net](https://art-net.org.uk/) to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer)(5)
+4. Lastly, the DMX signal is split out of the [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer)(5) and send to the lighting fixtures(6) for control
+
+
+
+
+<img src="images/backend-diagram1.png" alt="breadboard" width="400"/>
+
+**The processs that run on core 1 of the esp32**
+
+**The processs that run on core 1 of the esp32**
+
+
+<img src="images/backend-diagram2.png" alt="breadboard" width="400"/>
+
+**The process that run on core 2 of the esp32**
+
 
 TODO - Diagram and a paragraph illustrating how the UnPhone interacts with the lights (a networking diagram).
 
-TODO - Any other diagrams for the backend with descriptions.
+<img src="images/backend-diagram3.png" alt="breadboard" width="400"/>
+
+Text
+
+<img src="images/backend-diagram4.png" alt="breadboard" width="400"/>
+
+Text
 
 
 ## Implementation
@@ -186,17 +231,25 @@ This project utilises the following features from the UnPhone:
 To fully grasp an understanding of the [UnPhone library](https://gitlab.com/hamishcunningham/unphonelibrary), a new library (inspired from UnPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the UnPhone library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the UnPhone backlight functionality.
 
 
-#### Libraries Used
+### Libraries Used
 
 
-TODO - Add the libraries used and what they have been used for at the end of the project. Use a table.
+| Library | Function |
+|---------|----------|
+|[Arduino](https://github.com/espressif/arduino-esp32/blob/master/cores/esp32/Arduino.h)|Standard Arduino library.|
+|[stdint](https://cplusplus.com/reference/cstdint/)|For fundamental and extended integral types e.g. uint8_t.|
+|[WiFi](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFi.h)|WiFi connection.|
+|[Wire](https://github.com/espressif/arduino-esp32/blob/master/libraries/Wire/src/Wire.h)|TCA chip communication.|
+|[XPT2046_Touchscreen](https://github.com/PaulStoffregen/XPT2046_Touchscreen)|Touchscreen control.|
+|[lvgl](https://lvgl.io/)|Graphics library.|
+|[ArtnetWifi](https://www.arduino.cc/reference/en/libraries/artnetwifi/)|Transmitting Art-Net frames.|
+
+
+
 
 
 ### User Interface and LVGL
 
-<img src="images/gui-screenshots.png" alt="breadboard" height="300"/>
-
-Text
 
 #### LVGL Header File and its C++ Implementation
 
@@ -212,8 +265,7 @@ Each screen is created using [LVGL screen object](https://docs.lvgl.io/master/wi
 
 #### User Interface Screenshots
 
-
-TODO - Images of final GUI will go here.
+<img src="images/gui-screenshots.png" alt="breadboard" height="300"/>
 
 
 ## Testing
@@ -223,23 +275,28 @@ TODO - Images of final GUI will go here.
 The GUI was tested by following the transition diagram described in the User interface section, ensuring all screens
 transitioned to the desired state when either the touchscreen or unPhone buttons were pressed. 
 
+**WiFi Testing**
+
+The signal indicator at the top right of the screen is persistant accross all pages and indicates there current signal strenth and status. This was tested by connecting the unPhone to a mobile phone hotspot and increasing the distance between them to see changes to the signal indicator. The hotspot was then turned off to visualise the no connection symbol.
+
 **Please Rename this Header Alex**
 
 <img src="images/live-artnet-view.gif" alt="breadboard" width="600"/>
 <img src="images/live-artnet-view2.gif" alt="breadboard" width="600"/>
 
-TODO - Complete testing.
-
 
 ## Future Work
 
+With the originality of this project, it provides plenty of opportunities to extend on the current progress, the prioritised future features are listed below:
 
-With the originality of this project, it provides plenty of opportunities to extend on the current progress. This includes adding more effects and light animations, as well as extending to more lighting structures. To enhance user flexibility, a great addition would be the ability to independently control the effects of each architecture individually, rather than having effects apply universally across to all of them. Further work on effects could involve colour changing effects, i.e. a pre-defined rainbow coloured disco lighting effect.
+1. **Colour Effects:**  As all of the fixtures are RGB, one of the next additions would be color effects, this would allow for the color slowly change over time or a rainbow pattern go round the room. It would be perfect for events such as the [St. Patick](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) clubnight where Green and Orange effects are expected.
 
-TODO - Write up the below into a paragraph and join it with the paragraph above.
-- Multi venue control
-- Ability for effects to continue to run even if UnPhone disconnects
-- Multi UnPhone support
+2. **Concurrent Effects:** Currently, the system runs 1 effect over all the architectual groups, but with the addition of individual effects it would be possible to have some fixtures "solid on" whilst others changing brightness over time. 
+
+3. **UnPhone as an Interface:** Becuase the Art-Net processing takes place on the unPhone, if there are any signal issues the effects will stop running. The addition of a second wired microcontroller could be used, doing the Art-Net processing locally whilst the unPhone acts as a remote interface. This would also allow for multiple unPhone remotes, 1 for each room if needed. 
+
+4. **Multi-venue Control:** Although the Foundry venue is split into three rooms (Main-room, Studio, Fusion), only the Main-room is currently controllable due to WiFi signal concerns. However, with the use of multiple WiFi access-points it would be possible for the lighting remote to control all 3 rooms at once, allowing for a full venue control system. 
+
 
 ## Video Link
 
