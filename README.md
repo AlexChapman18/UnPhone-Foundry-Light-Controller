@@ -286,7 +286,6 @@ The signal indicator at the top right of the screen is persistant accross all pa
 
 
 ## Future Work
-
 With the originality of this project, it provides plenty of opportunities to extend on the current progress, the prioritised future features are listed below:
 
 1. **Colour Effects:**  As all of the fixtures are RGB, one of the next additions would be color effects, this would allow for the color slowly change over time or a rainbow pattern go round the room. It would be perfect for events such as the [St. Patick](https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day) clubnight where Green and Orange effects are expected.
@@ -296,7 +295,6 @@ With the originality of this project, it provides plenty of opportunities to ext
 3. **UnPhone as an Interface:** Becuase the Art-Net processing takes place on the unPhone, if there are any signal issues the effects will stop running. The addition of a second wired microcontroller could be used, doing the Art-Net processing locally whilst the unPhone acts as a remote interface. This would also allow for multiple unPhone remotes, 1 for each room if needed. 
 
 4. **Multi-venue Control:** Although the Foundry venue is split into three rooms (Main-room, Studio, Fusion), only the Main-room is currently controllable due to WiFi signal concerns. However, with the use of multiple WiFi access-points it would be possible for the lighting remote to control all 3 rooms at once, allowing for a full venue control system. 
-
 
 ## Video Link
 
