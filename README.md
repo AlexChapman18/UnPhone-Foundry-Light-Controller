@@ -188,6 +188,9 @@ The signal path is as follows:
 **The process that run on core 2 of the esp32**
 
 
+**The process that run on core 2 of the esp32**
+
+
 TODO - Diagram and a paragraph illustrating how the UnPhone interacts with the lights (a networking diagram).
 
 <img src="images/backend-diagram3.png" alt="breadboard" width="400"/>
