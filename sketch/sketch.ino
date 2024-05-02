@@ -81,7 +81,7 @@ const char* effects_list[] = {"Solid", "Pulse\nEffect", "Odd-Even\nEffect", "Fad
 
 /**
  * Map touch coordinates to LCD coordinates. A version of map that never returns out of 
- * range values. Function taken from Hamish's unPhoneexamples.
+ * range values. Function taken from Hamish's unPhone examples.
  */
 long myMapper(long x, long in_min, long in_max, long out_min, long out_max) {
     long probable = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -91,7 +91,7 @@ long myMapper(long x, long in_min, long in_max, long out_min, long out_max) {
 }
 
 /**
- * Read the touchpad. Function taken from Hamish's unPhoneexamples, with tweaks.
+ * Read the touchpad. Function taken from Hamish's unPhone examples, with tweaks.
  */
 void touchpadRead(lv_indev_drv_t *indev_driver, lv_indev_data_t *data) {
     uint16_t touchX, touchY;
@@ -124,7 +124,7 @@ void touchpadRead(lv_indev_drv_t *indev_driver, lv_indev_data_t *data) {
 
 /**
  * Display flushing.
- * Function taken from Hamish's unPhoneexamples.
+ * Function taken from Hamish's unPhone examples.
  */
 void displayFlush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p) {
     uint32_t w = (area->x2 - area->x1 + 1);
@@ -612,7 +612,7 @@ void loop() {
 
     lv_timer_handler();
     
-    // Switch screens if unPhonebuttons are pressed
+    // Switch screens if unPhone buttons are pressed
     if (nuphone.isButton1()) {
       if (current_screen != 0) {
         renderArchitectureScreen();

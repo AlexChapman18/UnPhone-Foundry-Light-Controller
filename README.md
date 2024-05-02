@@ -1,5 +1,4 @@
-# unPhoneStudent Union Lighting Controller
-
+# unPhone Student Union Lighting Controller
 
 [The Internet of Things](https://iot.unphone.net/) at [The University of Sheffield](https://www.sheffield.ac.uk/) (2024)
 
@@ -8,7 +7,7 @@ Project by Kush Bharakhada (kbharakhada1@sheffield.ac.uk) and Alex Chapman (acha
 ## Project Description
 
 
-The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [unPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software called [ChamSys](https://chamsyslighting.com/), and a computer interface, which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the unPhoneto select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
+The objective of this project has been to control the LED lighting strips around the Foundry live events venue within the [Student Union](https://su.sheffield.ac.uk/), employing a variety of effects and colours, all managed by the [unPhone](https://unphone.net/). Currently, the lighting system relies on dedicated software called [ChamSys](https://chamsyslighting.com/), and a computer interface, which provides additional complexity for individuals without specialised knowledge in lighting engineering. With our approach, the user has the ability to use the unPhone to select an architecture (LED group) and control their colours and effects easily. While our project may offer less flexibility compared to the conventional lighting control, its simplicity provides users with a variety of features tailored for events and occasions.
 
 ## Table of Contents  
 - [Permissions](#light-control-permissions) 
@@ -23,7 +22,7 @@ The objective of this project has been to control the LED lighting strips around
   - [User Interface](#user-interface)
   - [Networking and Backend](#networking-and-backend)
   - [Implementation](#implementation)
-    - [unPhoneto nuPhone](#unphone-to-nuphone)
+    - [unPhone to nuPhone](#unphone-to-nuphone)
     - [Libraries Used](#libraries-used)
     - [User Interface and LVGL](#user-interface-and-lvgl)
       - [LVGL Header File and its C++ Implementation](#lvgl-header-file-and-its-c++-implementation)
@@ -64,7 +63,7 @@ The following equipment has been utilised for this project:
 | Default Effects | Allow the user to visualise lighting animations, from a pre-defined, set of effects.|
 | Intensity and Speed | Provide the user with the ability to utilise faders to control the speed of effects and the lighting intensity. |
 | Global Colour View | For a global view of colours, the user must be able to visualise every single architecture and its currently set colour on one screen. 
-| unPhoneButtons (Triangle, Circle and Square) | unPhonewill be utilised for navigation. Therefore, there must be three main screens architecture selection, setting effects and intensity, and global colour view. Setting a colour must be navigated to via the architecture screen. |
+| unPhone Buttons (Triangle, Circle and Square) | unPhone will be utilised for navigation. Therefore, there must be three main screens architecture selection, setting effects and intensity, and global colour view. Setting a colour must be navigated to via the architecture screen. |
 
 
 ### Architecturals
@@ -150,7 +149,7 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 
 **Diagram illustrating the connection and navigation between different screens:**
 
-As presented in the diagram below, three screens can be navigated to using the physical unPhonebuttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the unPhonetriangle button.
+As presented in the diagram below, three screens can be navigated to using the physical unPhone buttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the unPhone triangle button.
 
 <img src="images/gui-screen-transition-diagram.png" alt="breadboard" width="400"/>
 
@@ -158,7 +157,7 @@ As presented in the diagram below, three screens can be navigated to using the p
 
 <img src="images/gui-signal-bars.png" alt="breadboard" width="400"/>
 
-The signal strength between the WiFi router and the unPhoneis illustrated by signal bars which updates
+The signal strength between the WiFi router and the unPhone is illustrated by signal bars which updates
 live on the screen, periodically checking every 5 seconds. This provides the user with guidance if
 they are connected to the router, otherwise the lights cannot be controlled.
 
@@ -215,7 +214,7 @@ To send Art-Net packets.
 ## Implementation
 
 
-### unPhoneto nuPhone
+### unPhone to nuPhone
 
 
 This project utilises the following features from the unPhone:
@@ -225,7 +224,7 @@ This project utilises the following features from the unPhone:
 - WiFi;
 - Battery Power Supply;
 
-To fully grasp an understanding of the [unPhonelibrary](https://gitlab.com/hamishcunningham/unphonelibrary), a new library (inspired from unPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the unPhonelibrary, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the unPhonebacklight functionality.
+To fully grasp an understanding of the [unPhonelibrary](https://gitlab.com/hamishcunningham/unphonelibrary), a new library (inspired from unPhone) was created that was simplified and tailored specifically for our project. Therefore, only the features used have been implmented, and no others. One of the challenges encountered was initiating the backlight. Through research and comprehension of the  library, we successfully initialised the TCA9555 chip and transmitted to it via Wire, enabling the unPhone backlight functionality.
 
 
 ### Libraries Used
@@ -289,7 +288,7 @@ With the originality of this project, it provides plenty of opportunities to ext
 
 2. **Concurrent Effects:** Currently, the system runs 1 effect over all the architectual groups, but with the addition of individual effects it would be possible to have some fixtures "solid on" whilst others changing brightness over time. 
 
-3. **unPhoneas an Interface:** Becuase the Art-Net processing takes place on the unPhone, if there are any signal issues the effects will stop running. The addition of a second wired microcontroller could be used, doing the Art-Net processing locally whilst the unPhone acts as a remote interface. This would also allow for multiple unPhone remotes, 1 for each room if needed. 
+3. **unPhone as an Interface:** Becuase the Art-Net processing takes place on the unPhone, if there are any signal issues the effects will stop running. The addition of a second wired microcontroller could be used, doing the Art-Net processing locally whilst the unPhone acts as a remote interface. This would also allow for multiple unPhone remotes, 1 for each room if needed. 
 
 4. **Multi-venue Control:** Although the Foundry venue is split into three rooms (Main-room, Studio, Fusion), only the Main-room is currently controllable due to WiFi signal concerns. However, with the use of multiple WiFi access-points it would be possible for the lighting remote to control all 3 rooms at once, allowing for a full venue control system. 
 
