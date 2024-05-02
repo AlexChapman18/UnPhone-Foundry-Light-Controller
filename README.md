@@ -79,6 +79,7 @@ For the purpose of this project, the Architecturals were split into groups based
 | All Arcs           | 157                       |
 | All Bars           | 3                         |
 
+---
 
 ### Application Features
 
@@ -93,6 +94,8 @@ For the purpose of this project, the Architecturals were split into groups based
 | Global Colour View | For a global view of colours, the user must be able to visualise every single architecture and its currently set colour on one screen. 
 | unPhone Buttons Navigation | The unPhone buttons will be utilised for navigation. Therefore, there must be three main screens: architecture selection, setting effects and intensity, and global colour view. Setting a colour must be navigated to via the architecture screen. |
 
+---
+
 ### Default Colour Options
 
 The default colours the user can select from have been decided from the [12 colour wheel](https://en.wikipedia.org/wiki/Color_wheel#:~:text=The%20typical%20artists'%20paint%20or,%2Dblue%20and%20blue%2Dgreen.), as illustrated below. This presents the user with a sufficient number of default colours as well as the ability to create custom colours using RGB faders.
@@ -102,6 +105,8 @@ The default colours the user can select from have been decided from the [12 colo
 | **R** | 255 | 255  | 255     | 127    | 0    | 0     | 0    | 0          | 0     | 127        | 255    | 255    |
 | **G** | 0   | 0    | 0       | 0      | 0    | 127   | 255  | 255        | 255   | 255        | 255    | 127    |
 | **B** | 0   | 127  | 255     | 255    | 255  | 255   | 255  | 127        | 0     | 0          | 0      | 0      |
+
+---
 
 ### Lighting Effects
 
@@ -118,14 +123,14 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 
 ### User Interface
 
-The user interface must be:
+#### The user interface must be:
 
 - Simple and easy to use.
 - Large enough buttons to prevent misclicks.
 - Contrasting text against background for accessability.
 - Large enough text for ease of readability.
 
-The application will consist of four main screens:
+#### The application will consist of four main screens:
 
 | Screen | Navigation | Description | Interactive Screen |
 | ---------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
@@ -136,7 +141,7 @@ The application will consist of four main screens:
 
 ---
 
-Signal Strength Bars and WiFi Connection:
+#### Signal Strength Bars and WiFi Connection:
 
 <img src="images/gui-signal-bars.png" alt="breadboard" width="400"/>
 
@@ -146,77 +151,34 @@ they are connected to the router, otherwise the lights cannot be controlled.
 
 ---
 
-Wireframes illustrating the designs of the screens:
+#### Wireframes illustrating the designs of the screens:
 
 <img src="images/gui-wireframe.png" alt="breadboard" width="650"/>
 <img src="images/gui-buttons-wireframe.png" alt="breadboard" width="247"/>
 
 ---
 
-Diagram illustrating the connection and navigation between different screens:
+#### Diagram illustrating the connection and navigation between different screens:
 
 <img src="images/gui-screen-transition-diagram.png" alt="breadboard" width="400"/>
 
 As presented in the diagram below, three screens can be navigated to using the physical unPhone buttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the unPhone triangle button.
 
-### Networking and Backend
-
-Hardware wiring diragram:
-
-<img src="images/network-diagram.png" alt="breadboard" width="400"/>
-
-1. [Art-Net](https://art-net.org.uk/) packets are sent from the unPhone (1) to the Router (2).
-2. The packets are then forwarded from the Router (2) to the network Switch (3) to allow for multiple connections to the [Art-Net node](https://art-net.org.uk/) (4).
-3. The [Art-Net node](https://art-net.org.uk/) (4) then converts the [Art-Net](https://art-net.org.uk/) protocol to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5).
-4. Lastly, the DMX signal is split out of the [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5) and sent to the lighting fixtures (6) for control.
-
----
-
-Backend diagram for setting Arc Group Colour:
-
-<img src="images/backend-diagram1.png" alt="breadboard" width="400"/>
-
-1. To set the colour of each Architecture Group individually, the group must first be selected (1) from all the Architecture Groups (2).
-2. The colour select page then opens (4), allowing for the colour selection of the current Architecture group (3)
-3. Once a colour is selected, either via the fader or default colours, the RGB values are sent to the Chosen Architecture Object (3) and Art-Net universe (5) seperately.
-
----
-
-Backend diagram for keeping WiFi alive:
-
-<img src="images/backend-diagram2.png" alt="breadboard" width="400"/>
-
-The Keeping wifi alive thread is very simple, if the wifi is current not connected, attempt to connect, otherwise sleep the thread and check again.
-
----
-
-Backend diagram for setting Intensity, Speed and Effects:
-
-<img src="images/backend-diagram3.png" alt="breadboard" width="400"/>
-
-Setting the Intensity, Speed and Effects just calls a setter within the Art-Net Universe.
-
----
-
-Backend diagram for Sending Art-Net packets:
-
-<img src="images/backend-diagram4.png" alt="breadboard" width="400"/>
-
-To send Art-Net packets.
-1. To calculate the appropriate intensity values, the current effect is first checked, and then the appropriate effect function is run.
-2. This function then takes into account the current step, colour and intensity of each RGB fixture and calculates its new intensity (for the current step).
-3. The results of these calculations are then written as bytes to the output universe.
-4. Once all the bytes have been set, the packet is then sent.
-5. Once sent, the thread sleeps for 35ms (specification time between Art-Net packets) and then repeats from step 1.
-
 ## Implementation
 
-This project utilises the following features from the unPhone:
+### unPhone features used:
 
-- LCD Touch Display;
+<!-- - LCD Touch Display;
 - unPhone's three physical buttons (triangle, circle, and square);
 - WiFi;
-- Battery Power Supply;
+- Battery Power Supply; -->
+
+| Feature | Function |
+|---------|----------|
+|LCD Touch Display|Displaying graphics, navigation, touch interface|
+|unPhone physical buttons|Changing pages|
+|WiFi|Remote sending of Art-Net packets|
+|Battery Power Supply|For moble operation without wired supply|
 
 ### unPhone to nuPhone
 
@@ -231,43 +193,95 @@ To fully grasp an understanding of the [unPhone library](https://gitlab.com/hami
 |[WiFi](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFi.h)|WiFi connection.|
 |[Wire](https://github.com/espressif/arduino-esp32/blob/master/libraries/Wire/src/Wire.h)|TCA chip communication.|
 |[XPT2046_Touchscreen](https://github.com/PaulStoffregen/XPT2046_Touchscreen)|Touchscreen control.|
-|[lvgl](https://lvgl.io/)|Graphics library.|
+|[LVGL](https://lvgl.io/)|Graphics library.|
 |[ArtnetWifi](https://www.arduino.cc/reference/en/libraries/artnetwifi/)|Transmitting Art-Net frames.|
+
 
 ### User Interface and LVGL
 
-LVGL Header File and its C++ Implementation:
+
+#### LVGL Header File and its C++ Implementation:
 
 The user interface has been created in [LVGL](https://lvgl.io/), and utilises a DRY approach. Helper functions were implemented to create buttons, sliders, and labels with custom styling attributes provided as parameters. The main setup for LVGL and the LCD touch display were acquired from the [Demo Examples](https://gitlab.com/hamishcunningham/unphonelibrary/-/tree/main/examples/lvgl-demo?ref_type=heads). The general properties and understanding of the LVGL widgets was achieved by experimenting with the [LVGL Widget Examples](https://github.com/lvgl/lvgl/tree/master/examples) in source code, and reading its [documentation](https://docs.lvgl.io/master/intro/index.html) for further customisations.
 
----
-
-Screen Switching Logic:
+#### Screen Switching Logic:
 
 Each screen is created using [LVGL screen object](https://docs.lvgl.io/master/widgets/obj.html). By tracking the current screen with an integer, it makes it possible to delete the previous screen when the user switches to a new screen. Most of the screens require displaying information that was previously updated, therefore these screens need to be re-rendered. Individual components could be rendered and storing components which remain static on the screen, however this quickly increased the complexity of the application. By deleting the previous screen, and only rendering when the user visits, can save a small amount of memory. Rendering the screen is also instant. Furthermore, the screen switching logic prevents the user from spam rendering the current screen by checking the current screen before switching.
 
----
 
-User Interface Screenshots:
+#### User Interface Screenshots:
 
 <img src="images/gui-screenshots.png" alt="breadboard" width="600"/>
 
+
+---
+### Networking and Backend
+
+#### Hardware wiring diragram:
+
+<img src="images/network-diagram.png" alt="breadboard" width="400"/>
+
+1. [Art-Net](https://art-net.org.uk/) packets are sent from the unPhone (1) to the Router (2).
+2. The packets are then forwarded from the Router (2) to the network Switch (3) to allow for multiple connections to the [Art-Net node](https://art-net.org.uk/) (4).
+3. The [Art-Net node](https://art-net.org.uk/) (4) then converts the [Art-Net](https://art-net.org.uk/) protocol to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5).
+4. Lastly, the DMX signal is split out of the [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5) and sent to the lighting fixtures (6) for control.
+
+#### Backend diagram for setting Arc Group Colour:
+
+<img src="images/backend-diagram1.png" alt="breadboard" width="400"/>
+
+1. To set the colour of each Architecture Group individually, the group must first be selected (1) from all the Architecture Groups (2).
+2. The colour select page then opens (4), allowing for the colour selection of the current Architecture group (3)
+3. Once a colour is selected, either via the fader or default colours, the RGB values are sent to the Chosen Architecture Object (3) and Art-Net universe (5) seperately.
+
+
+
+#### Backend diagram for keeping WiFi alive:
+
+<img src="images/backend-diagram2.png" alt="breadboard" width="400"/>
+
+The Keeping wifi alive thread is very simple, if the wifi is current not connected, attempt to connect, otherwise sleep the thread and check again.
+
+
+#### Backend diagram for setting Intensity, Speed and Effects:
+
+<img src="images/backend-diagram3.png" alt="breadboard" width="400"/>
+
+Setting the Intensity, Speed and Effects just calls a setter within the Art-Net Universe.
+
+
+#### Backend diagram for Sending Art-Net packets:
+
+<img src="images/backend-diagram4.png" alt="breadboard" width="400"/>
+
+To send Art-Net packets.
+1. To calculate the appropriate intensity values, the current effect is first checked, and then the appropriate effect function is run.
+2. This function then takes into account the current step, colour and intensity of each RGB fixture and calculates its new intensity (for the current step).
+3. The results of these calculations are then written as bytes to the output universe.
+4. Once all the bytes have been set, the packet is then sent.
+5. Once sent, the thread sleeps for 35ms (specification time between Art-Net packets) and then repeats from step 1.
+
+
+
 ## Testing
 
-LVGL GUI Testing:
+### GUI Testing:
 
 The GUI was tested by following the transition diagram described in the User interface section, ensuring all screens
 transitioned to the desired state when either the touchscreen or unPhone buttons were pressed. 
 
 ---
 
-WiFi Testing:
+### WiFi Testing:
 
 The signal indicator at the top right of the screen is persistant accross all pages and indicates the current signal strenth and status. This was tested by connecting the unPhone to a mobile phone hotspot and increasing the distance between them to see changes to the signal indicator. The hotspot was then turned off to visualise the no connection symbol.
 
 ---
 
-Live Art-Net Packet View:
+### Packet Testing:
+
+To determine if the packets recieved are correct, 2 live Art-Net packet viewers were used,
+[ArtNetView](https://artnetview.com/) and [DMX-Workshop](https://artisticlicence.com/wp/?product=dmx-workshop).
 
 <img src="images/live-artnet-view.gif" alt="breadboard" width="600"/>
 <img src="images/live-artnet-view2.gif" alt="breadboard" width="600"/>
