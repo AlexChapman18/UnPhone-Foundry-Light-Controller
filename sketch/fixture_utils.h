@@ -54,17 +54,17 @@ class ArchitectureGroup {
         /**
          * Architecture group constructor.
          * 
-         * @param _addresses_index  - Index of the array of addresses.
-         * @param _name             - Bame of acrchitecture group.
+         * @param _addresses_index - Index of the array of addresses.
+         * @param _name            - Bame of acrchitecture group.
          */
         ArchitectureGroup(uint8_t _addresses_index, const char *_name);
 
         /**
          * Setter for Red, Green and Blue
          * 
-         * @param _red    - New red value.
-         * @param _green  - New green value.
-         * @param _blue   - New blue value.
+         * @param _red   - New red value.
+         * @param _green - New green value.
+         * @param _blue  - New blue value.
          */
         void setRGB(uint8_t _red, uint8_t _green, uint8_t _blue);
 

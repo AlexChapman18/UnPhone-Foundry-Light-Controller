@@ -28,7 +28,6 @@ void continuousPowerCheck(void *param) ;
 
 NuPhone::NuPhone() { me = this; }
 
-// static ref to singleton; only use after constr!
 NuPhone *NuPhone::me = NULL;
 
 void NuPhone::begin() {
@@ -43,7 +42,7 @@ void NuPhone::begin() {
     NuPhone::initializeTCAChip();
 
     // Setup touchscreen
-    tsp = new XPT2046_Touchscreen(TOUCH_CS); // no IRQ
+    tsp = new XPT2046_Touchscreen(TOUCH_CS);
 
     // Start power switch checking
     xTaskCreate(continuousPowerCheck, "power switch task", 4096, NULL, 1, NULL);
