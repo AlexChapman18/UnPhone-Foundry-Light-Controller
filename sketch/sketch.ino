@@ -603,7 +603,7 @@ void setup() {
  * Loop for keeping the application running.
  */
 void loop() { 
-    // Setup the art-net output when wifi is connected
+    // Setup the Art-Net output when wifi is connected
     if (espwifi.isConnected() && is_init_boot) {
         anu.setup();
         anu.begin();

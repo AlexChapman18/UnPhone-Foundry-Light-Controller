@@ -1,5 +1,5 @@
 /**
- * Contains Artnet related utilities.
+ * Contains Art-Net related utilities.
  *
  * Author: Kush Bharakhada and Alex Chapman (2024)
  * Filename: artnet_utils.cpp
@@ -76,7 +76,7 @@ void ArtNetUniverse::setup() {
 
 void ArtNetUniverse::begin() {
     // Creates a new thread running keepSendingUniverse function
-    xTaskCreate(keepSendingUniverse, "Art-net output", 7000, NULL, configMAX_PRIORITIES - 1, NULL);
+    xTaskCreate(keepSendingUniverse, "Art-Net output", 7000, NULL, configMAX_PRIORITIES - 1, NULL);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,7 +103,7 @@ float ArtNetUniverse::getIntensity() {
 
 void effect1(ArtnetWifi *artnet) {
     // Iterates through each value in the universe, multiplies its respective color
-    // and intensity values and writes it to artnet
+    // and intensity values and writes it to Art-Net
     for (int i = 0; i < 512; i++) {
         artnet->setByte(i, ArtNetUniverse::current_intensity * ArtNetUniverse::color_universe[i]);
     }
@@ -114,7 +114,7 @@ void effect2(ArtnetWifi *artnet, float step) {
     float intensity = abs(sin(step/(10 + (30 * (1 - ArtNetUniverse::current_speed))))) * ArtNetUniverse::current_intensity;
     
     for (int i = 0; i < 512; i++) {
-        // Writes the multiplied value to art-net
+        // Writes the multiplied value to Art-Net
         artnet->setByte(i, intensity * ArtNetUniverse::color_universe[i]);
     }
 }

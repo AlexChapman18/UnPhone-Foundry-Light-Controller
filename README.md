@@ -176,9 +176,9 @@ they are connected to the router, otherwise the lights cannot be controlled.
 **Hardware wiring diragram**
 
 The signal path is as follows:
-1. [Art-net](https://art-net.org.uk/) packets are sent from the unPhone (1) to the Router (2).
-2. The packets are then forwarded from the Router (2) to the network Switch (3) to allow for multiple connections to the [Art-net node](https://art-net.org.uk/) (4).
-3. The [Art-net node](https://art-net.org.uk/) (4) then converts the [Art-net](https://art-net.org.uk/) protocol to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5).
+1. [Art-Net](https://art-net.org.uk/) packets are sent from the unPhone (1) to the Router (2).
+2. The packets are then forwarded from the Router (2) to the network Switch (3) to allow for multiple connections to the [Art-Net node](https://art-net.org.uk/) (4).
+3. The [Art-Net node](https://art-net.org.uk/) (4) then converts the [Art-Net](https://art-net.org.uk/) protocol to [DMX](https://en.wikipedia.org/wiki/DMX512) and sends it to a [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5).
 4. Lastly, the DMX signal is split out of the [DMX buffer](https://www.enlx.co.uk/hire/lighting/control/chauvet-data-stream-4-dmx-buffer) (5) and send to the lighting fixtures (6) for control.
 
 
