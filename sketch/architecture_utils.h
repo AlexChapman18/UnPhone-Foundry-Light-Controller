@@ -2,11 +2,11 @@
  * Architecture group class, stores RGB values and addresses for each architecture group.
  * 
  * Author: Kush Bharakhada and Alex Chapman (2024)
- * Filename: fixture_utils.h
+ * Filename: architecture_utils.h
 */
 
-#ifndef FIXTURE_UTILS_H
-#define FIXTURE_UTILS_H
+#ifndef ARCHITECTURE_UTILS_H
+#define ARCHITECTURE_UTILS_H
 
 #include <Arduino.h>
 #include <stdint.h>

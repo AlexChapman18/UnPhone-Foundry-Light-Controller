@@ -2,10 +2,10 @@
  * Architecture group class, stores RGB values and addresses for each architecture group.
  * 
  * Author: Kush Bharakhada and Alex Chapman (2024)
- * Filename: fixture_utils.cpp
+ * Filename: architecture_utils.cpp
 */
 
-#include <fixture_utils.h>
+#include <architecture_utils.h>
 #include <artnet_utils.h>
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

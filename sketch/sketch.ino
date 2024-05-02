@@ -7,7 +7,7 @@
 
 #include <wifi_utils.h>
 #include <artnet_utils.h>
-#include <fixture_utils.h>
+#include <architecture_utils.h>
 #include <NuPhone.h>
 #include <TFT_eSPI.h>
 #include <LVGL_utils.h>

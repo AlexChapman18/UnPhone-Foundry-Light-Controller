@@ -12,7 +12,7 @@
 #include <stdint.h>
 #include <ArtnetWifi.h>
 #include <private.h>
-#include <fixture_utils.h>
+#include <architecture_utils.h>
 
 /**
  * Repeatedly calculates and sends the universe, used in seperate thread.
