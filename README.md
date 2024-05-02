@@ -12,7 +12,6 @@ The objective of this project has been to control the LED lighting strips around
 
 ## Table of Contents  
 
-
 - [Permissions](#light-control-permissions) 
 - [Project Description](#project-description)
 - [Light Control Permissions](#light-control-permissions)
@@ -119,8 +118,6 @@ For each of the effects below, the intensity fader acts as a maximum brightness 
 
 ### User Interface
 
----
-
 The user interface must be:
 
 - Simple and easy to use.
@@ -163,8 +160,6 @@ Diagram illustrating the connection and navigation between different screens:
 As presented in the diagram below, three screens can be navigated to using the physical unPhone buttons. These can be navigated to regardless of the current screen the user is on. To enter the colour screen, the user must press the architecture that requires its colour to be changed. The user can then navigate back to the architecture screen by pressing **Back** or the unPhone triangle button.
 
 ### Networking and Backend
-
----
 
 Hardware wiring diragram:
 
@@ -240,8 +235,6 @@ To fully grasp an understanding of the [unPhone library](https://gitlab.com/hami
 |[ArtnetWifi](https://www.arduino.cc/reference/en/libraries/artnetwifi/)|Transmitting Art-Net frames.|
 
 ### User Interface and LVGL
-
----
 
 LVGL Header File and its C++ Implementation:
 
