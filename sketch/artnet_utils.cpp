@@ -1,8 +1,8 @@
 /**
- * Contains Artnet related utilities.
+ * Contains Art-Net related utilities.
  *
  * Author: Kush Bharakhada and Alex Chapman (2024)
- * Filename: fixture_utils.cpp
+ * Filename: artnet_utils.cpp
 */
 
 #include <artnet_utils.h>
@@ -46,9 +46,9 @@ void keepSendingUniverse(void *params) {
                 break;
         }
 
-        // Sends the calcualted universe as a network packet
+        // Sends the calculated universe as a network packet
         artnet.write();
-        // Wait 35 MS between sending packets
+        // Wait 35ms between sending packets
         vTaskDelay(35 / portTICK_RATE_MS);
     }
 }
@@ -76,7 +76,7 @@ void ArtNetUniverse::setup() {
 
 void ArtNetUniverse::begin() {
     // Creates a new thread running keepSendingUniverse function
-    xTaskCreate(keepSendingUniverse, "Art-net output", 7000, NULL, configMAX_PRIORITIES - 1, NULL);
+    xTaskCreate(keepSendingUniverse, "Art-Net output", 7000, NULL, configMAX_PRIORITIES - 1, NULL);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,7 +103,7 @@ float ArtNetUniverse::getIntensity() {
 
 void effect1(ArtnetWifi *artnet) {
     // Iterates through each value in the universe, multiplies its respective color
-    // and intensity values and writes it to artnet
+    // and intensity values and writes it to Art-Net
     for (int i = 0; i < 512; i++) {
         artnet->setByte(i, ArtNetUniverse::current_intensity * ArtNetUniverse::color_universe[i]);
     }
@@ -114,29 +114,29 @@ void effect2(ArtnetWifi *artnet, float step) {
     float intensity = abs(sin(step/(10 + (30 * (1 - ArtNetUniverse::current_speed))))) * ArtNetUniverse::current_intensity;
     
     for (int i = 0; i < 512; i++) {
-        // Writes the multiplied value to art-net
+        // Writes the multiplied value to Art-Net
         artnet->setByte(i, intensity * ArtNetUniverse::color_universe[i]);
     }
 }
 
 void effect3(ArtnetWifi *artnet, float step) {
-    // Calcualtes the speed the effect should run based on the speed fader values
+    // Calculates the speed the effect should run based on the speed fader values
     float speed = 1 / (20 + 30 * (1 - (float)ArtNetUniverse::current_speed));
     
-    // Itterates through each address in the arcs
-    for (int i = 0; i < patch_All_Arcs_length; i++) {
+    // Iterates through each address in the arcs
+    for (int i = 0; i < PATCH_ALL_ARCS_LENGTH; i++) {
         
-        // Calculates the new intensity based on intesnity value, step and current arc index
+        // Calculates the new intensity based on intensity value, step and current arc index
         float offset = i%2 * 3.14 / 2;
         float index = step * speed + offset;
         float intensity = abs(sin(index)) * ArtNetUniverse::current_intensity;
 
-        // Gets the address of R,G,B for the current arc
-        uint16_t red_address = patch_All_Arcs[i] - 1;
-        uint16_t green_address = patch_All_Arcs[i];
-        uint16_t blue_address = patch_All_Arcs[i] + 1;
+        // Gets the address of RGB for the current arc
+        uint16_t red_address = PATCH_ALL_ARCS[i] - 1;
+        uint16_t green_address = PATCH_ALL_ARCS[i];
+        uint16_t blue_address = PATCH_ALL_ARCS[i] + 1;
 
-        // Sets the value of RGB seperatly
+        // Sets the value of RGB seperately
         artnet->setByte(red_address, intensity * ArtNetUniverse::color_universe[red_address]);
         artnet->setByte(green_address, intensity * ArtNetUniverse::color_universe[green_address]);
         artnet->setByte(blue_address, intensity * ArtNetUniverse::color_universe[blue_address]);
@@ -144,21 +144,21 @@ void effect3(ArtnetWifi *artnet, float step) {
 }
 
 void effect4(ArtnetWifi *artnet, float step) {
-    // Calcualtes the speed the effect should run based on the speed fader values
+    // Calculates the speed the effect should run based on the speed fader values
     float speed = 1 / (20 + 30 * (1 - (float)ArtNetUniverse::current_speed));
 
-    for (int i = 0; i < patch_All_Arcs_length; i++) {
-        // Calculates the new intensity based on intesnity value, step and current arc index
-        float offset = ((float)i / (float)patch_All_Arcs_length) * 3.14;
+    for (int i = 0; i < PATCH_ALL_ARCS_LENGTH; i++) {
+        // Calculates the new intensity based on intensity value, step and current arc index
+        float offset = ((float)i / (float)PATCH_ALL_ARCS_LENGTH) * 3.14;
         float index = step * speed + offset;
         float intensity = abs(sin(index)) * ArtNetUniverse::current_intensity;
 
-        // Gets the address of R,G,B for the current arc
-        uint16_t red_address = patch_All_Arcs[i] - 1;
-        uint16_t green_address = patch_All_Arcs[i];
-        uint16_t blue_address = patch_All_Arcs[i] + 1;
+        // Gets the address of RGB for the current arc
+        uint16_t red_address = PATCH_ALL_ARCS[i] - 1;
+        uint16_t green_address = PATCH_ALL_ARCS[i];
+        uint16_t blue_address = PATCH_ALL_ARCS[i] + 1;
 
-        // Sets the value of RGB seperatly
+        // Sets the value of RGB seperately
         artnet->setByte(red_address, intensity * ArtNetUniverse::color_universe[red_address]);
         artnet->setByte(green_address, intensity * ArtNetUniverse::color_universe[green_address]);
         artnet->setByte(blue_address, intensity * ArtNetUniverse::color_universe[blue_address]);
@@ -166,19 +166,19 @@ void effect4(ArtnetWifi *artnet, float step) {
 }
 
 void effect5(ArtnetWifi *artnet, float step) {
-    // Calcualtes the speed the effect should run based on the speed fader values
+    // Calculates the speed the effect should run based on the speed fader values
     float speed = 1 / (20 + 30 * (1 - (float)ArtNetUniverse::current_speed));
-    for (int i = 0; i < patch_All_Arcs_length; i++) {
+    for (int i = 0; i < PATCH_ALL_ARCS_LENGTH; i++) {
 
-        // Calculates the new intensity based on intesnity value, step and current arc index
-        float offset = ((float)i / (float)patch_All_Arcs_length) * 3.14;
+        // Calculates the new intensity based on intensity value, step and current arc index
+        float offset = ((float)i / (float)PATCH_ALL_ARCS_LENGTH) * 3.14;
         float index = step * speed + offset;
         float intensity = round(abs(sin(index))) * ArtNetUniverse::current_intensity;
 
-        // Gets the address of R,G,B for the current arc
-        uint16_t red_address = patch_All_Arcs[i] - 1;
-        uint16_t green_address = patch_All_Arcs[i];
-        uint16_t blue_address = patch_All_Arcs[i] + 1;
+        // Gets the address of RGB for the current arc
+        uint16_t red_address = PATCH_ALL_ARCS[i] - 1;
+        uint16_t green_address = PATCH_ALL_ARCS[i];
+        uint16_t blue_address = PATCH_ALL_ARCS[i] + 1;
 
         // Sets the value of RGB seperatly
         artnet->setByte(red_address, intensity * ArtNetUniverse::color_universe[red_address]);
@@ -194,17 +194,17 @@ void effect6(ArtnetWifi *artnet, float step) {
 
     // Iterates through each bar
     for (int i = 0; i < 3; i++) {
-        // Calculates the new intensity based on intesnity value, step and current arc index
+        // Calculates the new intensity based on intensity value, step and current arc index
         float offset = ((float)i / (float)3) * 3.14;
         float index = step * speed + offset;
         float intensity = abs(sin(index)) * ArtNetUniverse::current_intensity;
 
-        // Gets the address of R,G,B for the current arc
-        uint16_t red_address = patch_All_Bars[i] - 1;
-        uint16_t green_address = patch_All_Bars[i];
-        uint16_t blue_address = patch_All_Bars[i] + 1;
+        // Gets the address of RGB for the current arc
+        uint16_t red_address = PATCH_ALL_BARS[i] - 1;
+        uint16_t green_address = PATCH_ALL_BARS[i];
+        uint16_t blue_address = PATCH_ALL_BARS[i] + 1;
 
-        // Sets the value of RGB seperatly
+        // Sets the value of RGB seperately
         artnet->setByte(red_address, intensity * ArtNetUniverse::color_universe[red_address]);
         artnet->setByte(green_address, intensity * ArtNetUniverse::color_universe[green_address]);
         artnet->setByte(blue_address, intensity * ArtNetUniverse::color_universe[blue_address]);

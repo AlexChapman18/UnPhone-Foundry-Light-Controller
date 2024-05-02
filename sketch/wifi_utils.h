@@ -39,9 +39,9 @@ class ESPWiFi {
         void begin();
 
         /**
-         * Checks the UnPhone WiFi status.
+         * Checks the unPhoneWiFi status.
          * 
-         * @return - Boolean of the UnPhone WiFi status.
+         * @return - Boolean of the unPhoneWiFi status.
          */
         bool isConnected();
 
