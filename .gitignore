@@ -1,5 +1,5 @@
 .DS_Store
 /.pio/*
 /.vscode/*
-sketch/private.h
-sketch/sketch.ino.cpp
+private.h
+sketch.ino.cpp
