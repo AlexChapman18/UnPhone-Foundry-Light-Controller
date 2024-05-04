@@ -2,7 +2,7 @@
  * Main file to run application.
  * 
  * Author: Kush Bharakhada and Alex Chapman (2024)
- * Filename: sketch.ino
+ * Filename: ProjectThing.ino
 */
 
 #include <wifi_utils.h>
