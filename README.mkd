@@ -27,6 +27,7 @@ The objective of this project has been to control the LED lighting strips around
   - [GUI](#gui-testing)
   - [WiFi](#wifi-testing)
   - [Packet](#packet-testing)
+- [Self Assessment](#self-assessment)
 - [Future Work](#future-work)
 - [Video Link](#video-link)
 
@@ -266,6 +267,15 @@ To verify the correctness of the packets sent, 2 live Art-Net packet viewers wer
 
 <img src="images/live-artnet-view.gif" alt="breadboard" width="600"/>
 <img src="images/live-artnet-view2.gif" alt="breadboard" width="600"/>
+
+## Self-Assessment
+
+In this project, we have utilised the unPhone to control the Foundry Lights. The project has been successful, allowing the user to control colours, brightness/intensities, and apply various effects with different speeds. There were many obstacles throughout the project, however with planning and design, and prior experimentation, the challenges were reduced. A few of these challenges have been listed below:
+
+- A true test on controlling the lights requires access to the Foundry which is not always available.
+- Initially, it was not possible for the user to know if they were connected to the lights. For this reason, a signal strength indicator, which updates live, was introduced.
+- There was an issue with the additional thread used for sending packets where it would slow down after a few seconds. This issue was narrowed down to the use of Serial print statements which had to be removed.
+- By not using the unPhone library, there were issues initialising the backlight. It was later found that the backlight was connected to the TCA chip. Research was conducted by reading the [TCA documentation](https://www.ti.com/lit/ds/symlink/tca9555.pdf) in order to gain a better understanding, and then implemented into nuPhone.
 
 ## Future Work
 
