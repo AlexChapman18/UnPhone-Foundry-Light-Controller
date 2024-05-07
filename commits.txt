@@ -1,0 +1,1349 @@
+commit 5d6c2ccd603b3c8a3fb464a7e517f9d1cd337ddb
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue May 7 20:54:31 2024 +0100
+
+    README update.
+
+commit c5d2722b9e9f9a62dfa7a23b160335356105138b
+Merge: 286e840 93cbc69
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Sat May 4 12:57:28 2024 +0100
+
+    Merge pull request #37 from KushBharakhada/handin
+    
+    `Final Handin Branch`
+
+commit 93cbc694aecc611abe23035e7965d99c5158f835
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat May 4 12:47:31 2024 +0100
+
+    Added self-assessment with Alex.
+
+commit 1e4ee616b049479f9c95bc916aa522c6dae49c78
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat May 4 12:14:09 2024 +0100
+
+    Add video
+
+commit 3c5ebcdda8298fa46c3f2baa0a92919384373610
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat May 4 12:10:04 2024 +0100
+
+    Add pair.txt
+
+commit bcb25d5693a41ba1cd2c3964145aed0857011345
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat May 4 12:07:33 2024 +0100
+
+    Update main readme file type and add rubic.mkd.
+
+commit f54a6f29958cc553f2faf49d06d9e81a21067538
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat May 4 12:06:06 2024 +0100
+
+    Update project and main file name to match Hamish's repo.
+
+commit 45b5dc0248711bd09e07209e3085ee88e88147f9
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat May 4 12:01:16 2024 +0100
+
+    Add private.h.
+
+commit 286e84023a1b4e7566a372d8f5a5ac396c79774d
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 19:33:37 2024 +0100
+
+    Readme updates.
+
+commit 809e0450c0455049556c60edd5c351d477923257
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 18:57:16 2024 +0100
+
+    possible readme update
+
+commit 62b3ba20f8b79d44bdad988c6877051a0ba5ecde
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 18:29:44 2024 +0100
+
+    Readme update part 2,
+
+commit 966a9bb9c065f50d2a2021e36697cecb88df5d6c
+Merge: dc51688 c5ec29f
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 18:26:23 2024 +0100
+
+    Merge branch 'main' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller
+
+commit c5ec29fdd5bc0cb05ac1aea82e2110feb2eeaaf0
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 18:25:57 2024 +0100
+
+    removed git ignore file
+
+commit dc516880a53f67ee7b2a3ec11144de5ee9a4dd7e
+Merge: d962e6f 6c3d43d
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 18:25:52 2024 +0100
+
+    Merge branch 'main' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller
+
+commit d962e6f5fe94aeed5b59088242a800579921b504
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 18:25:46 2024 +0100
+
+    Readme update part 1.
+
+commit 6c3d43d42af4ae2e2603d8bace048be9c7611f1d
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 18:23:53 2024 +0100
+
+    removed git ignore file
+
+commit 14477fc514ac48ae0ce949deebf6cf2ba9d88f4f
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 18:21:40 2024 +0100
+
+    update git ignore
+
+commit 7961a6161f8af026d0b2efb6a9a7d12043347f89
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 17:25:49 2024 +0100
+
+    Update unPhone comments.
+
+commit 5110e693e39fd4d27461803c199aa57ac74597f8
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 17:17:22 2024 +0100
+
+    Update gitignore (Alex told me wrong).
+
+commit 163bb80e934a770fbe1c6f1e45cbe4d141376b23
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 17:15:12 2024 +0100
+
+    Update gitignore
+
+commit c4033a62ceb4c95c41408ec37176cd87fd35f633
+Merge: f2b3e87 ec187ca
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 17:13:53 2024 +0100
+
+    Merge pull request #36 from KushBharakhada/finalising
+    
+    Finalising
+
+commit f2b3e87ec13bb80ae4627d50b5e8b53ec98d1b88
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 17:12:01 2024 +0100
+
+    Add private.h and update image.
+
+commit ec187cac2050b339cc55411cbdede2ed1dcfb005
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 17:10:26 2024 +0100
+
+    fixed naming of unPhone and nuPhone
+
+commit 3fa1bbcea5dc194d95f91c9da0e2cd999100ac8b
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 17:05:38 2024 +0100
+
+    Constant changes to architecture_utils
+
+commit ca514be6bfc89185a5bd34609e038a76f0117618
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 16:52:16 2024 +0100
+
+    Renamed fixture_utils to architecture_utils
+
+commit 6cc8b9b19cbba3d8f54233d0b2776d6422d7f592
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Thu May 2 16:47:40 2024 +0100
+
+    unionised Art-Net spelling
+
+commit 99433f4a010b0f8fbce6163b94603a4f1e2bb61f
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu May 2 16:38:27 2024 +0100
+
+    Minor changes.
+
+commit 77feb66f7deb7a83e478a3da3252c3e59058f6a8
+Merge: ef645d6 679d79b
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 27 00:16:02 2024 +0100
+
+    Merge pull request #35 from KushBharakhada/Readme_ToDos/Alex
+    
+    Readme to dos/alex
+
+commit 679d79b8f37d19d759f9c81f3ef0167b3090768c
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Sat Apr 27 00:06:13 2024 +0100
+
+    fixed color
+
+commit e93939b5ff73e0642a6f8585d0b6a28e8980e613
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 23:51:51 2024 +0100
+
+    finished documenting backend images
+
+commit cd3017ae21bea95873d1ed2c8dc9473e7e2d4fc3
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 23:02:22 2024 +0100
+
+    Documented the Hardware system diagram
+
+commit 78270bf9e6aafbee4274297ca81ee6caa6d73c6d
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 23:02:22 2024 +0100
+
+    Documented the Hardware system diagram
+
+commit 7bc69809012d4b5dbb6aab6df48d9c7e1f8ccef5
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 26 23:02:08 2024 +0100
+
+    New images, and wifi testing.
+
+commit e9ef6792615cfccfa9c0c79511253513604f17da
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 22:25:55 2024 +0100
+
+    reformatted Future work
+
+commit ef645d6f37aa978c7e94eaaf4f51b3097ee6116e
+Merge: 1dd8ab9 7fbaa1f
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Apr 26 23:51:21 2024 +0100
+
+    Merge pull request #34 from KushBharakhada/readme/kush
+    
+    Readme/kush
+
+commit 7fbaa1f515850a324acbc18ef3edc6520caf46ec
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 26 23:39:16 2024 +0100
+
+    Table of contents.
+
+commit f6f31ba15234dbe3dfefc79ebeef18a027363052
+Merge: 57b30d6 f7df0f9
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 23:11:23 2024 +0100
+
+    Merge branch 'Readme_ToDos/Alex' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller into Readme_ToDos/Alex
+
+commit 57b30d6dbec5500029ba9f51ec1db6ece7eff4c1
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 23:02:22 2024 +0100
+
+    Documented the Hardware system diagram
+
+commit f7df0f9afb66f9c42f546a33ca69dbfe4eb2e14b
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 23:02:22 2024 +0100
+
+    Documented the Hardware system diagram
+
+commit 4df33754413e72610d1ed5d4dc0d7bc210c4d23f
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 26 23:02:08 2024 +0100
+
+    New images, and wifi testing.
+
+commit 183374f4eb3cbe6bc8db3689ee65a0001c7d9ec4
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 26 22:27:34 2024 +0100
+
+    Update image for screenshots.
+
+commit 8f2554635ebc69467e2c3b163926aef662316d9d
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 22:25:55 2024 +0100
+
+    reformatted Future work
+
+commit f73aa16f7b80e132aa0f41840345a319f230676d
+Merge: 14ea899 a113a05
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 22:03:51 2024 +0100
+
+    Merge branch 'Readme_ToDos/Alex' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller into Readme_ToDos/Alex
+
+commit 14ea899aeedb804e0497d6db0f3a5deb881503ee
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 21:58:51 2024 +0100
+
+    finished Future work
+
+commit a4310b77f11214aa3459016a27355de9fcc36bbf
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 20:31:25 2024 +0100
+
+    Updated libraries in readme, remove dead libraries from platformio.ini and nuPhone
+
+commit 885f27d05d1333434d6fd0b857f8a06318a7571b
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Apr 26 19:20:31 2024 +0100
+
+    pushing to dektop
+
+commit 1dd8ab9260873ec2e6cefda5fc307444291a5e73
+Merge: 1556b89 88d6d0b
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Apr 26 22:01:29 2024 +0100
+
+    Merge pull request #33 from KushBharakhada/readme/kush
+    
+    Readme/kush
+
+commit 88d6d0bfdc70ac8106ab449a407821e07c8163ac
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Apr 26 22:00:02 2024 +0100
+
+    Delete temp.txt
+    
+    Deleted temp.txt
+
+commit a113a05cfe66ea0152a176268fbd2b28032d0720
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 21:58:51 2024 +0100
+
+    finished Future work
+
+commit 6ed6078028191232d7316abe92099c9ad6840615
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 26 21:55:33 2024 +0100
+
+    Compress image
+
+commit 1a8463390c4daafc301ec663d138c14b59f53b91
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 26 21:35:40 2024 +0100
+
+    Update image.,
+
+commit edace8742e87fe68fc2a0dfe0282ece2f74be9df
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 26 21:29:28 2024 +0100
+
+    Documentation updates and new images.
+
+commit 5f9978cf4d6220fb97a7ad906a5402ce320bb19e
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 26 20:31:25 2024 +0100
+
+    Updated libraries in readme, remove dead libraries from platformio.ini and nuPhone
+
+commit 0734ffcbdc241a1dd3d68965d84b0adda3b8e816
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Apr 26 19:20:31 2024 +0100
+
+    pushing to dektop
+
+commit 1556b8973f17f2de96cd40fcb359a93f00690e20
+Merge: ed27dbc dee311b
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Wed Apr 24 09:53:19 2024 +0100
+
+    Merge pull request #32 from KushBharakhada/title/kush
+    
+    Title for effects screen and minor changes.
+
+commit dee311b0ce8ecc185de2a29b3789221acd684f54
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Apr 24 09:44:53 2024 +0100
+
+    Title for effects screen and minor changes.
+
+commit ed27dbc9803d4f1be396ea5cc8822f51d2da3396
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Wed Apr 24 09:32:45 2024 +0100
+
+    Fixing major issue, Kush SMH
+
+commit 167c2f00a4b72d58a459141eece9539d2fb846e4
+Merge: 54c92b3 d53651f
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Wed Apr 24 09:20:00 2024 +0100
+
+    Merge pull request #31 from KushBharakhada/small-changes/kush
+    
+    Code structure changes.
+
+commit d53651f0fa69ae642d79a40eb6ccd752d6fb1245
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sun Apr 21 11:41:13 2024 +0100
+
+    Code structure changes.
+
+commit 54c92b3530c082806f4d509f558455d82cb229a6
+Merge: da7d3c8 9b91cb3
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 20 23:36:12 2024 +0100
+
+    Merge pull request #30 from KushBharakhada/documenting/Alex
+    
+    Documenting/alex
+
+commit 9b91cb3ee445ce20dcc831e64deb4a305e10a4c5
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Sat Apr 20 23:34:27 2024 +0100
+
+    finished commenting NuPhone
+
+commit 89b34ec75eadcbec30ff4574c4677c3d7fb70fdf
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Sat Apr 20 23:19:23 2024 +0100
+
+    finished commenting fixture_utils
+
+commit 35d4fd90a83ea0cc3e72a6039bbf2a8ab87c258b
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Sat Apr 20 22:47:11 2024 +0100
+
+    finished commenting artnet_utils
+
+commit cd7b448a766f8af63c085b7ce548d73130fe74d9
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 20 23:01:57 2024 +0100
+
+    WiFi utils doc.
+
+commit da7d3c8a8612122ce49a99e9b11c0ffe99697076
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 20 22:29:52 2024 +0100
+
+    Documenting.
+
+commit 77778782eb9ecd3637c72f4d4aa1f4dcbe21b48e
+Merge: 97beb44 74220aa
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 20 21:49:23 2024 +0100
+
+    Merge pull request #29 from KushBharakhada/signal-strength
+    
+    Signal strength
+
+commit 74220aaf0dd6f61d191349eb8fcf9815127ce982
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 20 09:21:33 2024 +0100
+
+    Added WiFi connections constants rather than hardcode in sketch.
+
+commit ac2581e87584f189ae6d1a186e420fd7b1a231e3
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 20 09:04:29 2024 +0100
+
+    Docstrings and refactor.
+
+commit 5266e286cc0d07332859e89525e1b919f907fdf2
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Sat Apr 20 01:00:49 2024 +0100
+
+    added error bar and increased size of bars as to not need glasses
+
+commit 5002ca5b5dfc7f23423446764e68e833d72dedb5
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Sat Apr 20 00:19:00 2024 +0100
+
+    Fixed issue where wifi bars would go to full when changing pages
+
+commit 50ab3075245cfd7e03f0f29601177a1539520036
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Sat Apr 20 00:09:08 2024 +0100
+
+    Fixed wifi bars issue
+
+commit 20286c3c7a71706652cbe1a5c22030bbe64a956f
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 19 23:44:27 2024 +0100
+
+    added delay to wifi draw updating
+
+commit 1878a7032db2f50c838908b71a60286dfa1f7f24
+Merge: 4e5c02a f6f2909
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 19 23:28:41 2024 +0100
+
+    Merge branch 'signal-strength' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller into signal-strength
+
+commit 4e5c02ae937f301320d802bec62c9ff6c577c68d
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 19 23:28:37 2024 +0100
+
+    added wifi strength function
+
+commit f6f2909f7b05503330181d8f4602422f7585a5e9
+Merge: bc9f93f 8d617df
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 19 23:05:49 2024 +0100
+
+    Merge branch 'signal-strength' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller into signal-strength
+
+commit bc9f93f3265a21071a3c415434c17fa45bc0cd13
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 19 23:03:07 2024 +0100
+
+    Refactor signal strength code.
+
+commit 836750f23c501860049a402c09b4dc4e1a734f75
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 19 22:57:23 2024 +0100
+
+    Signal strength bars.
+
+commit 97beb44b0ec11ce4e8e658e3e822d64fb3fd8b1d
+Merge: 70786bd 8a110fb
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 19 23:03:38 2024 +0100
+
+    Merge pull request #28 from KushBharakhada/removing_wifi_boot/Alex
+    
+    unphone now boots if wifi not connected
+
+commit 8d617dfbb90e6fa7e9495df8bcf1a3e266477e52
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 19 23:03:07 2024 +0100
+
+    Refactor signal strength code.
+
+commit b6246ec7d92dd5fa21788aa12c6e23da4bf3b940
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 19 22:57:23 2024 +0100
+
+    Signal strength bars.
+
+commit 8a110fbd5c967791757f7ff480f157d6c935ca86
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 19 22:14:57 2024 +0100
+
+    unphone now boots if wifi not connected
+
+commit 70786bd94f0f58023a40bf47ac0e5ce2aeb6f038
+Merge: 7fa2501 e42c3e0
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Apr 19 21:49:24 2024 +0100
+
+    Merge pull request #27 from KushBharakhada/connection/kush
+    
+    Connection/kush
+
+commit e42c3e0611e68bf4c551121f523e6d662f5e0f3a
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Apr 19 10:59:39 2024 +0100
+
+    WiFi icons and disconnection symbols added.
+
+commit 6c633a5016690d7154e381e7831960af4653adfb
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Apr 17 19:07:46 2024 +0100
+
+    Live update on wifi connection
+
+commit 0d7ebc7ea24dc8fd4fdb81a0fd2eacf24b080b4e
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Apr 17 18:06:35 2024 +0100
+
+    Remove do nothing listeners and use rectangles for global colour screen.
+
+commit 9e8d35527c7f0699853feaace247d8327d74b0c5
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Apr 17 17:57:01 2024 +0100
+
+    Creating a rectangle header and cpp implementation.
+
+commit 7fa250134d707ca816e36451c55a3ef8dc7b2db5
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Apr 17 09:16:22 2024 +0100
+
+    Remove redundant code.
+
+commit 2e644c23489aa956a86adb9b2dc31fd81f6fbbc9
+Merge: c00c38b 30a26cc
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Mon Apr 8 22:20:53 2024 +0100
+
+    Merge pull request #26 from KushBharakhada/interface/kush
+    
+    `TODO and Refactoring` (Kush)
+
+commit 30a26cc304ff87ed6dfc89248ec40c3fdd2cbee1
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 6 17:37:31 2024 +0100
+
+    TODO's for Alex and minor changes.
+
+commit 64ee6305db1e94830d0f37d92554d39c83cb6e65
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 6 17:08:59 2024 +0100
+
+    References.
+
+commit 57d8690120a91a10189b281fc184882ffee8bf48
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 6 16:49:59 2024 +0100
+
+    TODOs and readme updates.
+
+commit a8b45720a5ee6e37bcecc2b98a5ba61384382095
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 6 15:56:49 2024 +0100
+
+    Refactoring across all screens.
+
+commit fe159f1c1a872dabf4ddb810e645734d210921b8
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sat Apr 6 15:25:09 2024 +0100
+
+    Refactored architecture screen.
+
+commit c00c38b5e1810af862201df4b2746c678ce7ad10
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Fri Apr 5 00:41:11 2024 +0100
+
+    added further details to readme
+
+commit 9894b669fac235306dab46b4ebfec2ff95b3ba83
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Apr 4 22:56:22 2024 +0100
+
+    References.
+
+commit 6e57215ea74cafa68921f4302a87e3cea1fc8308
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Apr 4 20:49:11 2024 +0100
+
+    Table of contents and additional info.
+
+commit d8bd0b9cd12c47ae3d3797b7dd4a43a279800cb5
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Apr 4 20:05:38 2024 +0100
+
+    Update readme.
+
+commit 3d90b3f65504a65f2b91b434ae5d141c9084f7d6
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Apr 4 19:52:22 2024 +0100
+
+    Simplified UnPhone library description.
+
+commit 48af793db9dabe8034896eda19ad6566b4da9c4a
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Apr 4 19:17:28 2024 +0100
+
+    Updated images and descriptions in readme.
+
+commit 97c3e8d93a9d8fbc38f497b23309c36c1007307a
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Apr 4 18:22:08 2024 +0100
+
+    README.md update.
+
+commit 7fda55a747da570fe19afeedaa1986950f002f68
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Apr 4 18:17:40 2024 +0100
+
+    README.md update
+
+commit 17ba90fc9deea8486ec0bab3695a4d60cc0a8b55
+Merge: 42984b8 704a8fc
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Apr 3 14:54:45 2024 +0100
+
+    Merge pull request #25 from KushBharakhada/Adding-2-effects-Fixing-timings/Alex
+    
+    Finalising effects/Alex
+
+commit 704a8fc4701ce89290bd1f05b915fec327c3b4d6
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Wed Apr 3 14:27:04 2024 +0100
+
+    re-ordered effects and changed temp names
+
+commit 4d65078cb73808e0571b531dc1d9b0b27563bbcd
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Wed Apr 3 14:14:31 2024 +0100
+
+    Added effects
+
+commit 42984b837a14f6ced3da385cc0aa72340a51b12b
+Merge: a75e802 ea03076
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Tue Apr 2 21:03:53 2024 +0100
+
+    Merge pull request #24 from KushBharakhada/refactoring/kush
+    
+    `Refactoring` (Kush)
+
+commit ea0307636fce23898027db04905a7c2d2333ddfb
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Apr 2 21:01:06 2024 +0100
+
+    Fixed speed bug.
+
+commit 7c31ac93df57cb41ecf95a22ffdf6f22104b926d
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Apr 2 20:50:44 2024 +0100
+
+    Refactoring and commenting main sketch.
+
+commit 4f2a5c1afc19ea8a9171a150ccbed05436071ea0
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Apr 2 19:39:00 2024 +0100
+
+    LVGL utils refactoring, docs and comments.
+
+commit a75e802328fa6338d185c3d6171771bed3fa2031
+Merge: 67e65d4 356ec99
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Apr 2 19:40:50 2024 +0100
+
+    Merge pull request #23 from KushBharakhada/Updating-Universe/Alex
+    
+    Updating universe/alex
+
+commit 356ec99d0cba974568c17f33fe9d5da6d4f525a2
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Tue Apr 2 19:09:03 2024 +0100
+
+    Re-added the universe to artnet_utils
+
+commit 75f275c861adb0e4403b850bc83177014d0045de
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Tue Apr 2 19:05:15 2024 +0100
+
+    Moved universe reference to private.h
+
+commit 045d9811df8d2c09cb5e9a5644337395d8eb3366
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Tue Apr 2 19:00:32 2024 +0100
+
+    updated universe
+
+commit 67e65d47c5b185e429e310519911c5f2f9ac15e7
+Merge: ae276c2 0d21b35
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Mon Apr 1 22:51:23 2024 +0100
+
+    Merge pull request #22 from KushBharakhada/Adding-first-effect/Alex
+    
+    Adding and optimising effects/alex
+
+commit 0d21b35e0ea08df3392f1c16b0b7674e41b50fc7
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Mon Apr 1 22:40:30 2024 +0100
+
+    Refaactored the effects to make it more readable and reduce duplicate code
+
+commit ae276c24013eeb5ded7c801297529118de496358
+Merge: 030f13f 2f6d68f
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Sun Mar 31 22:28:38 2024 +0100
+
+    Merge pull request #21 from KushBharakhada/update-faders/kush
+    
+    `Slider Updates` (Kush)
+
+commit fbd9d60ced164020256060cd22d492d3d602474f
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Sun Mar 31 21:37:05 2024 +0100
+
+    Added final effect, added intensity fader for effects, changed how current_intensity works
+
+commit 2f6d68f591a0c3c9b6a548f2bda94a7bfca95e52
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Sun Mar 31 21:22:59 2024 +0100
+
+    Live updates to sliders as pre-made colours are selected.
+
+commit c523ea15150ccbecd04eb5004b28c203ebcd8073
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Sun Mar 31 21:16:22 2024 +0100
+
+    added 3rd effect, moved order of effects
+
+commit 1fad6bfd9e2a424f687a7607a4d095eb4ffa49fc
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Sun Mar 31 21:10:49 2024 +0100
+
+    Moved patch definitions to header file and added effect 3
+
+commit ac7f98c204d6dbcd5697b9c53ed41a7951fe49d5
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Sun Mar 31 19:45:54 2024 +0100
+
+    Removed debug serial, and fixed art-net thread issue
+
+commit 3b9a0d9d9b464138781128d12dea78867188bad1
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Sat Mar 30 01:04:49 2024 +0000
+
+    started first effect
+
+commit 030f13f5638eafd7c6dd31d15bcb7ddf39f6af33
+Merge: 90a7952 945788a
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Mar 29 23:04:59 2024 +0000
+
+    Merge pull request #19 from KushBharakhada/screen-logic/kush
+    
+    Screen Logic (Kush)
+
+commit 945788abbcbfb58f10ae80059b8ab17b14dbda16
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 22:53:31 2024 +0000
+
+    Print statements removed. All logic complete.
+
+commit e147a880137ec3c741ff189b420bf7b579a9df34
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 22:29:59 2024 +0000
+
+    Touchscreen button logic implemented for switching screens.
+
+commit eb4df77059d3b2785093bf16fc15fba07080faa2
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 22:11:14 2024 +0000
+
+    unPhone button logic implemented for screen switching. [touch button screen switching incomplete]
+
+commit 90a7952c2df5f693a8068f6e5b0f97198094412a
+Merge: 238eacc ac2966a
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Mar 29 23:03:11 2024 +0000
+
+    Merge branch 'main' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller
+
+commit 238eacc6fa2784d4355b4a8fd85b0065f39783d7
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Mar 29 23:03:04 2024 +0000
+
+    added official venue patch and fixed several address bugs
+
+commit ac2966ad8a7f7d8466bbd7266a521ad73eec78e0
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 18:53:12 2024 +0000
+
+    Fix inconsistency with buttons.
+
+commit 5dc6e1b9494aa9162ab2f02ac789d9bba620030c
+Merge: 3bfa97c 4319568
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Mar 29 17:52:17 2024 +0000
+
+    Merge pull request #18 from KushBharakhada/color-status-screen/kush
+    
+    `Color Status Screen` (Kush)
+
+commit 4319568200c960e3b693791e4227f53d50671108
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 17:50:16 2024 +0000
+
+    User can see global color status now for each arc.
+
+commit 44e7fa2df1e9d703d10c253d0bc67c8947220fff
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 17:25:58 2024 +0000
+
+    All information added to Global Color Status screen.
+
+commit 9093a5ebee27deda795eab6bf9ed261f1ce66a45
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 17:19:46 2024 +0000
+
+    Color screen removes \n from names so they are on one line.
+
+commit 3bfa97c1fc3f07cf2974b96fdd25c0e449610de6
+Merge: abb037e 496ae25
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Mar 29 16:52:20 2024 +0000
+
+    Merge pull request #17 from KushBharakhada/Fixing-intensity-slider/Alex
+    
+    Fixed Fader
+
+commit 496ae25d03475b744ab1c53cdbe69eefd163414b
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Mar 29 16:51:50 2024 +0000
+
+    fixed styling issue
+
+commit d927b6f0f7a105f8c673d1937dc49e8ec7641390
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Mar 29 16:50:14 2024 +0000
+
+    Fixed Fader
+
+commit abb037eeefdedb3b8d1f24ed30d19f1269c7fbbc
+Merge: bb80391 a5ebbe4
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 16:41:00 2024 +0000
+
+    Merge pull request #16 from KushBharakhada/artnet-optimisations/Alex
+    
+    first optimisation
+
+commit bb80391fef06e024757b11fb24b5ee11f011d2d5
+Merge: a6ee111 7c3fc39
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Mar 29 16:21:28 2024 +0000
+
+    Merge pull request #15 from KushBharakhada/screen-switching/kush
+    
+    `Screen Switching` (Kush)
+
+commit 7c3fc39c51b20d154557d36a8e0fbed2667d6652
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 16:18:14 2024 +0000
+
+    Switchable screens using buttons on unPhone.
+
+commit 131d110a0d9911ec6a09adda44a34f86aba48188
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Fri Mar 29 16:08:20 2024 +0000
+
+    Screen deleting and rendering to be used with buttons.
+
+commit a5ebbe4ff3133ec653473fc8111feb266cfb5f05
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Mar 29 16:04:29 2024 +0000
+
+    first optimisation
+
+commit a6ee111f248cfc81b5b6bb5235a3a781835da737
+Merge: 684610b cca6ee7
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Fri Mar 29 15:50:11 2024 +0000
+
+    Merge pull request #14 from KushBharakhada/Fixing-unphone-switch/Alex
+    
+    Fixed issue
+
+commit cca6ee718bb40a4c7d95359f21f8bc3ab5cf8d98
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Fri Mar 29 15:49:16 2024 +0000
+
+    Fixed issue
+
+commit 684610bddadda3672f0c8b081f6d580e46a0f33c
+Merge: 135eb3e c89d09f
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 23:00:51 2024 +0000
+
+    Merge pull request #13 from KushBharakhada/Further-art-net-features/Alex
+    
+    Added ability to adjust the color for DMX output
+
+commit c89d09f0beab2396401b85f68f5b061a1c8f4f5d
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Thu Mar 28 22:04:41 2024 +0000
+
+    Added ability to adjust the color for DMX output
+
+commit 135eb3e674a43a436a7a9b909cf3c8eff745102e
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Thu Mar 28 21:29:37 2024 +0000
+
+    Added ability to send art-net packets from unphone
+
+commit fa77e8bbdd6a78e6f6eb3db8c9dff61bc5e18ed6
+Merge: 121c83b f3cd6cc
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 19:50:47 2024 +0000
+
+    Merge pull request #12 from KushBharakhada/adding-buttons/Alex
+    
+    Finished adding buttons
+
+commit 121c83bf4726ca1cfd6089fa352edc6284b48970
+Merge: ba25e35 41f9a65
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 19:50:14 2024 +0000
+
+    Merge pull request #11 from KushBharakhada/basic-wifi-connection/Alex
+    
+    Basic wifi connection/alex
+
+commit f3cd6cc1cc5a6dfaa01b6a41d3eaeae72b7eacd2
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Thu Mar 28 19:37:22 2024 +0000
+
+    Finished adding buttons
+
+commit 41f9a6510b4d888267a361678625a562abbb0da6
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Thu Mar 28 18:21:39 2024 +0000
+
+    Finished WiFi implementation
+
+commit 1ab1273c0981e29659437bf773600b7481ed5507
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Thu Mar 28 18:03:31 2024 +0000
+
+    Fixed minor bug
+
+commit bac4a2406d8abbb3299cdd49464f00e87c72eb27
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Thu Mar 28 18:02:27 2024 +0000
+
+    Added basic wifi implementation
+
+commit ba25e35f3aaec61c728632a42ac1adc18ed8bd08
+Merge: 8c05c31 113cdc0
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 15:14:48 2024 +0000
+
+    Merge pull request #10 from KushBharakhada/sliders/kush
+    
+    `Sliders` (Kush)
+
+commit 113cdc0b1dd14c781e58ecc668a9e79a9d85dacf
+Merge: 0baa9b8 5c4d230
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 15:14:14 2024 +0000
+
+    Fix merge conflict.
+
+commit 0baa9b862ba58f701aa17dc3a4e280e7aee8bcb3
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 15:13:13 2024 +0000
+
+    Set values for speed and intensity sliders.
+
+commit b0ed67a9938b4f332e11134190ea4e55fc617f0c
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 14:46:43 2024 +0000
+
+    Intensity and speed values range 0-1 rather than 0-255.
+
+commit 8c05c312fbecd8290a3b387866c28a04934f7d18
+Merge: e058d4b 472b5d2
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 15:04:27 2024 +0000
+
+    Merge pull request #9 from KushBharakhada/starting-artNet/Alex
+    
+    Added basic art-net functionality classes
+
+commit 472b5d253c613158d9c0378b0a62aeb107ce787b
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Thu Mar 28 15:03:15 2024 +0000
+
+    Added basic art-net functionality classes
+
+commit 5c4d230ec62c278af4d6eb049e48b893a1ef3f85
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Thu Mar 28 14:46:43 2024 +0000
+
+    Intensity and speed values range 0-1 rather than 0-255.
+
+commit e058d4bd918fba8d2c90f1db78f283d6af9244c7
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 23:42:19 2024 +0000
+
+    Major bug fix.
+
+commit 2e55990425f8b7fe31db7fc720665bae34cae605
+Merge: a7ee491 fe6b830
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 23:37:21 2024 +0000
+
+    Merge pull request #8 from KushBharakhada/event-listeners/kush
+    
+    Event listeners/kush
+
+commit fe6b8303890f9b809ca9ae64c14622dfb86e19b3
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 23:36:49 2024 +0000
+
+    Refactor.
+
+commit 74e6b85768b053687fa4fd25295af9625bf7819b
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 23:34:53 2024 +0000
+
+    Event listeners for arc group and colours.
+    
+    Co-authored-by: A C <64100075+AlexChapman18@users.noreply.github.com>
+
+commit 159863b4d708f97d073ad61704d2bcf3af8dde7c
+Merge: ddccf0a 844322b
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 22:47:54 2024 +0000
+
+    Merge branch 'event-listeners/kush' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller into event-listeners/kush
+
+commit 844322b70231deefbff2938d54f524319902ea21
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Wed Mar 27 22:47:36 2024 +0000
+
+    updated fixture utils
+
+commit ddccf0a26214e379587f726df9a31bfbb7c314e1
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 22:47:22 2024 +0000
+
+    Added event listeners (templated).
+
+commit 7f63767851bc10bb4579dc03a40a257732f58c4c
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 22:28:08 2024 +0000
+
+    Template fixture group for Alex.
+
+commit a7ee4916eb4265d168c14f717df2d17d0440b2d9
+Merge: c01398a 5dd82a4
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Wed Mar 27 22:16:00 2024 +0000
+
+    Merge pull request #7 from KushBharakhada/intensity-effects/kush
+    
+    `Intensity Effects` (Kush)
+
+commit 5dd82a4b86c72adfe5306e6343610b9c2691b9c3
+Author: Alex Chapman <achapman5@sheffield.ac.uk>
+Date:   Wed Mar 27 22:14:07 2024 +0000
+
+    Fixing WiFi
+    
+    Co-authored-by: K B <97338412+KushBharakhada@users.noreply.github.com>
+
+commit 23fdede3245c3ca65b3f12f6545a4817e9c7c90f
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 16:39:10 2024 +0000
+
+    Comments and refactoring.
+
+commit 23d159b4a5838b054f9940451ef0facd1e44b496
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 16:32:10 2024 +0000
+
+    Intensity and brightness layout.
+
+commit c01398af0832bed2961c7ef4e889942a8d861ec7
+Merge: 3796f30 4ed75e7
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Wed Mar 27 16:22:00 2024 +0000
+
+    Merge branch 'main' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller
+
+commit 3796f30cf2566884de14164c4458d4798d568e34
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Wed Mar 27 16:21:22 2024 +0000
+
+    culled imports
+
+commit 4ed75e71af63dae85cf5fcda9913361ba0513e53
+Merge: 9241a60 57a1857
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Wed Mar 27 15:39:42 2024 +0000
+
+    Merge pull request #6 from KushBharakhada/colour-screen/kush
+    
+    `Colour Screen` (Kush)
+
+commit 57a1857385ea05c37a875aba766e6bd94149f8da
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 15:37:38 2024 +0000
+
+    Fix errors from rebase.
+
+commit 23cb719e8f36c785ceae49a94ac1cabb34d042fb
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 15:33:08 2024 +0000
+
+    Refactoring and comments.
+
+commit 86c09c3e29755786eaf1ce68411a7975778055c9
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 15:11:12 2024 +0000
+
+    Colour page layout and rendering.
+
+commit c5dc22fcbd9b968e427e820601edcc7c18f9a9fe
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Wed Mar 27 15:30:53 2024 +0000
+
+    fixed bottom of touchscreen not responding
+
+commit 9241a60e3d6b30e278dd847d93c00921f70597ec
+Merge: bba247d 38790da
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Wed Mar 27 15:07:57 2024 +0000
+
+    Merge branch 'main' of https://github.com/KushBharakhada/UnPhone-Foundry-Light-Controller
+
+commit bba247d0591cf7b1c3c3fa3a6f8a1b71d37cfe01
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Wed Mar 27 15:04:45 2024 +0000
+
+    Fixed nuphone so it has the backlight feature, fixed an error in the fixture_utils library and added a new import
+
+commit 38790daaef11b3cf72f2faafd796635a81bdaa4a
+Merge: 5c7a7aa 5e9bd39
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Wed Mar 27 14:41:00 2024 +0000
+
+    Merge pull request #5 from KushBharakhada/architectual-screen/Kush
+    
+    `Architectual Screen` (Kush)
+
+commit 5e9bd39a55d0dc935a8e3100f5d35fe70257be2e
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 14:36:56 2024 +0000
+
+    Fix label positioning.
+    
+    Co-authored-by: A C 64100075+AlexChapman18@users.noreply.github.com
+
+commit b427e375c7816d019332a434f23c88054c032fc9
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 13:34:58 2024 +0000
+
+    Fix ISO C++ warnings.
+
+commit 186437ba7575fc41fee27c094a4dda12a2e5f47f
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 12:40:25 2024 +0000
+
+    Ability to round buttons and other minor changes.
+
+commit 34890989375e37a17fbb3480ca8476759c79db44
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Wed Mar 27 12:21:59 2024 +0000
+
+    Create a layout for arch screen, w buttons and labels.
+
+commit 5c7a7aa7ef8861fa72afaa8cb03c08ac50227c4a
+Merge: b4eab66 7563314
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 23:29:15 2024 +0000
+
+    Merge pull request #4 from KushBharakhada/Setup-Touchscreen/Kush
+    
+    `Setup touchscreen` (Kush)
+
+commit 75633142ace82b7bac44ccbcf525ae594b1b3777
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 23:28:34 2024 +0000
+
+    Switching to unPhone; currently in progress w Alex to understand TCA for backlight.
+
+commit 0fbf076f7ab796146a992af44102edf2c743afa7
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 23:00:09 2024 +0000
+
+    Fixing errors and warnings.
+
+commit 424dc2b737a221e37ed6095b9f2e377ddce9b667
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 22:43:09 2024 +0000
+
+    Fixing bugs (with variable names).
+
+commit 79afcf0ccfa64e0a795e16587c59039bd8744f2f
+Merge: 2d6c03e c3f5d6c
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 22:41:17 2024 +0000
+
+    Fix conflict.
+
+commit 2d6c03e499bf16948f936feb2e0d7224c476ae11
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 22:37:50 2024 +0000
+
+    Touchscreen and display, LVGL initialisations.
+
+commit c3f5d6c3a0ba18f79c2078697169aa230d7ea34b
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Tue Mar 26 22:36:51 2024 +0000
+
+    Updated NuPhone to fix integrate Kush's code
+
+commit f428a9c17c7f8414f491d7ab93475048038a76e8
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 22:08:54 2024 +0000
+
+    Some helper functions for LCD touchscreen.
+
+commit b4eab6698c6da30ca54fa8e43b2e61182d33425e
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Tue Mar 26 21:55:32 2024 +0000
+
+    Moved NuPhone implementations into the cpp, fixed an import in fixture_utils
+    
+    Co-authored-by: K B 97338412+KushBharakhada@users.noreply.github.com
+
+commit 7c05547f6ee4dc901eea2be714d104503f994f86
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Tue Mar 26 21:32:28 2024 +0000
+
+    Added header comment to top of nuPhone.h
+    
+    Co-authored-by: K B 97338412+kushbharakhada@users.noreply.github.com
+
+commit bf606eb0daca20e8eaa0d16ca78fe7118216ce68
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 21:27:29 2024 +0000
+
+    Comments and refactoring.
+
+commit 5d803c6928a3450d82b2a959db48fc3ed1b8ec64
+Merge: 7c8f328 9d0caf5
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Tue Mar 26 21:12:45 2024 +0000
+
+    Merge pull request #3 from KushBharakhada/LVGL-Templating/Kush
+    
+    `LVGL Templating` (Kush)
+
+commit 9d0caf5822dca3e60c39f0f8fa3963b133a173f0
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 21:11:34 2024 +0000
+
+    LVGL template implementation.
+
+commit 9095f3083ca5846319a56bac6d5600a87b2db8e5
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 21:10:42 2024 +0000
+
+    Create header file for the LVGL template.
+
+commit 7c8f3282d8a8d01d5a0085178e14d813153e0401
+Merge: 10787a8 71b004d
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 20:55:59 2024 +0000
+
+    Merge pull request #2 from KushBharakhada/branchname/Alex
+    
+    Kush is not a happy boy
+
+commit 71b004d9c17a20e34e9cc2a56feeeac7a3818df9
+Author: Alex <alex.d.chapman@outlook.com>
+Date:   Tue Mar 26 20:54:01 2024 +0000
+
+    Kush is not a happy boy
+
+commit 10787a8537d14c51f1e49bcd01c15d30ea74aa8b
+Merge: c5caf15 d2e3e5a
+Author: AlexChapman18 <64100075+AlexChapman18@users.noreply.github.com>
+Date:   Tue Mar 26 20:29:06 2024 +0000
+
+    Merge pull request #1 from KushBharakhada/Initial-Setup/Kush
+    
+    `Initial Setup` (Kush)
+
+commit d2e3e5a9807eb599796af402e7240921acee04c0
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 20:27:08 2024 +0000
+
+    Initial setup.
+
+commit c5caf156cc2022533258ba1738b4898b3b1d42e4
+Author: Kush Bharakhada <97338412+KushBharakhada@users.noreply.github.com>
+Date:   Tue Mar 26 20:11:18 2024 +0000
+
+    Initial commit
