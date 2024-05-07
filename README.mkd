@@ -30,6 +30,7 @@ The objective of this project has been to control the LED lighting strips around
 - [Self Assessment](#self-assessment)
 - [Future Work](#future-work)
 - [Video Link](#video-link)
+- [Commit History](#commit-history)
 
 ## Light Control Permissions
 
@@ -292,3 +293,7 @@ There are plenty of opportunities to extend on the current progress, the priorit
 ## Video Link
 
 Link: [Click here to watch LA2 Demo](https://drive.google.com/file/d/1o0vH2jaIxVlAez6C7g_fhO2cyWMoB8v9/view?usp=sharing)
+
+## Commit History
+
+The project was completed on Github as we started prior to the release of LA2 on gitlab. The commit history can be found in a file named `commits.txt`. We are happy to add Hamish to the repository if further information is required.
