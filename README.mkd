@@ -292,7 +292,7 @@ There are plenty of opportunities to extend on the current progress, the priorit
 
 ## Video Link
 
-Link: [Click here to watch LA2 Demo](https://drive.google.com/file/d/1o0vH2jaIxVlAez6C7g_fhO2cyWMoB8v9/view?usp=sharing)
+Link: [Click here to watch LA2 Demo](https://youtu.be/TNZxqrxVWRk)
 
 ## Commit History
 
